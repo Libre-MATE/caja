@@ -387,38 +387,59 @@ load_finished (CajaImagePropertiesPage *page)
     {
         GdkPixbufFormat *format;
         char *name, *desc;
+        int width = page->details->width;
+        int height = page->details->height;
 #ifdef HAVE_EXIF
         ExifData *exif_data;
+        ExifEntry *exif_entry;
+        ExifShort orientation;
+
+        exif_data = exif_loader_get_data (page->details->exifldr);
+        if (!exif_data)
+            goto no_exifdata;
+
+        exif_entry = exif_content_get_entry (exif_data->ifd[EXIF_IFD_0], EXIF_TAG_ORIENTATION);
+        if (!exif_entry)
+            goto no_exifdata;
+
+        orientation = exif_get_short (exif_entry->data, exif_data_get_byte_order (exif_data));
+        if (orientation > 4)
+        {
+            height = page->details->width;
+            width = page->details->height;
+        }
+
+no_exifdata:
 #endif /*HAVE_EXIF*/
 
         format = gdk_pixbuf_loader_get_format (page->details->loader);
-
         name = gdk_pixbuf_format_get_name (format);
         desc = gdk_pixbuf_format_get_description (format);
-        append_label_take_str
-        (page->details->vbox,
-         g_strdup_printf ("<b>%s</b> %s (%s)",
-                          _("Image Type:"), name, desc));
-        append_label_take_str
-        (page->details->vbox,
-         g_strdup_printf (ngettext ("<b>Width:</b> %d pixel",
-                                    "<b>Width:</b> %d pixels",
-                                    page->details->width),
-                          page->details->width));
-        append_label_take_str
-        (page->details->vbox,
-         g_strdup_printf (ngettext ("<b>Height:</b> %d pixel",
-                                    "<b>Height:</b> %d pixels",
-                                    page->details->height),
-                          page->details->height));
+
+        append_label_take_str (page->details->vbox,
+                               g_strdup_printf ("<b>%s</b> %s (%s)",
+                                                _("Image Type:"), name, desc));
+
+        append_label_take_str (page->details->vbox,
+                               g_strdup_printf (ngettext ("<b>Width:</b> %d pixel",
+                                                          "<b>Width:</b> %d pixels",
+                                                          width),
+                                                width));
+
+        append_label_take_str (page->details->vbox,
+                               g_strdup_printf (ngettext ("<b>Height:</b> %d pixel",
+                                                          "<b>Height:</b> %d pixels",
+                                                height),
+                               height));
+
         g_free (name);
         g_free (desc);
 
 #ifdef HAVE_EXIF
-        exif_data = exif_loader_get_data (page->details->exifldr);
         append_exifdata_string (exif_data, page);
         exif_data_unref (exif_data);
 #endif /*HAVE_EXIF*/
+
 #ifdef HAVE_EXEMPI
         append_xmpdata_string (page->details->xmp, page);
 #endif /*HAVE_EXEMPI*/
