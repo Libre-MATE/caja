@@ -53,12 +53,14 @@ struct _CajaImagePropertiesPagePrivate
     GCancellable *cancellable;
     GtkWidget *vbox;
     GtkWidget *loading_label;
+    GtkWidget *grid;
     GdkPixbufLoader *loader;
     gboolean got_size;
     gboolean pixbuf_still_loading;
     char buffer[LOAD_BUFFER_SIZE];
     int width;
     int height;
+    int row;
 #ifdef HAVE_EXIF
     ExifLoader *exifldr;
 #endif /*HAVE_EXIF*/
@@ -157,16 +159,33 @@ append_label (GtkWidget *vbox,
     return label;
 }
 
-static GtkWidget *
-append_label_take_str (GtkWidget *vbox,
-                       char *str)
+static void
+add_row (CajaImagePropertiesPage *page,
+         const char              *col_name_str,
+         const char              *col_value_str)
 {
-    GtkWidget *retval;
+    GtkWidget *label;
+    g_autofree char *value = NULL;
 
-    retval = append_label (vbox, str);
-    g_free (str);
+    value = g_strdup_printf (_("<b>%s:</b>"), col_name_str);
+    label = gtk_label_new (NULL);
+    gtk_label_set_markup (GTK_LABEL (label), value);
+    gtk_label_set_xalign (GTK_LABEL (label), 0);
+    gtk_label_set_yalign (GTK_LABEL (label), 0);
+    gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+    gtk_widget_set_can_focus (label, FALSE);
 
-    return retval;
+    gtk_grid_attach (GTK_GRID (page->details->grid), label, 0, page->details->row, 1, 1);
+
+    label = gtk_label_new (col_value_str);
+    gtk_label_set_xalign (GTK_LABEL (label), 0);
+    gtk_label_set_yalign (GTK_LABEL (label), 0);
+    gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+    gtk_widget_set_can_focus (label, FALSE);
+
+    gtk_grid_attach (GTK_GRID (page->details->grid), label, 1, page->details->row, 1, 1);
+
+    page->details->row++;
 }
 
 #ifdef HAVE_EXIF
@@ -258,11 +277,7 @@ append_tag_value_pair (CajaImagePropertiesPage *page,
         return FALSE;
     }
 
-    append_label_take_str
-    (page->details->vbox,
-     g_strdup_printf ("<b>%s:</b> %s",
-                      description ? description : utf_attribute,
-                      utf_value));
+    add_row (page, description ? description : utf_attribute, utf_value);
 
     g_free (utf_attribute);
     g_free (utf_value);
@@ -315,10 +330,7 @@ append_xmp_value_pair (CajaImagePropertiesPage *page,
     {
         if (XMP_IS_PROP_SIMPLE (options))
         {
-            append_label_take_str
-            (page->details->vbox,
-             g_strdup_printf ("<b>%s:</b> %s",
-                              descr, xmp_string_cstr (value)));
+            add_row (page, descr, xmp_string_cstr (value));
         }
         else if (XMP_IS_PROP_ARRAY (options))
         {
@@ -329,11 +341,10 @@ append_xmp_value_pair (CajaImagePropertiesPage *page,
             {
                 GString *str;
                 gboolean first = TRUE;
+                char *value_str;
 
                 str = g_string_new (NULL);
 
-                g_string_append_printf (str, "<b>%s:</b> ",
-                                        descr);
                 while (xmp_iterator_next (iter, NULL, NULL, value, &options)
                         && !XMP_IS_PROP_QUALIFIER(options))
                 {
@@ -350,8 +361,9 @@ append_xmp_value_pair (CajaImagePropertiesPage *page,
                                             xmp_string_cstr(value));
                 }
                 xmp_iterator_free(iter);
-                append_label_take_str (page->details->vbox,
-                                       g_string_free (str, FALSE));
+                value_str = g_string_free (str, FALSE);
+                add_row (page, descr, value_str);
+                g_free (value_str);
             }
         }
     }
@@ -386,7 +398,9 @@ load_finished (CajaImagePropertiesPage *page)
     if (page->details->got_size)
     {
         GdkPixbufFormat *format;
-        char *name, *desc;
+        g_autofree char *name = NULL;
+        g_autofree char *desc = NULL;
+        g_autofree char *value = NULL;
         int width = page->details->width;
         int height = page->details->height;
 #ifdef HAVE_EXIF
@@ -416,24 +430,26 @@ no_exifdata:
         name = gdk_pixbuf_format_get_name (format);
         desc = gdk_pixbuf_format_get_description (format);
 
-        append_label_take_str (page->details->vbox,
-                               g_strdup_printf ("<b>%s</b> %s (%s)",
-                                                _("Image Type:"), name, desc));
+        page->details->grid = gtk_grid_new ();
+        gtk_grid_set_column_spacing (GTK_GRID (page->details->grid), 12);
+        gtk_grid_set_row_spacing (GTK_GRID (page->details->grid), 6);
+        gtk_box_pack_start (GTK_BOX (page->details->vbox), page->details->grid, FALSE, FALSE, 0);
+        page->details->row = 0;
 
-        append_label_take_str (page->details->vbox,
-                               g_strdup_printf (ngettext ("<b>Width:</b> %d pixel",
-                                                          "<b>Width:</b> %d pixels",
-                                                          width),
-                                                width));
+        value = g_strdup_printf ("%s (%s)",name, desc);
+        add_row (page, _("Image Type"), value);
 
-        append_label_take_str (page->details->vbox,
-                               g_strdup_printf (ngettext ("<b>Height:</b> %d pixel",
-                                                          "<b>Height:</b> %d pixels",
-                                                height),
-                               height));
+        value = g_strdup_printf (ngettext ("%d pixel",
+                                           "%d pixels",
+                                           width),
+                                 width);
+        add_row (page, _("Width"), value);
 
-        g_free (name);
-        g_free (desc);
+        value = g_strdup_printf (ngettext ("%d pixel",
+                                           "%d pixels",
+                                           height),
+                                 height);
+        add_row (page, _("Height"), value);
 
 #ifdef HAVE_EXIF
         append_exifdata_string (exif_data, page);
@@ -443,6 +459,7 @@ no_exifdata:
 #ifdef HAVE_EXEMPI
         append_xmpdata_string (page->details->xmp, page);
 #endif /*HAVE_EXEMPI*/
+        gtk_widget_show_all (page->details->grid);
     }
     else
     {
@@ -667,9 +684,9 @@ caja_image_properties_page_init (CajaImagePropertiesPage *page)
 
     gtk_box_set_homogeneous (GTK_BOX (page), FALSE);
     gtk_box_set_spacing (GTK_BOX (page), 2);
-    gtk_container_set_border_width (GTK_CONTAINER (page), 6);
+    gtk_container_set_border_width (GTK_CONTAINER (page), 12);
 
-    page->details->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    page->details->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 12);
     page->details->loading_label =
         append_label (page->details->vbox,_("loading..."));
     gtk_box_pack_start (GTK_BOX (page),
