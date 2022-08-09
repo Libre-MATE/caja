@@ -33,64 +33,56 @@ extern "C" {
 
 #define EEL_TYPE_IMAGE_TABLE eel_image_table_get_type()
 #define EEL_IMAGE_TABLE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EEL_TYPE_IMAGE_TABLE, EelImageTable))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), EEL_TYPE_IMAGE_TABLE, EelImageTable))
 #define EEL_IMAGE_TABLE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), EEL_TYPE_IMAGE_TABLE, EelImageTableClass))
+  (G_TYPE_CHECK_CLASS_CAST((klass), EEL_TYPE_IMAGE_TABLE, EelImageTableClass))
 #define EEL_IS_IMAGE_TABLE(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EEL_TYPE_IMAGE_TABLE))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), EEL_TYPE_IMAGE_TABLE))
 #define EEL_IS_IMAGE_TABLE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), EEL_TYPE_IMAGE_TABLE))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), EEL_TYPE_IMAGE_TABLE))
 #define EEL_IMAGE_TABLE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), EEL_TYPE_IMAGE_TABLE, EelImageTableClass))
+  (G_TYPE_INSTANCE_GET_CLASS((obj), EEL_TYPE_IMAGE_TABLE, EelImageTableClass))
 
-    typedef struct EelImageTable		EelImageTable;
-    typedef struct EelImageTableClass	EelImageTableClass;
-    typedef struct EelImageTablePrivate	EelImageTablePrivate;
+typedef struct EelImageTable EelImageTable;
+typedef struct EelImageTableClass EelImageTableClass;
+typedef struct EelImageTablePrivate EelImageTablePrivate;
 
-    typedef struct
-    {
-        int x;
-        int y;
-        int button;
-        guint state;
-        GdkEvent *event;
-    } EelImageTableEvent;
+typedef struct {
+  int x;
+  int y;
+  int button;
+  guint state;
+  GdkEvent *event;
+} EelImageTableEvent;
 
-    struct EelImageTable
-    {
-        /* Superclass */
-        EelWrapTable wrap_table;
+struct EelImageTable {
+  /* Superclass */
+  EelWrapTable wrap_table;
 
-        /* Private things */
-        EelImageTablePrivate *details;
-    };
+  /* Private things */
+  EelImageTablePrivate *details;
+};
 
-    struct EelImageTableClass
-    {
-        EelWrapTableClass parent_class;
+struct EelImageTableClass {
+  EelWrapTableClass parent_class;
 
-        /* Signals */
-        void (* child_enter) (EelImageTable *image_table,
-                              GtkWidget *child,
-                              const EelImageTableEvent *event);
-        void (* child_leave) (EelImageTable *image_table,
-                              GtkWidget *child,
-                              const EelImageTableEvent *event);
-        void (* child_pressed) (EelImageTable *image_table,
-                                GtkWidget *child,
-                                const EelImageTableEvent *event);
-        void (* child_released) (EelImageTable *image_table,
-                                 GtkWidget *child,
-                                 const EelImageTableEvent *event);
-        void (* child_clicked) (EelImageTable *image_table,
-                                GtkWidget *child,
-                                const EelImageTableEvent *event);
-    };
+  /* Signals */
+  void (*child_enter)(EelImageTable *image_table, GtkWidget *child,
+                      const EelImageTableEvent *event);
+  void (*child_leave)(EelImageTable *image_table, GtkWidget *child,
+                      const EelImageTableEvent *event);
+  void (*child_pressed)(EelImageTable *image_table, GtkWidget *child,
+                        const EelImageTableEvent *event);
+  void (*child_released)(EelImageTable *image_table, GtkWidget *child,
+                         const EelImageTableEvent *event);
+  void (*child_clicked)(EelImageTable *image_table, GtkWidget *child,
+                        const EelImageTableEvent *event);
+};
 
-    /* Public GtkImageTable methods */
-    GType      eel_image_table_get_type         (void);
-    GtkWidget *eel_image_table_new              (gboolean       homogeneous);
-    GtkWidget *eel_image_table_add_empty_image  (EelImageTable *image_table);
+/* Public GtkImageTable methods */
+GType eel_image_table_get_type(void);
+GtkWidget *eel_image_table_new(gboolean homogeneous);
+GtkWidget *eel_image_table_add_empty_image(EelImageTable *image_table);
 
 #ifdef __cplusplus
 }

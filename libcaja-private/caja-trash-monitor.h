@@ -26,8 +26,8 @@
 #ifndef CAJA_TRASH_MONITOR_H
 #define CAJA_TRASH_MONITOR_H
 
-#include <gtk/gtk.h>
 #include <gio/gio.h>
+#include <gtk/gtk.h>
 
 typedef struct CajaTrashMonitor CajaTrashMonitor;
 typedef struct CajaTrashMonitorClass CajaTrashMonitorClass;
@@ -35,34 +35,34 @@ typedef struct _CajaTrashMonitorPrivate CajaTrashMonitorPrivate;
 
 #define CAJA_TYPE_TRASH_MONITOR caja_trash_monitor_get_type()
 #define CAJA_TRASH_MONITOR(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_TRASH_MONITOR, CajaTrashMonitor))
-#define CAJA_TRASH_MONITOR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_TRASH_MONITOR, CajaTrashMonitorClass))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_TRASH_MONITOR, CajaTrashMonitor))
+#define CAJA_TRASH_MONITOR_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_TRASH_MONITOR, \
+                           CajaTrashMonitorClass))
 #define CAJA_IS_TRASH_MONITOR(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_TRASH_MONITOR))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_TRASH_MONITOR))
 #define CAJA_IS_TRASH_MONITOR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_TRASH_MONITOR))
-#define CAJA_TRASH_MONITOR_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_TRASH_MONITOR, CajaTrashMonitorClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_TRASH_MONITOR))
+#define CAJA_TRASH_MONITOR_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_TRASH_MONITOR, \
+                             CajaTrashMonitorClass))
 
-struct CajaTrashMonitor
-{
-    GObject object;
-    CajaTrashMonitorPrivate *details;
+struct CajaTrashMonitor {
+  GObject object;
+  CajaTrashMonitorPrivate *details;
 };
 
-struct CajaTrashMonitorClass
-{
-    GObjectClass parent_class;
+struct CajaTrashMonitorClass {
+  GObjectClass parent_class;
 
-    void (* trash_state_changed)		(CajaTrashMonitor 	*trash_monitor,
-                                         gboolean 		 new_state);
+  void (*trash_state_changed)(CajaTrashMonitor *trash_monitor,
+                              gboolean new_state);
 };
 
-GType			caja_trash_monitor_get_type				(void);
+GType caja_trash_monitor_get_type(void);
 
-CajaTrashMonitor   *caja_trash_monitor_get 				(void);
-gboolean		caja_trash_monitor_is_empty 			(void);
-GIcon                  *caja_trash_monitor_get_icon                         (void);
+CajaTrashMonitor *caja_trash_monitor_get(void);
+gboolean caja_trash_monitor_is_empty(void);
+GIcon *caja_trash_monitor_get_icon(void);
 
 #endif

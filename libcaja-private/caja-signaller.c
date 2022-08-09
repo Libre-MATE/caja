@@ -26,91 +26,56 @@
  * correspond to any particular object.
  */
 
-#include <config.h>
-
-#include <eel/eel-debug.h>
-
 #include "caja-signaller.h"
+
+#include <config.h>
+#include <eel/eel-debug.h>
 
 typedef GObject CajaSignaller;
 typedef GObjectClass CajaSignallerClass;
 
-enum
-{
-    HISTORY_LIST_CHANGED,
-    EMBLEMS_CHANGED,
-    POPUP_MENU_CHANGED,
-    USER_DIRS_CHANGED,
-    MIME_DATA_CHANGED,
-    LAST_SIGNAL
+enum {
+  HISTORY_LIST_CHANGED,
+  EMBLEMS_CHANGED,
+  POPUP_MENU_CHANGED,
+  USER_DIRS_CHANGED,
+  MIME_DATA_CHANGED,
+  LAST_SIGNAL
 };
 
-static guint signals[LAST_SIGNAL] = { 0 };
+static guint signals[LAST_SIGNAL] = {0};
 
-static GType caja_signaller_get_type (void);
+static GType caja_signaller_get_type(void);
 
-G_DEFINE_TYPE (CajaSignaller, caja_signaller, G_TYPE_OBJECT);
+G_DEFINE_TYPE(CajaSignaller, caja_signaller, G_TYPE_OBJECT);
 
-GObject *
-caja_signaller_get_current (void)
-{
-    static GObject *global_signaller = NULL;
+GObject *caja_signaller_get_current(void) {
+  static GObject *global_signaller = NULL;
 
-    if (global_signaller == NULL)
-    {
-        global_signaller = g_object_new (caja_signaller_get_type (), NULL);
-        eel_debug_call_at_shutdown_with_data (g_object_unref, global_signaller);
-    }
+  if (global_signaller == NULL) {
+    global_signaller = g_object_new(caja_signaller_get_type(), NULL);
+    eel_debug_call_at_shutdown_with_data(g_object_unref, global_signaller);
+  }
 
-    return global_signaller;
+  return global_signaller;
 }
 
-static void
-caja_signaller_init (CajaSignaller *signaller)
-{
-}
+static void caja_signaller_init(CajaSignaller *signaller) {}
 
-static void
-caja_signaller_class_init (CajaSignallerClass *class)
-{
-    signals[HISTORY_LIST_CHANGED] =
-        g_signal_new ("history_list_changed",
-                      G_TYPE_FROM_CLASS (class),
-                      G_SIGNAL_RUN_LAST,
-                      0,
-                      NULL, NULL,
-                      g_cclosure_marshal_VOID__VOID,
-                      G_TYPE_NONE, 0);
-    signals[EMBLEMS_CHANGED] =
-        g_signal_new ("emblems_changed",
-                      G_TYPE_FROM_CLASS (class),
-                      G_SIGNAL_RUN_LAST,
-                      0,
-                      NULL, NULL,
-                      g_cclosure_marshal_VOID__VOID,
-                      G_TYPE_NONE, 0);
-    signals[POPUP_MENU_CHANGED] =
-        g_signal_new ("popup_menu_changed",
-                      G_TYPE_FROM_CLASS (class),
-                      G_SIGNAL_RUN_LAST,
-                      0,
-                      NULL, NULL,
-                      g_cclosure_marshal_VOID__VOID,
-                      G_TYPE_NONE, 0);
-    signals[USER_DIRS_CHANGED] =
-        g_signal_new ("user_dirs_changed",
-                      G_TYPE_FROM_CLASS (class),
-                      G_SIGNAL_RUN_LAST,
-                      0,
-                      NULL, NULL,
-                      g_cclosure_marshal_VOID__VOID,
-                      G_TYPE_NONE, 0);
-    signals[MIME_DATA_CHANGED] =
-        g_signal_new ("mime_data_changed",
-                      G_TYPE_FROM_CLASS (class),
-                      G_SIGNAL_RUN_LAST,
-                      0,
-                      NULL, NULL,
-                      g_cclosure_marshal_VOID__VOID,
-                      G_TYPE_NONE, 0);
+static void caja_signaller_class_init(CajaSignallerClass *class) {
+  signals[HISTORY_LIST_CHANGED] = g_signal_new(
+      "history_list_changed", G_TYPE_FROM_CLASS(class), G_SIGNAL_RUN_LAST, 0,
+      NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+  signals[EMBLEMS_CHANGED] = g_signal_new(
+      "emblems_changed", G_TYPE_FROM_CLASS(class), G_SIGNAL_RUN_LAST, 0, NULL,
+      NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+  signals[POPUP_MENU_CHANGED] = g_signal_new(
+      "popup_menu_changed", G_TYPE_FROM_CLASS(class), G_SIGNAL_RUN_LAST, 0,
+      NULL, NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+  signals[USER_DIRS_CHANGED] = g_signal_new(
+      "user_dirs_changed", G_TYPE_FROM_CLASS(class), G_SIGNAL_RUN_LAST, 0, NULL,
+      NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
+  signals[MIME_DATA_CHANGED] = g_signal_new(
+      "mime_data_changed", G_TYPE_FROM_CLASS(class), G_SIGNAL_RUN_LAST, 0, NULL,
+      NULL, g_cclosure_marshal_VOID__VOID, G_TYPE_NONE, 0);
 }

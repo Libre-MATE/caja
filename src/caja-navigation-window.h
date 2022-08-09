@@ -30,10 +30,8 @@
 #ifndef CAJA_NAVIGATION_WINDOW_H
 #define CAJA_NAVIGATION_WINDOW_H
 
-#include <gtk/gtk.h>
-
 #include <eel/eel-glib-extensions.h>
-
+#include <gtk/gtk.h>
 #include <libcaja-private/caja-bookmark.h>
 #include <libcaja-private/caja-sidebar.h>
 
@@ -43,78 +41,80 @@
 #include "caja-window.h"
 
 #define CAJA_TYPE_NAVIGATION_WINDOW caja_navigation_window_get_type()
-#define CAJA_NAVIGATION_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_NAVIGATION_WINDOW, CajaNavigationWindow))
-#define CAJA_NAVIGATION_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_NAVIGATION_WINDOW, CajaNavigationWindowClass))
+#define CAJA_NAVIGATION_WINDOW(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_NAVIGATION_WINDOW, \
+                              CajaNavigationWindow))
+#define CAJA_NAVIGATION_WINDOW_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_NAVIGATION_WINDOW, \
+                           CajaNavigationWindowClass))
 #define CAJA_IS_NAVIGATION_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_NAVIGATION_WINDOW))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_NAVIGATION_WINDOW))
 #define CAJA_IS_NAVIGATION_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_NAVIGATION_WINDOW))
-#define CAJA_NAVIGATION_WINDOW_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_NAVIGATION_WINDOW, CajaNavigationWindowClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_NAVIGATION_WINDOW))
+#define CAJA_NAVIGATION_WINDOW_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_NAVIGATION_WINDOW, \
+                             CajaNavigationWindowClass))
 
-typedef struct _CajaNavigationWindow        CajaNavigationWindow;
-typedef struct _CajaNavigationWindowClass   CajaNavigationWindowClass;
+typedef struct _CajaNavigationWindow CajaNavigationWindow;
+typedef struct _CajaNavigationWindowClass CajaNavigationWindowClass;
 typedef struct _CajaNavigationWindowPrivate CajaNavigationWindowPrivate;
 
-struct _CajaNavigationWindow
-{
-    CajaWindow parent_object;
+struct _CajaNavigationWindow {
+  CajaWindow parent_object;
 
-    CajaNavigationWindowPrivate *details;
+  CajaNavigationWindowPrivate *details;
 
-    /** UI stuff **/
-    CajaSidePane *sidebar;
+  /** UI stuff **/
+  CajaSidePane *sidebar;
 
-    /* Current views stuff */
-    GList *sidebar_panels;
+  /* Current views stuff */
+  GList *sidebar_panels;
 };
 
-struct _CajaNavigationWindowClass
-{
-    CajaWindowClass parent_spot;
+struct _CajaNavigationWindowClass {
+  CajaWindowClass parent_spot;
 };
 
-GType    caja_navigation_window_get_type             (void);
-void     caja_navigation_window_allow_back           (CajaNavigationWindow *window,
-        gboolean                  allow);
-void     caja_navigation_window_allow_forward        (CajaNavigationWindow *window,
-        gboolean                  allow);
-void     caja_navigation_window_clear_back_list      (CajaNavigationWindow *window);
-void     caja_navigation_window_clear_forward_list   (CajaNavigationWindow *window);
-void     caja_forget_history                         (void);
-gint     caja_navigation_window_get_base_page_index  (CajaNavigationWindow *window);
-void     caja_navigation_window_hide_toolbar         (CajaNavigationWindow *window);
-void     caja_navigation_window_show_toolbar         (CajaNavigationWindow *window);
-gboolean caja_navigation_window_toolbar_showing      (CajaNavigationWindow *window);
-void     caja_navigation_window_hide_sidebar         (CajaNavigationWindow *window);
-void     caja_navigation_window_show_sidebar         (CajaNavigationWindow *window);
-gboolean caja_navigation_window_sidebar_showing      (CajaNavigationWindow *window);
-void     caja_navigation_window_add_sidebar_panel    (CajaNavigationWindow *window,
-        CajaSidebar          *sidebar_panel);
-void     caja_navigation_window_remove_sidebar_panel (CajaNavigationWindow *window,
-        CajaSidebar          *sidebar_panel);
-void     caja_navigation_window_hide_status_bar      (CajaNavigationWindow *window);
-void     caja_navigation_window_show_status_bar      (CajaNavigationWindow *window);
-gboolean caja_navigation_window_status_bar_showing   (CajaNavigationWindow *window);
-void     caja_navigation_window_back_or_forward      (CajaNavigationWindow *window,
-        gboolean                  back,
-        guint                     distance,
-        gboolean                  new_tab);
-void     caja_navigation_window_show_search          (CajaNavigationWindow *window);
-void     caja_navigation_window_unset_focus_widget   (CajaNavigationWindow *window);
-void     caja_navigation_window_hide_search          (CajaNavigationWindow *window);
-void     caja_navigation_window_set_search_button	 (CajaNavigationWindow *window,
-        gboolean		    state);
-void     caja_navigation_window_restore_focus_widget (CajaNavigationWindow *window);
-void     caja_navigation_window_split_view_on        (CajaNavigationWindow *window);
-void     caja_navigation_window_split_view_off       (CajaNavigationWindow *window);
-gboolean caja_navigation_window_split_view_showing   (CajaNavigationWindow *window);
+GType caja_navigation_window_get_type(void);
+void caja_navigation_window_allow_back(CajaNavigationWindow *window,
+                                       gboolean allow);
+void caja_navigation_window_allow_forward(CajaNavigationWindow *window,
+                                          gboolean allow);
+void caja_navigation_window_clear_back_list(CajaNavigationWindow *window);
+void caja_navigation_window_clear_forward_list(CajaNavigationWindow *window);
+void caja_forget_history(void);
+gint caja_navigation_window_get_base_page_index(CajaNavigationWindow *window);
+void caja_navigation_window_hide_toolbar(CajaNavigationWindow *window);
+void caja_navigation_window_show_toolbar(CajaNavigationWindow *window);
+gboolean caja_navigation_window_toolbar_showing(CajaNavigationWindow *window);
+void caja_navigation_window_hide_sidebar(CajaNavigationWindow *window);
+void caja_navigation_window_show_sidebar(CajaNavigationWindow *window);
+gboolean caja_navigation_window_sidebar_showing(CajaNavigationWindow *window);
+void caja_navigation_window_add_sidebar_panel(CajaNavigationWindow *window,
+                                              CajaSidebar *sidebar_panel);
+void caja_navigation_window_remove_sidebar_panel(CajaNavigationWindow *window,
+                                                 CajaSidebar *sidebar_panel);
+void caja_navigation_window_hide_status_bar(CajaNavigationWindow *window);
+void caja_navigation_window_show_status_bar(CajaNavigationWindow *window);
+gboolean caja_navigation_window_status_bar_showing(
+    CajaNavigationWindow *window);
+void caja_navigation_window_back_or_forward(CajaNavigationWindow *window,
+                                            gboolean back, guint distance,
+                                            gboolean new_tab);
+void caja_navigation_window_show_search(CajaNavigationWindow *window);
+void caja_navigation_window_unset_focus_widget(CajaNavigationWindow *window);
+void caja_navigation_window_hide_search(CajaNavigationWindow *window);
+void caja_navigation_window_set_search_button(CajaNavigationWindow *window,
+                                              gboolean state);
+void caja_navigation_window_restore_focus_widget(CajaNavigationWindow *window);
+void caja_navigation_window_split_view_on(CajaNavigationWindow *window);
+void caja_navigation_window_split_view_off(CajaNavigationWindow *window);
+gboolean caja_navigation_window_split_view_showing(
+    CajaNavigationWindow *window);
 
-gboolean caja_navigation_window_is_in_temporary_navigation_bar (GtkWidget *widget,
-        CajaNavigationWindow *window);
-gboolean caja_navigation_window_is_in_temporary_search_bar (GtkWidget *widget,
-        CajaNavigationWindow *window);
+gboolean caja_navigation_window_is_in_temporary_navigation_bar(
+    GtkWidget *widget, CajaNavigationWindow *window);
+gboolean caja_navigation_window_is_in_temporary_search_bar(
+    GtkWidget *widget, CajaNavigationWindow *window);
 
 #endif

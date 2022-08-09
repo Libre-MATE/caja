@@ -15,7 +15,8 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author: Dave Camp <dave@ximian.com>
  *
@@ -33,7 +34,7 @@
 
 G_BEGIN_DECLS
 
-#define CAJA_TYPE_OPERATION_RESULT (caja_operation_result_get_type ())
+#define CAJA_TYPE_OPERATION_RESULT (caja_operation_result_get_type())
 
 /**
  * CajaOperationHandle:
@@ -54,21 +55,21 @@ typedef struct _CajaOperationHandle CajaOperationHandle;
  *  and call the callback closure when the operation is complete.
  */
 typedef enum {
-    /* Returned if the call succeeded, and the extension is done
-     * with the request */
-    CAJA_OPERATION_COMPLETE,
+  /* Returned if the call succeeded, and the extension is done
+   * with the request */
+  CAJA_OPERATION_COMPLETE,
 
-    /* Returned if the call failed */
-    CAJA_OPERATION_FAILED,
+  /* Returned if the call failed */
+  CAJA_OPERATION_FAILED,
 
-    /* Returned if the extension has begun an async operation.
-     * If this is returned, the extension must set the handle
-     * parameter and call the callback closure when the
-     * operation is complete. */
-    CAJA_OPERATION_IN_PROGRESS
+  /* Returned if the extension has begun an async operation.
+   * If this is returned, the extension must set the handle
+   * parameter and call the callback closure when the
+   * operation is complete. */
+  CAJA_OPERATION_IN_PROGRESS
 } CajaOperationResult;
 
-GType caja_operation_result_get_type (void);
+GType caja_operation_result_get_type(void);
 
 /**
  * SECTION:caja-extension-types
@@ -79,11 +80,10 @@ GType caja_operation_result_get_type (void);
  * Methods that each extension implements.
  */
 
-void caja_module_initialize  (GTypeModule  *module);
-void caja_module_shutdown    (void);
-void caja_module_list_types  (const GType **types,
-                              int          *num_types);
-void caja_module_list_pyfiles (GList      **pyfiles);
+void caja_module_initialize(GTypeModule *module);
+void caja_module_shutdown(void);
+void caja_module_list_types(const GType **types, int *num_types);
+void caja_module_list_pyfiles(GList **pyfiles);
 
 G_END_DECLS
 

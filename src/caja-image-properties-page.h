@@ -29,32 +29,33 @@
 G_BEGIN_DECLS
 
 #define CAJA_TYPE_IMAGE_PROPERTIES_PAGE caja_image_properties_page_get_type()
-#define CAJA_IMAGE_PROPERTIES_PAGE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_IMAGE_PROPERTIES_PAGE, CajaImagePropertiesPage))
-#define CAJA_IMAGE_PROPERTIES_PAGE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_IMAGE_PROPERTIES_PAGE, CajaImagePropertiesPageClass))
+#define CAJA_IMAGE_PROPERTIES_PAGE(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_IMAGE_PROPERTIES_PAGE, \
+                              CajaImagePropertiesPage))
+#define CAJA_IMAGE_PROPERTIES_PAGE_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_IMAGE_PROPERTIES_PAGE, \
+                           CajaImagePropertiesPageClass))
 #define CAJA_IS_IMAGE_PROPERTIES_PAGE(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_IMAGE_PROPERTIES_PAGE))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_IMAGE_PROPERTIES_PAGE))
 #define CAJA_IS_IMAGE_PROPERTIES_PAGE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_IMAGE_PROPERTIES_PAGE))
-#define CAJA_IMAGE_PROPERTIES_PAGE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_IMAGE_PROPERTIES_PAGE, CajaImagePropertiesPageClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_IMAGE_PROPERTIES_PAGE))
+#define CAJA_IMAGE_PROPERTIES_PAGE_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_IMAGE_PROPERTIES_PAGE, \
+                             CajaImagePropertiesPageClass))
 
 typedef struct _CajaImagePropertiesPagePrivate CajaImagePropertiesPagePrivate;
 
-typedef struct
-{
-    GtkBox parent;
-    CajaImagePropertiesPagePrivate *details;
+typedef struct {
+  GtkBox parent;
+  CajaImagePropertiesPagePrivate *details;
 } CajaImagePropertiesPage;
 
-typedef struct
-{
-    GtkBoxClass parent;
+typedef struct {
+  GtkBoxClass parent;
 } CajaImagePropertiesPageClass;
 
-GType caja_image_properties_page_get_type (void);
-void  caja_image_properties_page_register (void);
+GType caja_image_properties_page_get_type(void);
+void caja_image_properties_page_register(void);
 
 G_END_DECLS
 

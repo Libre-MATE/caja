@@ -25,14 +25,12 @@
 
 #include <config.h>
 
-#if ! defined (EEL_OMIT_SELF_CHECK)
+#if !defined(EEL_OMIT_SELF_CHECK)
 
 #include "eel-lib-self-check-functions.h"
 
-void
-eel_run_lib_self_checks (void)
-{
-    EEL_LIB_FOR_EACH_SELF_CHECK_FUNCTION (EEL_CALL_SELF_CHECK_FUNCTION)
+void eel_run_lib_self_checks(void) {
+  EEL_LIB_FOR_EACH_SELF_CHECK_FUNCTION(EEL_CALL_SELF_CHECK_FUNCTION)
 }
 
 #endif /* ! EEL_OMIT_SELF_CHECK */

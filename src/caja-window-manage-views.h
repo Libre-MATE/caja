@@ -18,7 +18,8 @@
  *
  *  You should have received a copy of the GNU General Public
  *  License along with this program; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author: Darin Adler <darin@bentspoon.com>
  *
@@ -27,22 +28,19 @@
 #ifndef CAJA_WINDOW_MANAGE_VIEWS_H
 #define CAJA_WINDOW_MANAGE_VIEWS_H
 
-#include "caja-window.h"
-#include "caja-window-pane.h"
 #include "caja-navigation-window.h"
+#include "caja-window-pane.h"
+#include "caja-window.h"
 
-void caja_window_manage_views_close_slot (CajaWindowPane *pane,
-        CajaWindowSlot *slot);
+void caja_window_manage_views_close_slot(CajaWindowPane *pane,
+                                         CajaWindowSlot *slot);
 
 /* CajaWindowInfo implementation: */
-void caja_window_report_load_underway     (CajaWindow     *window,
-        CajaView       *view);
-void caja_window_report_selection_changed (CajaWindowInfo *window);
-void caja_window_report_view_failed       (CajaWindow     *window,
-        CajaView       *view);
-void caja_window_report_load_complete     (CajaWindow     *window,
-        CajaView       *view);
-void caja_window_report_location_change   (CajaWindow     *window);
-void caja_window_update_up_button         (CajaWindow     *window);
+void caja_window_report_load_underway(CajaWindow *window, CajaView *view);
+void caja_window_report_selection_changed(CajaWindowInfo *window);
+void caja_window_report_view_failed(CajaWindow *window, CajaView *view);
+void caja_window_report_load_complete(CajaWindow *window, CajaView *view);
+void caja_window_report_location_change(CajaWindow *window);
+void caja_window_update_up_button(CajaWindow *window);
 
 #endif /* CAJA_WINDOW_MANAGE_VIEWS_H */

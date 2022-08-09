@@ -1,5 +1,6 @@
 /*
- * caja-freedesktop-dbus: Implementation for the org.freedesktop DBus file-management interfaces
+ * caja-freedesktop-dbus: Implementation for the org.freedesktop DBus
+ * file-management interfaces
  *
  * Caja is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -29,13 +30,13 @@
 #include "caja-application.h"
 
 #define CAJA_FDO_DBUS_IFACE "org.freedesktop.FileManager1"
-#define CAJA_FDO_DBUS_NAME  "org.freedesktop.FileManager1"
-#define CAJA_FDO_DBUS_PATH  "/org/freedesktop/FileManager1"
+#define CAJA_FDO_DBUS_NAME "org.freedesktop.FileManager1"
+#define CAJA_FDO_DBUS_PATH "/org/freedesktop/FileManager1"
 
 typedef struct _CajaFreedesktopDBus CajaFreedesktopDBus;
 typedef struct _CajaFreedesktopDBusClass CajaFreedesktopDBusClass;
 
-GType caja_freedesktop_dbus_get_type (void);
-CajaFreedesktopDBus * caja_freedesktop_dbus_new (CajaApplication *application);
+GType caja_freedesktop_dbus_get_type(void);
+CajaFreedesktopDBus *caja_freedesktop_dbus_new(CajaApplication *application);
 
 #endif /* __CAJA_FREEDESKTOP_DBUS_H__ */

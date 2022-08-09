@@ -25,34 +25,32 @@
 #ifndef __CAJA_EMBLEM_UTILS_H__
 #define __CAJA_EMBLEM_UTILS_H__
 
-#include <glib.h>
-#include <gio/gio.h>
-#include <gtk/gtk.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gio/gio.h>
+#include <glib.h>
+#include <gtk/gtk.h>
 
-GList *    caja_emblem_list_available             (void);
-void       caja_emblem_refresh_list               (void);
-gboolean   caja_emblem_should_show_in_list        (const char *emblem);
-gboolean   caja_emblem_verify_keyword             (GtkWindow *parent_window,
-        const char *keyword,
-        const char *display_name);
-void       caja_emblem_install_custom_emblem      (GdkPixbuf  *pixbuf,
-        const char *keyword,
-        const char *display_name,
-        GtkWindow  *parent_window);
+GList *caja_emblem_list_available(void);
+void caja_emblem_refresh_list(void);
+gboolean caja_emblem_should_show_in_list(const char *emblem);
+gboolean caja_emblem_verify_keyword(GtkWindow *parent_window,
+                                    const char *keyword,
+                                    const char *display_name);
+void caja_emblem_install_custom_emblem(GdkPixbuf *pixbuf, const char *keyword,
+                                       const char *display_name,
+                                       GtkWindow *parent_window);
 
-gboolean   caja_emblem_remove_emblem              (const char *keyword);
-gboolean   caja_emblem_rename_emblem              (const char *keyword,
-        const char *display_name);
+gboolean caja_emblem_remove_emblem(const char *keyword);
+gboolean caja_emblem_rename_emblem(const char *keyword,
+                                   const char *display_name);
 
-GdkPixbuf *caja_emblem_load_pixbuf_for_emblem     (GFile      *emblem);
-char *     caja_emblem_get_keyword_from_icon_name (const char *emblem);
-char *     caja_emblem_get_icon_name_from_keyword (const char *keyword);
+GdkPixbuf *caja_emblem_load_pixbuf_for_emblem(GFile *emblem);
+char *caja_emblem_get_keyword_from_icon_name(const char *emblem);
+char *caja_emblem_get_icon_name_from_keyword(const char *keyword);
 
-gboolean   caja_emblem_can_remove_emblem          (const char *keyword);
-gboolean   caja_emblem_can_rename_emblem          (const char *keyword);
+gboolean caja_emblem_can_remove_emblem(const char *keyword);
+gboolean caja_emblem_can_rename_emblem(const char *keyword);
 
-char *     caja_emblem_create_unique_keyword      (const char *base);
+char *caja_emblem_create_unique_keyword(const char *base);
 
-#endif	/* __CAJA_EMBLEM_UTILS_H__ */
-
+#endif /* __CAJA_EMBLEM_UTILS_H__ */

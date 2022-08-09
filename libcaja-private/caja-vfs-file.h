@@ -30,28 +30,26 @@
 
 #define CAJA_TYPE_VFS_FILE caja_vfs_file_get_type()
 #define CAJA_VFS_FILE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_VFS_FILE, CajaVFSFile))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_VFS_FILE, CajaVFSFile))
 #define CAJA_VFS_FILE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_VFS_FILE, CajaVFSFileClass))
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_VFS_FILE, CajaVFSFileClass))
 #define CAJA_IS_VFS_FILE(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_VFS_FILE))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_VFS_FILE))
 #define CAJA_IS_VFS_FILE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_VFS_FILE))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_VFS_FILE))
 #define CAJA_VFS_FILE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_VFS_FILE, CajaVFSFileClass))
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_VFS_FILE, CajaVFSFileClass))
 
 typedef struct CajaVFSFileDetails CajaVFSFileDetails;
 
-typedef struct
-{
-    CajaFile parent_slot;
+typedef struct {
+  CajaFile parent_slot;
 } CajaVFSFile;
 
-typedef struct
-{
-    CajaFileClass parent_slot;
+typedef struct {
+  CajaFileClass parent_slot;
 } CajaVFSFileClass;
 
-GType   caja_vfs_file_get_type (void);
+GType caja_vfs_file_get_type(void);
 
 #endif /* CAJA_VFS_FILE_H */

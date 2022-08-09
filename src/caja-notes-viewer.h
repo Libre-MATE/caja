@@ -27,25 +27,23 @@
 #define _CAJA_NOTES_VIEWER_H
 
 #include <gtk/gtk.h>
-
 #include <libcaja-private/caja-view.h>
 #include <libcaja-private/caja-window-info.h>
 
-#define CAJA_NOTES_SIDEBAR_ID    "notes"
+#define CAJA_NOTES_SIDEBAR_ID "notes"
 
 #define CAJA_TYPE_NOTES_VIEWER caja_notes_viewer_get_type()
 #define CAJA_NOTES_VIEWER(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_NOTES_VIEWER, CajaNotesViewer))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_NOTES_VIEWER, CajaNotesViewer))
 
 typedef struct _CajaNotesViewerDetails CajaNotesViewerDetails;
 
-typedef struct
-{
-    GtkScrolledWindow parent;
-    CajaNotesViewerDetails *details;
+typedef struct {
+  GtkScrolledWindow parent;
+  CajaNotesViewerDetails *details;
 } CajaNotesViewer;
 
-GType caja_notes_viewer_get_type (void);
-void caja_notes_viewer_register (void);
+GType caja_notes_viewer_get_type(void);
+void caja_notes_viewer_register(void);
 
 #endif

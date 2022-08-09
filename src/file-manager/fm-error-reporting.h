@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 
 /* fm-error-reporting.h - interface for file manager functions that report
- 			  errors to the user.
+                          errors to the user.
 
    Copyright (C) 2000 Eazel, Inc.
 
@@ -27,30 +27,22 @@
 #define FM_ERROR_REPORTING_H
 
 #include <gtk/gtk.h>
-
 #include <libcaja-private/caja-file.h>
 
-void fm_report_error_loading_directory	 (CajaFile   *file,
-        GError         *error,
-        GtkWindow	 *parent_window);
-void fm_report_error_renaming_file       (CajaFile   *file,
-        const char     *new_name,
-        GError         *error,
-        GtkWindow	 *parent_window);
-void fm_report_error_setting_permissions (CajaFile   *file,
-        GError         *error,
-        GtkWindow	 *parent_window);
-void fm_report_error_setting_owner       (CajaFile   *file,
-        GError         *error,
-        GtkWindow	 *parent_window);
-void fm_report_error_setting_group       (CajaFile   *file,
-        GError         *error,
-        GtkWindow	 *parent_window);
+void fm_report_error_loading_directory(CajaFile *file, GError *error,
+                                       GtkWindow *parent_window);
+void fm_report_error_renaming_file(CajaFile *file, const char *new_name,
+                                   GError *error, GtkWindow *parent_window);
+void fm_report_error_setting_permissions(CajaFile *file, GError *error,
+                                         GtkWindow *parent_window);
+void fm_report_error_setting_owner(CajaFile *file, GError *error,
+                                   GtkWindow *parent_window);
+void fm_report_error_setting_group(CajaFile *file, GError *error,
+                                   GtkWindow *parent_window);
 
-/* FIXME bugzilla.gnome.org 42394: Should this file be renamed or should this function be moved? */
-void fm_rename_file                      (CajaFile   *file,
-        const char     *new_name,
-        CajaFileOperationCallback callback,
-        gpointer callback_data);
+/* FIXME bugzilla.gnome.org 42394: Should this file be renamed or should this
+ * function be moved? */
+void fm_rename_file(CajaFile *file, const char *new_name,
+                    CajaFileOperationCallback callback, gpointer callback_data);
 
 #endif /* FM_ERROR_REPORTING_H */

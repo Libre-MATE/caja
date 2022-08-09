@@ -15,7 +15,8 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author: Dave Camp <dave@ximian.com>
  *
@@ -30,13 +31,13 @@
 extern "C" {
 #endif
 
-    void   caja_module_setup                   (void);
-    GList *caja_module_get_extensions_for_type (GType  type);
-    void   caja_module_extension_list_free     (GList *list);
+void caja_module_setup(void);
+GList *caja_module_get_extensions_for_type(GType type);
+void caja_module_extension_list_free(GList *list);
 
-    /* Add a type to the module interface - allows caja to add its own modules
-     * without putting them in separate shared libraries */
-    GObject *caja_module_add_type              (GType  type);
+/* Add a type to the module interface - allows caja to add its own modules
+ * without putting them in separate shared libraries */
+GObject *caja_module_add_type(GType type);
 
 #ifdef __cplusplus
 }

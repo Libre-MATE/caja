@@ -27,73 +27,59 @@
 #ifndef EEL_GLIB_EXTENSIONS_H
 #define EEL_GLIB_EXTENSIONS_H
 
-#include <glib.h>
 #include <gio/gio.h>
+#include <glib.h>
 
 /* A gboolean variant for bit fields. */
 typedef guint eel_boolean_bit;
 
 /* Predicate. */
-typedef gboolean (* EelPredicateFunction) (gpointer data,
-        gpointer callback_data);
+typedef gboolean (*EelPredicateFunction)(gpointer data, gpointer callback_data);
 
 /* GList functions. */
-gboolean    eel_g_list_exactly_one_item                 (GList                 *list);
-gboolean    eel_g_list_more_than_one_item               (GList                 *list);
-gboolean    eel_g_list_equal                            (GList                 *list_a,
-        GList                 *list_b);
-gboolean    eel_g_lists_sort_and_check_for_intersection (GList                **list_a,
-        GList                **list_b);
-GList *     eel_g_list_partition                        (GList                 *list,
-        EelPredicateFunction   predicate,
-        gpointer               user_data,
-        GList                **removed);
+gboolean eel_g_list_exactly_one_item(GList *list);
+gboolean eel_g_list_more_than_one_item(GList *list);
+gboolean eel_g_list_equal(GList *list_a, GList *list_b);
+gboolean eel_g_lists_sort_and_check_for_intersection(GList **list_a,
+                                                     GList **list_b);
+GList *eel_g_list_partition(GList *list, EelPredicateFunction predicate,
+                            gpointer user_data, GList **removed);
 
 /* List functions for lists of g_free'able objects. */
-void        eel_g_list_free_deep                        (GList                 *list);
+void eel_g_list_free_deep(GList *list);
 
 /* List functions for lists of C strings. */
-gboolean    eel_g_str_list_equal                        (GList                 *str_list_a,
-        GList                 *str_list_b);
-GList *     eel_g_str_list_alphabetize                  (GList                 *str_list);
-int         eel_g_str_list_index                        (GList                 *str_list,
-        const char            *str);
+gboolean eel_g_str_list_equal(GList *str_list_a, GList *str_list_b);
+GList *eel_g_str_list_alphabetize(GList *str_list);
+int eel_g_str_list_index(GList *str_list, const char *str);
 
 /* GHashTable functions */
-GHashTable *eel_g_hash_table_new_free_at_exit           (GHashFunc              hash_function,
-        GCompareFunc           key_compare_function,
-        const char            *display_name);
-void        eel_g_hash_table_safe_for_each              (GHashTable            *hash_table,
-        GHFunc                 callback,
-        gpointer               callback_data);
+GHashTable *eel_g_hash_table_new_free_at_exit(GHashFunc hash_function,
+                                              GCompareFunc key_compare_function,
+                                              const char *display_name);
+void eel_g_hash_table_safe_for_each(GHashTable *hash_table, GHFunc callback,
+                                    gpointer callback_data);
 
 /* NULL terminated string arrays (strv). */
-int         eel_g_strv_find                             (char                 **strv,
-        const char            *find_me);
-gboolean    eel_g_strv_equal                            (char                 **a,
-        char                 **b);
+int eel_g_strv_find(char **strv, const char *find_me);
+gboolean eel_g_strv_equal(char **a, char **b);
 
 /* math */
-int         eel_round                                   (double                 d);
+int eel_round(double d);
 
 /* Better weak pointer functions */
-void        eel_add_weak_pointer                        (gpointer               pointer_location);
-void        eel_remove_weak_pointer                     (gpointer               pointer_location);
+void eel_add_weak_pointer(gpointer pointer_location);
+void eel_remove_weak_pointer(gpointer pointer_location);
 
-void        eel_g_settings_add_auto_enum                (GSettings *settings,
-                                                         const char *key,
-                                                         int *storage);
-void        eel_g_settings_add_auto_int                 (GSettings *settings,
-                                                         const char *key,
-                                                         int *storage);
-void        eel_g_settings_add_auto_boolean             (GSettings *settings,
-                                                         const char *key,
-                                                         gboolean *storage);
-void        eel_g_settings_add_auto_strv                (GSettings *settings,
-                                                         const char *key,
-                                                         char ***storage);
-void        eel_g_settings_add_auto_strv_as_quarks      (GSettings *settings,
-                                                         const char *key,
-                                                         GQuark **storage);
+void eel_g_settings_add_auto_enum(GSettings *settings, const char *key,
+                                  int *storage);
+void eel_g_settings_add_auto_int(GSettings *settings, const char *key,
+                                 int *storage);
+void eel_g_settings_add_auto_boolean(GSettings *settings, const char *key,
+                                     gboolean *storage);
+void eel_g_settings_add_auto_strv(GSettings *settings, const char *key,
+                                  char ***storage);
+void eel_g_settings_add_auto_strv_as_quarks(GSettings *settings,
+                                            const char *key, GQuark **storage);
 
 #endif /* EEL_GLIB_EXTENSIONS_H */

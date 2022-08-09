@@ -26,9 +26,8 @@
 #define EEL_STRING_H
 
 #include <glib.h>
-
-#include <string.h>
 #include <stdarg.h>
+#include <string.h>
 
 /* We use the "str" abbrevation to mean char * string, since
  * "string" usually means g_string instead. We use the "istr"
@@ -40,55 +39,44 @@
 /* Versions of basic string functions that allow NULL, and handle
  * cases that the standard ones get a bit wrong for our purposes.
  */
-size_t   eel_strlen                        (const char    *str);
-char *   eel_strchr                        (const char    *haystack,
-        char           needle);
-int      eel_strcmp                        (const char    *str_a,
-        const char    *str_b);
+size_t eel_strlen(const char *str);
+char *eel_strchr(const char *haystack, char needle);
+int eel_strcmp(const char *str_a, const char *str_b);
 
 /* Other basic string operations. */
-gboolean eel_str_is_empty                  (const char    *str_or_null);
-gboolean eel_str_has_prefix                (const char    *target,
-        const char    *prefix);
-char *   eel_str_get_prefix                (const char    *source,
-        const char    *delimiter);
-gboolean eel_istr_has_prefix               (const char    *target,
-        const char    *prefix);
+gboolean eel_str_is_empty(const char *str_or_null);
+gboolean eel_str_has_prefix(const char *target, const char *prefix);
+char *eel_str_get_prefix(const char *source, const char *delimiter);
+gboolean eel_istr_has_prefix(const char *target, const char *prefix);
 
 /* Escape function for '_' character. */
-char *   eel_str_double_underscores        (const char    *str);
+char *eel_str_double_underscores(const char *str);
 
 /* Capitalize a string */
-char *   eel_str_capitalize                (const char    *str);
+char *eel_str_capitalize(const char *str);
 
 /* Middle truncate a string to a maximum of truncate_length characters.
  * The resulting string will be truncated in the middle with a "..."
  * delimiter.
  */
-char *   eel_str_middle_truncate           (const char    *str,
-        guint          truncate_length);
+char *eel_str_middle_truncate(const char *str, guint truncate_length);
 
 /* Remove all characters after the passed-in substring. */
-char *   eel_str_strip_substring_and_after (const char    *str,
-        const char    *substring);
+char *eel_str_strip_substring_and_after(const char *str, const char *substring);
 
 /* Replace all occurrences of substring with replacement. */
-char *   eel_str_replace_substring         (const char    *str,
-        const char    *substring,
-        const char    *replacement);
+char *eel_str_replace_substring(const char *str, const char *substring,
+                                const char *replacement);
 
-typedef struct
-{
-    char character;
-    char *(*to_string) (char *format, va_list va);
-    void (*skip) (va_list *va);
+typedef struct {
+  char character;
+  char *(*to_string)(char *format, va_list va);
+  void (*skip)(va_list *va);
 } EelPrintfHandler;
 
-char *eel_strdup_printf_with_custom (EelPrintfHandler *handlers,
-                                     const char *format,
-                                     ...);
-char *eel_strdup_vprintf_with_custom (EelPrintfHandler *custom,
-                                      const char *format,
-                                      va_list va);
+char *eel_strdup_printf_with_custom(EelPrintfHandler *handlers,
+                                    const char *format, ...);
+char *eel_strdup_vprintf_with_custom(EelPrintfHandler *custom,
+                                     const char *format, va_list va);
 
 #endif /* EEL_STRING_H */

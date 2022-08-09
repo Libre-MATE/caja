@@ -26,40 +26,33 @@
 #define EEL_GRAPHIC_EFFECTS_H
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <gtk/gtk.h>
 #include <gdk/gdk.h>
+#include <gtk/gtk.h>
 
 /* return a lightened pixbuf for pre-lighting */
-GdkPixbuf *eel_create_spotlight_pixbuf (GdkPixbuf *source_pixbuf);
+GdkPixbuf *eel_create_spotlight_pixbuf(GdkPixbuf *source_pixbuf);
 /* return a lightened surface for pre-lighting */
-cairo_surface_t *eel_create_spotlight_surface (cairo_surface_t *source_surface,
-                                               int scale);
+cairo_surface_t *eel_create_spotlight_surface(cairo_surface_t *source_surface,
+                                              int scale);
 
 /* return a darkened pixbuf for selection hiliting */
-GdkPixbuf *eel_create_darkened_pixbuf  (GdkPixbuf *source_pixbuf,
-                                        int        saturation,
-                                        int        darken);
+GdkPixbuf *eel_create_darkened_pixbuf(GdkPixbuf *source_pixbuf, int saturation,
+                                      int darken);
 
 /* return a pixbuf colorized with the color specified by the parameters */
-GdkPixbuf* eel_create_colorized_pixbuf (GdkPixbuf *source_pixbuf,
-                                        GdkRGBA *color);
+GdkPixbuf *eel_create_colorized_pixbuf(GdkPixbuf *source_pixbuf,
+                                       GdkRGBA *color);
 
 /* stretch a image frame */
-GdkPixbuf *eel_stretch_frame_image     (GdkPixbuf *frame_image,
-                                        int        left_offset,
-                                        int        top_offset,
-                                        int        right_offset,
-                                        int        bottom_offset,
-                                        int        dest_width,
-                                        int        dest_height,
-                                        gboolean   fill_flag);
+GdkPixbuf *eel_stretch_frame_image(GdkPixbuf *frame_image, int left_offset,
+                                   int top_offset, int right_offset,
+                                   int bottom_offset, int dest_width,
+                                   int dest_height, gboolean fill_flag);
 
 /* embed in image in a frame */
-GdkPixbuf *eel_embed_image_in_frame    (GdkPixbuf *source_image,
-                                        GdkPixbuf *frame_image,
-                                        int        left_offset,
-                                        int        top_offset,
-                                        int        right_offset,
-                                        int        bottom_offset);
+GdkPixbuf *eel_embed_image_in_frame(GdkPixbuf *source_image,
+                                    GdkPixbuf *frame_image, int left_offset,
+                                    int top_offset, int right_offset,
+                                    int bottom_offset);
 
 #endif /* EEL_GRAPHIC_EFFECTS_H */

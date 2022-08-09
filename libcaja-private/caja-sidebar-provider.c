@@ -22,53 +22,38 @@
    Author: Alexander Larsson <alexl@redhat.com>
 */
 
-#include <string.h>
 #include "caja-sidebar-provider.h"
 
-static void
-caja_sidebar_provider_base_init (gpointer g_class)
-{
+#include <string.h>
+
+static void caja_sidebar_provider_base_init(gpointer g_class) {}
+
+GType caja_sidebar_provider_get_type(void) {
+  static GType type = 0;
+
+  if (!type) {
+    const GTypeInfo info = {sizeof(CajaSidebarProviderIface),
+                            caja_sidebar_provider_base_init,
+                            NULL,
+                            NULL,
+                            NULL,
+                            NULL,
+                            0,
+                            0,
+                            NULL,
+                            NULL};
+
+    type = g_type_register_static(G_TYPE_INTERFACE, "CajaSidebarProvider",
+                                  &info, 0);
+    g_type_interface_add_prerequisite(type, G_TYPE_OBJECT);
+  }
+
+  return type;
 }
 
-GType
-caja_sidebar_provider_get_type (void)
-{
-    static GType type = 0;
-
-    if (!type)
-    {
-        const GTypeInfo info =
-        {
-            sizeof (CajaSidebarProviderIface),
-            caja_sidebar_provider_base_init,
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            0,
-            0,
-            NULL,
-            NULL
-        };
-
-        type = g_type_register_static (G_TYPE_INTERFACE,
-                                       "CajaSidebarProvider",
-                                       &info, 0);
-        g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
-    }
-
-    return type;
+CajaSidebar *caja_sidebar_provider_create(CajaSidebarProvider *provider,
+                                          CajaWindowInfo *window) {
+  return (*CAJA_SIDEBAR_PROVIDER_GET_IFACE(provider)->create)(provider, window);
 }
 
-CajaSidebar *
-caja_sidebar_provider_create (CajaSidebarProvider *provider,
-                              CajaWindowInfo  *window)
-{
-    return (* CAJA_SIDEBAR_PROVIDER_GET_IFACE (provider)->create) (provider, window);
-}
-
-GList *
-caja_list_sidebar_providers (void)
-{
-    return NULL;
-}
+GList *caja_list_sidebar_providers(void) { return NULL; }

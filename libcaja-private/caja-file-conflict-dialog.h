@@ -26,55 +26,50 @@
 #ifndef CAJA_FILE_CONFLICT_DIALOG_H
 #define CAJA_FILE_CONFLICT_DIALOG_H
 
-#include <glib-object.h>
 #include <gio/gio.h>
+#include <glib-object.h>
 #include <gtk/gtk.h>
 
-#define CAJA_TYPE_FILE_CONFLICT_DIALOG \
-	(caja_file_conflict_dialog_get_type ())
-#define CAJA_FILE_CONFLICT_DIALOG(o) \
-	(G_TYPE_CHECK_INSTANCE_CAST ((o), CAJA_TYPE_FILE_CONFLICT_DIALOG,\
-				     CajaFileConflictDialog))
-#define CAJA_FILE_CONFLICT_DIALOG_CLASS(k) \
-	(G_TYPE_CHECK_CLASS_CAST((k), CAJA_TYPE_FILE_CONFLICT_DIALOG,\
-				 CajaFileConflictDialogClass))
+#define CAJA_TYPE_FILE_CONFLICT_DIALOG (caja_file_conflict_dialog_get_type())
+#define CAJA_FILE_CONFLICT_DIALOG(o)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((o), CAJA_TYPE_FILE_CONFLICT_DIALOG, \
+                              CajaFileConflictDialog))
+#define CAJA_FILE_CONFLICT_DIALOG_CLASS(k)                      \
+  (G_TYPE_CHECK_CLASS_CAST((k), CAJA_TYPE_FILE_CONFLICT_DIALOG, \
+                           CajaFileConflictDialogClass))
 #define CAJA_IS_FILE_CONFLICT_DIALOG(o) \
-	(G_TYPE_CHECK_INSTANCE_TYPE ((o), CAJA_TYPE_FILE_CONFLICT_DIALOG))
+  (G_TYPE_CHECK_INSTANCE_TYPE((o), CAJA_TYPE_FILE_CONFLICT_DIALOG))
 #define CAJA_IS_FILE_CONFLICT_DIALOG_CLASS(k) \
-	(G_TYPE_CHECK_CLASS_TYPE ((k), CAJA_TYPE_FILE_CONFLICT_DIALOG))
-#define CAJA_FILE_CONFLICT_DIALOG_GET_CLASS(o) \
-	(G_TYPE_INSTANCE_GET_CLASS ((o), CAJA_TYPE_FILE_CONFLICT_DIALOG,\
-				    CajaFileConflictDialogClass))
+  (G_TYPE_CHECK_CLASS_TYPE((k), CAJA_TYPE_FILE_CONFLICT_DIALOG))
+#define CAJA_FILE_CONFLICT_DIALOG_GET_CLASS(o)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((o), CAJA_TYPE_FILE_CONFLICT_DIALOG, \
+                             CajaFileConflictDialogClass))
 
-typedef struct _CajaFileConflictDialog        CajaFileConflictDialog;
-typedef struct _CajaFileConflictDialogClass   CajaFileConflictDialogClass;
+typedef struct _CajaFileConflictDialog CajaFileConflictDialog;
+typedef struct _CajaFileConflictDialogClass CajaFileConflictDialogClass;
 typedef struct _CajaFileConflictDialogPrivate CajaFileConflictDialogPrivate;
 
-struct _CajaFileConflictDialog
-{
-    GtkDialog parent;
-    CajaFileConflictDialogPrivate *details;
+struct _CajaFileConflictDialog {
+  GtkDialog parent;
+  CajaFileConflictDialogPrivate *details;
 };
 
-struct _CajaFileConflictDialogClass
-{
-    GtkDialogClass parent_class;
+struct _CajaFileConflictDialogClass {
+  GtkDialogClass parent_class;
 };
 
-enum
-{
-    CONFLICT_RESPONSE_SKIP = 1,
-    CONFLICT_RESPONSE_REPLACE = 2,
-    CONFLICT_RESPONSE_RENAME = 3,
+enum {
+  CONFLICT_RESPONSE_SKIP = 1,
+  CONFLICT_RESPONSE_REPLACE = 2,
+  CONFLICT_RESPONSE_RENAME = 3,
 };
 
-GType caja_file_conflict_dialog_get_type (void) G_GNUC_CONST;
+GType caja_file_conflict_dialog_get_type(void) G_GNUC_CONST;
 
-GtkWidget* caja_file_conflict_dialog_new              (GtkWindow *parent,
-        GFile *source,
-        GFile *destination,
-        GFile *dest_dir);
-char*      caja_file_conflict_dialog_get_new_name     (CajaFileConflictDialog *dialog);
-gboolean   caja_file_conflict_dialog_get_apply_to_all (CajaFileConflictDialog *dialog);
+GtkWidget *caja_file_conflict_dialog_new(GtkWindow *parent, GFile *source,
+                                         GFile *destination, GFile *dest_dir);
+char *caja_file_conflict_dialog_get_new_name(CajaFileConflictDialog *dialog);
+gboolean caja_file_conflict_dialog_get_apply_to_all(
+    CajaFileConflictDialog *dialog);
 
 #endif /* CAJA_FILE_CONFLICT_DIALOG_H */

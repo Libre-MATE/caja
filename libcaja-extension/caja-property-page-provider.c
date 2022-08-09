@@ -17,15 +17,16 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author:  Dave Camp <dave@ximian.com>
  *
  */
 
-#include <config.h>
 #include "caja-property-page-provider.h"
 
+#include <config.h>
 #include <glib-object.h>
 
 /**
@@ -38,37 +39,29 @@
  * for the file properties dialog.
  */
 
-static void
-caja_property_page_provider_base_init (gpointer g_class)
-{
-}
+static void caja_property_page_provider_base_init(gpointer g_class) {}
 
-GType
-caja_property_page_provider_get_type (void)
-{
-    static GType type = 0;
+GType caja_property_page_provider_get_type(void) {
+  static GType type = 0;
 
-    if (!type) {
-        const GTypeInfo info = {
-            sizeof (CajaPropertyPageProviderIface),
-            caja_property_page_provider_base_init,
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            0,
-            0,
-            NULL,
-            NULL
-        };
+  if (!type) {
+    const GTypeInfo info = {sizeof(CajaPropertyPageProviderIface),
+                            caja_property_page_provider_base_init,
+                            NULL,
+                            NULL,
+                            NULL,
+                            NULL,
+                            0,
+                            0,
+                            NULL,
+                            NULL};
 
-        type = g_type_register_static (G_TYPE_INTERFACE,
-                                       "CajaPropertyPageProvider",
-                                       &info, 0);
-        g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
-    }
+    type = g_type_register_static(G_TYPE_INTERFACE, "CajaPropertyPageProvider",
+                                  &info, 0);
+    g_type_interface_add_prerequisite(type, G_TYPE_OBJECT);
+  }
 
-    return type;
+  return type;
 }
 
 /**
@@ -82,16 +75,15 @@ caja_property_page_provider_get_type (void)
  * This function is called in the main thread before a property page
  * is shown, so it should return quickly.
  *
- * Returns: (element-type CajaPropertyPage) (transfer full): A #GList of allocated #CajaPropertyPage items.
+ * Returns: (element-type CajaPropertyPage) (transfer full): A #GList of
+ * allocated #CajaPropertyPage items.
  */
-GList *
-caja_property_page_provider_get_pages (CajaPropertyPageProvider *provider,
-                                       GList *files)
-{
-    g_return_val_if_fail (CAJA_IS_PROPERTY_PAGE_PROVIDER (provider), NULL);
-    g_return_val_if_fail (CAJA_PROPERTY_PAGE_PROVIDER_GET_IFACE (provider)->get_pages != NULL, NULL);
+GList *caja_property_page_provider_get_pages(CajaPropertyPageProvider *provider,
+                                             GList *files) {
+  g_return_val_if_fail(CAJA_IS_PROPERTY_PAGE_PROVIDER(provider), NULL);
+  g_return_val_if_fail(
+      CAJA_PROPERTY_PAGE_PROVIDER_GET_IFACE(provider)->get_pages != NULL, NULL);
 
-    return CAJA_PROPERTY_PAGE_PROVIDER_GET_IFACE (provider)->get_pages
-           (provider, files);
+  return CAJA_PROPERTY_PAGE_PROVIDER_GET_IFACE(provider)->get_pages(provider,
+                                                                    files);
 }
-

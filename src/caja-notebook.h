@@ -19,7 +19,8 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301,
+ * USA.
  *
  *  $Id: caja-notebook.h 8210 2008-04-11 20:05:25Z chpe $
  */
@@ -28,72 +29,67 @@
 #define CAJA_NOTEBOOK_H
 
 #include <glib.h>
-
 #include <gtk/gtk.h>
+
 #include "caja-window-slot.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define CAJA_TYPE_NOTEBOOK		(caja_notebook_get_type ())
-#define CAJA_NOTEBOOK(o)		(G_TYPE_CHECK_INSTANCE_CAST ((o), CAJA_TYPE_NOTEBOOK, CajaNotebook))
-#define CAJA_NOTEBOOK_CLASS(k)		(G_TYPE_CHECK_CLASS_CAST((k), CAJA_TYPE_NOTEBOOK, CajaNotebookClass))
-#define CAJA_IS_NOTEBOOK(o)		(G_TYPE_CHECK_INSTANCE_TYPE ((o), CAJA_TYPE_NOTEBOOK))
-#define CAJA_IS_NOTEBOOK_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), CAJA_TYPE_NOTEBOOK))
-#define CAJA_NOTEBOOK_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), CAJA_TYPE_NOTEBOOK, CajaNotebookClass))
+#define CAJA_TYPE_NOTEBOOK (caja_notebook_get_type())
+#define CAJA_NOTEBOOK(o) \
+  (G_TYPE_CHECK_INSTANCE_CAST((o), CAJA_TYPE_NOTEBOOK, CajaNotebook))
+#define CAJA_NOTEBOOK_CLASS(k) \
+  (G_TYPE_CHECK_CLASS_CAST((k), CAJA_TYPE_NOTEBOOK, CajaNotebookClass))
+#define CAJA_IS_NOTEBOOK(o) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((o), CAJA_TYPE_NOTEBOOK))
+#define CAJA_IS_NOTEBOOK_CLASS(k) \
+  (G_TYPE_CHECK_CLASS_TYPE((k), CAJA_TYPE_NOTEBOOK))
+#define CAJA_NOTEBOOK_GET_CLASS(o) \
+  (G_TYPE_INSTANCE_GET_CLASS((o), CAJA_TYPE_NOTEBOOK, CajaNotebookClass))
 
-    typedef struct _CajaNotebookClass	CajaNotebookClass;
-    typedef struct _CajaNotebook		CajaNotebook;
-    typedef struct _CajaNotebookPrivate	CajaNotebookPrivate;
+typedef struct _CajaNotebookClass CajaNotebookClass;
+typedef struct _CajaNotebook CajaNotebook;
+typedef struct _CajaNotebookPrivate CajaNotebookPrivate;
 
-    struct _CajaNotebook
-    {
-        GtkNotebook parent;
+struct _CajaNotebook {
+  GtkNotebook parent;
 
-        /*< private >*/
-        CajaNotebookPrivate *priv;
-    };
+  /*< private >*/
+  CajaNotebookPrivate *priv;
+};
 
-    struct _CajaNotebookClass
-    {
-        GtkNotebookClass parent_class;
+struct _CajaNotebookClass {
+  GtkNotebookClass parent_class;
 
-        /* Signals */
-        void	 (* tab_close_request)  (CajaNotebook *notebook,
-                                         CajaWindowSlot *slot);
-    };
+  /* Signals */
+  void (*tab_close_request)(CajaNotebook *notebook, CajaWindowSlot *slot);
+};
 
-    GType		caja_notebook_get_type		(void);
+GType caja_notebook_get_type(void);
 
-    int		caja_notebook_add_tab	(CajaNotebook *nb,
-                                     CajaWindowSlot *slot,
-                                     int position,
-                                     gboolean jump_to);
+int caja_notebook_add_tab(CajaNotebook *nb, CajaWindowSlot *slot, int position,
+                          gboolean jump_to);
 
-    void		caja_notebook_set_show_tabs	(CajaNotebook *nb,
-            gboolean show_tabs);
+void caja_notebook_set_show_tabs(CajaNotebook *nb, gboolean show_tabs);
 
-    void		caja_notebook_set_dnd_enabled (CajaNotebook *nb,
-            gboolean enabled);
-    void		caja_notebook_sync_tab_label (CajaNotebook *nb,
-            CajaWindowSlot *slot);
-    void		caja_notebook_sync_loading   (CajaNotebook *nb,
-            CajaWindowSlot *slot);
+void caja_notebook_set_dnd_enabled(CajaNotebook *nb, gboolean enabled);
+void caja_notebook_sync_tab_label(CajaNotebook *nb, CajaWindowSlot *slot);
+void caja_notebook_sync_loading(CajaNotebook *nb, CajaWindowSlot *slot);
 
-    void		caja_notebook_reorder_current_child_relative (CajaNotebook *notebook,
-            int offset);
-    void		caja_notebook_set_current_page_relative (CajaNotebook *notebook,
-            int offset);
+void caja_notebook_reorder_current_child_relative(CajaNotebook *notebook,
+                                                  int offset);
+void caja_notebook_set_current_page_relative(CajaNotebook *notebook,
+                                             int offset);
 
-    gboolean        caja_notebook_can_reorder_current_child_relative (CajaNotebook *notebook,
-            int offset);
-    gboolean        caja_notebook_can_set_current_page_relative (CajaNotebook *notebook,
-            int offset);
+gboolean caja_notebook_can_reorder_current_child_relative(
+    CajaNotebook *notebook, int offset);
+gboolean caja_notebook_can_set_current_page_relative(CajaNotebook *notebook,
+                                                     int offset);
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* CAJA_NOTEBOOK_H */
-

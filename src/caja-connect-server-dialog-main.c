@@ -26,126 +26,111 @@
  */
 
 #include <config.h>
-#include <stdlib.h>
-
+#include <eel/eel-stock-dialogs.h>
+#include <gdk/gdk.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <gdk/gdk.h>
-
-#include <eel/eel-stock-dialogs.h>
-
-#include <libcaja-private/caja-icon-names.h>
 #include <libcaja-private/caja-global-preferences.h>
+#include <libcaja-private/caja-icon-names.h>
+#include <stdlib.h>
 
 #include "caja-connect-server-dialog.h"
 
 static GSimpleAsyncResult *display_location_res = NULL;
 
-static void
-main_dialog_destroyed (GtkWidget *widget,
-                       gpointer   user_data)
-{
-    /* this only happens when user clicks "cancel"
-     * on the main dialog or when we are all done.
-     */
-    gtk_main_quit ();
+static void main_dialog_destroyed(GtkWidget *widget, gpointer user_data) {
+  /* this only happens when user clicks "cancel"
+   * on the main dialog or when we are all done.
+   */
+  gtk_main_quit();
 }
 
-gboolean
-caja_connect_server_dialog_display_location_finish (CajaConnectServerDialog *self,
-						    GAsyncResult *res,
-						    GError **error)
-{
-    if (g_simple_async_result_propagate_error (G_SIMPLE_ASYNC_RESULT (res), error)) {
-    	return FALSE;
-    }
+gboolean caja_connect_server_dialog_display_location_finish(
+    CajaConnectServerDialog *self, GAsyncResult *res, GError **error) {
+  if (g_simple_async_result_propagate_error(G_SIMPLE_ASYNC_RESULT(res),
+                                            error)) {
+    return FALSE;
+  }
 
-    return TRUE;
+  return TRUE;
 }
 
-void
-caja_connect_server_dialog_display_location_async (CajaConnectServerDialog *self,
-						   CajaApplication *application,
-						   GFile *location,
-						   GAsyncReadyCallback callback,
-						   gpointer user_data)
-{
-    GError *error;
-    GdkAppLaunchContext *launch_context;
-    gchar *uri;
+void caja_connect_server_dialog_display_location_async(
+    CajaConnectServerDialog *self, CajaApplication *application,
+    GFile *location, GAsyncReadyCallback callback, gpointer user_data) {
+  GError *error;
+  GdkAppLaunchContext *launch_context;
+  gchar *uri;
 
-    display_location_res = g_simple_async_result_new (G_OBJECT (self),
-    			    callback, user_data,
-    			    caja_connect_server_dialog_display_location_async);
+  display_location_res = g_simple_async_result_new(
+      G_OBJECT(self), callback, user_data,
+      caja_connect_server_dialog_display_location_async);
 
-    error = NULL;
-    uri = g_file_get_uri (location);
+  error = NULL;
+  uri = g_file_get_uri(location);
 
-    launch_context = gdk_display_get_app_launch_context (gtk_widget_get_display (GTK_WIDGET (self)));
+  launch_context = gdk_display_get_app_launch_context(
+      gtk_widget_get_display(GTK_WIDGET(self)));
 
-    gdk_app_launch_context_set_screen (launch_context,
-                                       gtk_widget_get_screen (GTK_WIDGET (self)));
+  gdk_app_launch_context_set_screen(launch_context,
+                                    gtk_widget_get_screen(GTK_WIDGET(self)));
 
-    g_app_info_launch_default_for_uri (uri,
-                                       G_APP_LAUNCH_CONTEXT (launch_context),
-                                       &error);
+  g_app_info_launch_default_for_uri(uri, G_APP_LAUNCH_CONTEXT(launch_context),
+                                    &error);
 
-    g_object_unref (launch_context);
+  g_object_unref(launch_context);
 
-    if (error != NULL) {
-    	g_simple_async_result_set_from_error (display_location_res, error);
-        g_error_free (error);
-    }
-    g_simple_async_result_complete_in_idle (display_location_res);
+  if (error != NULL) {
+    g_simple_async_result_set_from_error(display_location_res, error);
+    g_error_free(error);
+  }
+  g_simple_async_result_complete_in_idle(display_location_res);
 
-    g_object_unref (display_location_res);
-    display_location_res = NULL;
+  g_object_unref(display_location_res);
+  display_location_res = NULL;
 }
 
-int
-main (int argc, char *argv[])
-{
-    GtkWidget *dialog;
-    GOptionContext *context;
-    GError *error;
+int main(int argc, char *argv[]) {
+  GtkWidget *dialog;
+  GOptionContext *context;
+  GError *error;
 
 #ifdef ENABLE_NLS
-    bindtextdomain (GETTEXT_PACKAGE, MATELOCALEDIR);
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
+  bindtextdomain(GETTEXT_PACKAGE, MATELOCALEDIR);
+  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+  textdomain(GETTEXT_PACKAGE);
 #endif /* ENABLE_NLS */
 
-    error = NULL;
-    /* Translators: This is the --help description for the connect to server app,
-       the initial newlines are between the command line arg and the description */
-    context = g_option_context_new (N_("\n\nAdd connect to server mount"));
+  error = NULL;
+  /* Translators: This is the --help description for the connect to server app,
+     the initial newlines are between the command line arg and the description
+   */
+  context = g_option_context_new(N_("\n\nAdd connect to server mount"));
 #ifdef ENABLE_NLS
-    g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
+  g_option_context_set_translation_domain(context, GETTEXT_PACKAGE);
 #endif /* ENABLE_NLS */
-    g_option_context_add_group (context, gtk_get_option_group (TRUE));
+  g_option_context_add_group(context, gtk_get_option_group(TRUE));
 
-    if (!g_option_context_parse (context, &argc, &argv, &error))
-    {
-        g_critical ("Failed to parse arguments: %s", error->message);
-        g_error_free (error);
-        g_option_context_free (context);
-        exit (1);
-    }
+  if (!g_option_context_parse(context, &argc, &argv, &error)) {
+    g_critical("Failed to parse arguments: %s", error->message);
+    g_error_free(error);
+    g_option_context_free(context);
+    exit(1);
+  }
 
-    g_option_context_free (context);
+  g_option_context_free(context);
 
-    caja_global_preferences_init ();
+  caja_global_preferences_init();
 
-    gtk_window_set_default_icon_name (CAJA_ICON_FOLDER);
+  gtk_window_set_default_icon_name(CAJA_ICON_FOLDER);
 
-    dialog = caja_connect_server_dialog_new (NULL);
+  dialog = caja_connect_server_dialog_new(NULL);
 
-    g_signal_connect (dialog, "destroy",
-                      G_CALLBACK (main_dialog_destroyed), NULL);
+  g_signal_connect(dialog, "destroy", G_CALLBACK(main_dialog_destroyed), NULL);
 
-    gtk_widget_show (dialog);
+  gtk_widget_show(dialog);
 
-    gtk_main ();
+  gtk_main();
 
-    return 0;
+  return 0;
 }

@@ -30,33 +30,32 @@
 
 #include "caja-connect-server-dialog.h"
 
-#define CAJA_TYPE_CONNECT_SERVER_OPERATION\
-	(caja_connect_server_operation_get_type ())
-#define CAJA_CONNECT_SERVER_OPERATION(obj)\
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj),\
-			       CAJA_TYPE_CONNECT_SERVER_OPERATION,\
-			       CajaConnectServerOperation))
-#define CAJA_CONNECT_SERVER_OPERATION_CLASS(klass)\
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_CONNECT_SERVER_OPERATION,\
-			    CajaConnectServerOperationClass))
-#define CAJA_IS_CONNECT_SERVER_OPERATION(obj)\
+#define CAJA_TYPE_CONNECT_SERVER_OPERATION \
+  (caja_connect_server_operation_get_type())
+#define CAJA_CONNECT_SERVER_OPERATION(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_CONNECT_SERVER_OPERATION, \
+                              CajaConnectServerOperation))
+#define CAJA_CONNECT_SERVER_OPERATION_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_CONNECT_SERVER_OPERATION, \
+                           CajaConnectServerOperationClass))
+#define CAJA_IS_CONNECT_SERVER_OPERATION(obj) \
   (G_TYPE_INSTANCE_CHECK_TYPE ((obj), CAJA_TYPE_CONNECT_SERVER_OPERATION)
 
 typedef struct _CajaConnectServerOperationPrivate
-  CajaConnectServerOperationPrivate;
+    CajaConnectServerOperationPrivate;
 
 typedef struct {
-	GtkMountOperation parent;
-	CajaConnectServerOperationPrivate *details;
+  GtkMountOperation parent;
+  CajaConnectServerOperationPrivate *details;
 } CajaConnectServerOperation;
 
 typedef struct {
-	GtkMountOperationClass parent_class;
+  GtkMountOperationClass parent_class;
 } CajaConnectServerOperationClass;
 
-GType caja_connect_server_operation_get_type (void);
+GType caja_connect_server_operation_get_type(void);
 
-GMountOperation *
-caja_connect_server_operation_new (CajaConnectServerDialog *dialog);
+GMountOperation *caja_connect_server_operation_new(
+    CajaConnectServerDialog *dialog);
 
 #endif /* __CAJA_CONNECT_SERVER_OPERATION_H__ */

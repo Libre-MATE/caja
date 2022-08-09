@@ -16,7 +16,8 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author:  Dave Camp <dave@ximian.com>
  *
@@ -31,60 +32,65 @@
 #define CAJA_INFO_PROVIDER_H
 
 #include <glib-object.h>
+
 #include "caja-extension-types.h"
 #include "caja-file-info.h"
 
 G_BEGIN_DECLS
 
-#define CAJA_TYPE_INFO_PROVIDER           (caja_info_provider_get_type ())
-#define CAJA_INFO_PROVIDER(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_INFO_PROVIDER, CajaInfoProvider))
-#define CAJA_IS_INFO_PROVIDER(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_INFO_PROVIDER))
-#define CAJA_INFO_PROVIDER_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), CAJA_TYPE_INFO_PROVIDER, CajaInfoProviderIface))
+#define CAJA_TYPE_INFO_PROVIDER (caja_info_provider_get_type())
+#define CAJA_INFO_PROVIDER(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_INFO_PROVIDER, CajaInfoProvider))
+#define CAJA_IS_INFO_PROVIDER(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_INFO_PROVIDER))
+#define CAJA_INFO_PROVIDER_GET_IFACE(obj)                        \
+  (G_TYPE_INSTANCE_GET_INTERFACE((obj), CAJA_TYPE_INFO_PROVIDER, \
+                                 CajaInfoProviderIface))
 
-typedef struct _CajaInfoProvider       CajaInfoProvider;
-typedef struct _CajaInfoProviderIface  CajaInfoProviderIface;
+typedef struct _CajaInfoProvider CajaInfoProvider;
+typedef struct _CajaInfoProviderIface CajaInfoProviderIface;
 
-typedef void (*CajaInfoProviderUpdateComplete) (CajaInfoProvider    *provider,
-                                                CajaOperationHandle *handle,
-                                                CajaOperationResult  result,
-                                                gpointer             user_data);
+typedef void (*CajaInfoProviderUpdateComplete)(CajaInfoProvider *provider,
+                                               CajaOperationHandle *handle,
+                                               CajaOperationResult result,
+                                               gpointer user_data);
 
 /**
  * CajaInfoProviderIface:
  * @g_iface: The parent interface.
  * @update_file_info: Returns a #CajaOperationResult.
  *   See caja_info_provider_update_file_info() for details.
- * @cancel_update: Cancels a previous call to caja_info_provider_update_file_info().
- *   See caja_info_provider_cancel_update() for details.
+ * @cancel_update: Cancels a previous call to
+ * caja_info_provider_update_file_info(). See caja_info_provider_cancel_update()
+ * for details.
  *
  * Interface for extensions to provide additional information about files.
  */
 
 struct _CajaInfoProviderIface {
-    GTypeInterface g_iface;
+  GTypeInterface g_iface;
 
-    CajaOperationResult (*update_file_info) (CajaInfoProvider     *provider,
-                                             CajaFileInfo         *file,
-                                             GClosure             *update_complete,
-                                             CajaOperationHandle **handle);
-    void                (*cancel_update)    (CajaInfoProvider     *provider,
-                                             CajaOperationHandle  *handle);
+  CajaOperationResult (*update_file_info)(CajaInfoProvider *provider,
+                                          CajaFileInfo *file,
+                                          GClosure *update_complete,
+                                          CajaOperationHandle **handle);
+  void (*cancel_update)(CajaInfoProvider *provider,
+                        CajaOperationHandle *handle);
 };
 
 /* Interface Functions */
-GType               caja_info_provider_get_type               (void);
-CajaOperationResult caja_info_provider_update_file_info       (CajaInfoProvider     *provider,
-                                                               CajaFileInfo         *file,
-                                                               GClosure             *update_complete,
-                                                               CajaOperationHandle **handle);
-void                caja_info_provider_cancel_update          (CajaInfoProvider     *provider,
-                                                               CajaOperationHandle  *handle);
+GType caja_info_provider_get_type(void);
+CajaOperationResult caja_info_provider_update_file_info(
+    CajaInfoProvider *provider, CajaFileInfo *file, GClosure *update_complete,
+    CajaOperationHandle **handle);
+void caja_info_provider_cancel_update(CajaInfoProvider *provider,
+                                      CajaOperationHandle *handle);
 
 /* Helper functions for implementations */
-void                caja_info_provider_update_complete_invoke (GClosure             *update_complete,
-                                                               CajaInfoProvider     *provider,
-                                                               CajaOperationHandle  *handle,
-                                                               CajaOperationResult   result);
+void caja_info_provider_update_complete_invoke(GClosure *update_complete,
+                                               CajaInfoProvider *provider,
+                                               CajaOperationHandle *handle,
+                                               CajaOperationResult result);
 
 G_END_DECLS
 

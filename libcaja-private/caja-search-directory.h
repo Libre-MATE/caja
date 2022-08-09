@@ -29,45 +29,47 @@
 #include "caja-query.h"
 
 #define CAJA_TYPE_SEARCH_DIRECTORY caja_search_directory_get_type()
-#define CAJA_SEARCH_DIRECTORY(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SEARCH_DIRECTORY, CajaSearchDirectory))
-#define CAJA_SEARCH_DIRECTORY_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SEARCH_DIRECTORY, CajaSearchDirectoryClass))
+#define CAJA_SEARCH_DIRECTORY(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SEARCH_DIRECTORY, \
+                              CajaSearchDirectory))
+#define CAJA_SEARCH_DIRECTORY_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SEARCH_DIRECTORY, \
+                           CajaSearchDirectoryClass))
 #define CAJA_IS_SEARCH_DIRECTORY(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SEARCH_DIRECTORY))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SEARCH_DIRECTORY))
 #define CAJA_IS_SEARCH_DIRECTORY_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SEARCH_DIRECTORY))
-#define CAJA_SEARCH_DIRECTORY_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SEARCH_DIRECTORY, CajaSearchDirectoryClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SEARCH_DIRECTORY))
+#define CAJA_SEARCH_DIRECTORY_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SEARCH_DIRECTORY, \
+                             CajaSearchDirectoryClass))
 
 typedef struct CajaSearchDirectoryDetails CajaSearchDirectoryDetails;
 
-typedef struct
-{
-    CajaDirectory parent_slot;
-    CajaSearchDirectoryDetails *details;
+typedef struct {
+  CajaDirectory parent_slot;
+  CajaSearchDirectoryDetails *details;
 } CajaSearchDirectory;
 
-typedef struct
-{
-    CajaDirectoryClass parent_slot;
+typedef struct {
+  CajaDirectoryClass parent_slot;
 } CajaSearchDirectoryClass;
 
-GType   caja_search_directory_get_type             (void);
+GType caja_search_directory_get_type(void);
 
-char   *caja_search_directory_generate_new_uri     (void);
+char *caja_search_directory_generate_new_uri(void);
 
-CajaSearchDirectory *caja_search_directory_new_from_saved_search (const char *uri);
+CajaSearchDirectory *caja_search_directory_new_from_saved_search(
+    const char *uri);
 
-gboolean       caja_search_directory_is_saved_search (CajaSearchDirectory *search);
-gboolean       caja_search_directory_is_modified     (CajaSearchDirectory *search);
-gboolean       caja_search_directory_is_indexed      (CajaSearchDirectory *search);
-void           caja_search_directory_save_search     (CajaSearchDirectory *search);
-void           caja_search_directory_save_to_file    (CajaSearchDirectory *search,
-        const char              *save_file_uri);
+gboolean caja_search_directory_is_saved_search(CajaSearchDirectory *search);
+gboolean caja_search_directory_is_modified(CajaSearchDirectory *search);
+gboolean caja_search_directory_is_indexed(CajaSearchDirectory *search);
+void caja_search_directory_save_search(CajaSearchDirectory *search);
+void caja_search_directory_save_to_file(CajaSearchDirectory *search,
+                                        const char *save_file_uri);
 
-CajaQuery *caja_search_directory_get_query       (CajaSearchDirectory *search);
-void           caja_search_directory_set_query       (CajaSearchDirectory *search,
-        CajaQuery           *query);
+CajaQuery *caja_search_directory_get_query(CajaSearchDirectory *search);
+void caja_search_directory_set_query(CajaSearchDirectory *search,
+                                     CajaQuery *query);
 
 #endif /* CAJA_SEARCH_DIRECTORY_H */

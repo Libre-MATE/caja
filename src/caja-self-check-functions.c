@@ -28,13 +28,12 @@
 
 #include <config.h>
 
-#if ! defined (CAJA_OMIT_SELF_CHECK)
+#if !defined(CAJA_OMIT_SELF_CHECK)
 
 #include "caja-self-check-functions.h"
 
-void caja_run_self_checks(void)
-{
-    CAJA_FOR_EACH_SELF_CHECK_FUNCTION (CAJA_CALL_SELF_CHECK_FUNCTION)
+void caja_run_self_checks(void) {
+  CAJA_FOR_EACH_SELF_CHECK_FUNCTION(CAJA_CALL_SELF_CHECK_FUNCTION)
 }
 
 #endif /* ! CAJA_OMIT_SELF_CHECK */

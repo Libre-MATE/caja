@@ -2,7 +2,7 @@
 
 /* eel-mate-extensions.h - interface for new functions that operate on
                                  mate classes. Perhaps some of these should be
-  			         rolled into mate someday.
+                                 rolled into mate someday.
 
    Copyright (C) 1999, 2000, 2001 Eazel, Inc.
 
@@ -30,10 +30,9 @@
 #include <gtk/gtk.h>
 
 /* Return a command string containing the path to a terminal on this system. */
-char *        eel_mate_make_terminal_command                         (const char               *command);
+char *eel_mate_make_terminal_command(const char *command);
 
 /* Open up a new terminal, optionally passing in a command to execute */
-void          eel_mate_open_terminal_on_screen                       (const char               *command,
-        GdkScreen                *screen);
+void eel_mate_open_terminal_on_screen(const char *command, GdkScreen *screen);
 
 #endif /* EEL_MATE_EXTENSIONS_H */

@@ -21,22 +21,28 @@
  * */
 
 #ifndef __CAJA_WIDGET_VIEW_PROVIDER_H__
-#define __CAJA_WIDGET_VIEW_PROVIDER_H__  1
+#define __CAJA_WIDGET_VIEW_PROVIDER_H__ 1
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
-#include "caja-file-info.h"
+
 #include "caja-extension-types.h"
+#include "caja-file-info.h"
 
 G_BEGIN_DECLS
 
-#define CAJA_TYPE_WIDGET_VIEW_PROVIDER           (caja_widget_view_provider_get_type ())
-#define CAJA_WIDGET_VIEW_PROVIDER(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_WIDGET_VIEW_PROVIDER, CajaWidgetViewProvider))
-#define CAJA_IS_WIDGET_VIEW_PROVIDER(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_WIDGET_VIEW_PROVIDER))
-#define CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), CAJA_TYPE_WIDGET_VIEW_PROVIDER, CajaWidgetViewProviderIface))
+#define CAJA_TYPE_WIDGET_VIEW_PROVIDER (caja_widget_view_provider_get_type())
+#define CAJA_WIDGET_VIEW_PROVIDER(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_WIDGET_VIEW_PROVIDER, \
+                              CajaWidgetViewProvider))
+#define CAJA_IS_WIDGET_VIEW_PROVIDER(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_WIDGET_VIEW_PROVIDER))
+#define CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(obj)                        \
+  (G_TYPE_INSTANCE_GET_INTERFACE((obj), CAJA_TYPE_WIDGET_VIEW_PROVIDER, \
+                                 CajaWidgetViewProviderIface))
 
-typedef struct _CajaWidgetViewProvider       CajaWidgetViewProvider;
-typedef struct _CajaWidgetViewProviderIface  CajaWidgetViewProviderIface;
+typedef struct _CajaWidgetViewProvider CajaWidgetViewProvider;
+typedef struct _CajaWidgetViewProviderIface CajaWidgetViewProviderIface;
 
 /**
  * CajaWidgetViewProviderIface:
@@ -53,39 +59,39 @@ typedef struct _CajaWidgetViewProviderIface  CajaWidgetViewProviderIface;
  * Interface for extensions to provide widgets view for content.
  */
 struct _CajaWidgetViewProviderIface {
-    GTypeInterface g_iface;
+  GTypeInterface g_iface;
 
-    gboolean  (*supports_uri)   (CajaWidgetViewProvider *provider,
-                                 const char *uri,
-                                 GFileType file_type,
-                                 const char *mime_type);
-    GtkWidget* (*get_widget)     (CajaWidgetViewProvider *provider);
-    void       (*add_file)       (CajaWidgetViewProvider *provider, CajaFile *file, CajaFile *directory);
-    void       (*set_location)   (CajaWidgetViewProvider *provider, const char *location);
-    void       (*set_window)     (CajaWidgetViewProvider *provider, GtkWindow *window);
-    guint      (*get_item_count) (CajaWidgetViewProvider *provider);
-    gchar*     (*get_first_visible_file) (CajaWidgetViewProvider *provider);
-    void       (*clear)          (CajaWidgetViewProvider *provider);
+  gboolean (*supports_uri)(CajaWidgetViewProvider *provider, const char *uri,
+                           GFileType file_type, const char *mime_type);
+  GtkWidget *(*get_widget)(CajaWidgetViewProvider *provider);
+  void (*add_file)(CajaWidgetViewProvider *provider, CajaFile *file,
+                   CajaFile *directory);
+  void (*set_location)(CajaWidgetViewProvider *provider, const char *location);
+  void (*set_window)(CajaWidgetViewProvider *provider, GtkWindow *window);
+  guint (*get_item_count)(CajaWidgetViewProvider *provider);
+  gchar *(*get_first_visible_file)(CajaWidgetViewProvider *provider);
+  void (*clear)(CajaWidgetViewProvider *provider);
 };
 
 /* Interface Functions */
-GType      caja_widget_view_provider_get_type       (void);
+GType caja_widget_view_provider_get_type(void);
 
-GtkWidget *caja_widget_view_provider_get_widget     (CajaWidgetViewProvider *provider);
-void       caja_widget_view_provider_add_file       (CajaWidgetViewProvider *provider,
-                                                     CajaFile *file,
-                                                     CajaFile *directory);
-void       caja_widget_view_provider_set_location   (CajaWidgetViewProvider *provider,
-                                                     const char *location);
-void       caja_widget_view_provider_set_window     (CajaWidgetViewProvider *provider,
-                                                     GtkWindow *window);
-guint      caja_widget_view_provider_get_item_count (CajaWidgetViewProvider *provider);
-gchar*     caja_widget_view_provider_get_first_visible_file (CajaWidgetViewProvider *provider);
-void       caja_widget_view_provider_clear          (CajaWidgetViewProvider *provider);
-gboolean   caja_widget_view_provider_supports_uri   (CajaWidgetViewProvider *provider,
-                                                     const char *uri,
-                                                     GFileType file_type,
-                                                     const char *mime_type);
+GtkWidget *caja_widget_view_provider_get_widget(
+    CajaWidgetViewProvider *provider);
+void caja_widget_view_provider_add_file(CajaWidgetViewProvider *provider,
+                                        CajaFile *file, CajaFile *directory);
+void caja_widget_view_provider_set_location(CajaWidgetViewProvider *provider,
+                                            const char *location);
+void caja_widget_view_provider_set_window(CajaWidgetViewProvider *provider,
+                                          GtkWindow *window);
+guint caja_widget_view_provider_get_item_count(
+    CajaWidgetViewProvider *provider);
+gchar *caja_widget_view_provider_get_first_visible_file(
+    CajaWidgetViewProvider *provider);
+void caja_widget_view_provider_clear(CajaWidgetViewProvider *provider);
+gboolean caja_widget_view_provider_supports_uri(
+    CajaWidgetViewProvider *provider, const char *uri, GFileType file_type,
+    const char *mime_type);
 G_END_DECLS
 
 #endif /* __CAJA_WIDGET_VIEW_PROVIDER_H__ */

@@ -30,28 +30,28 @@
 
 #define CAJA_TYPE_VFS_DIRECTORY caja_vfs_directory_get_type()
 #define CAJA_VFS_DIRECTORY(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_VFS_DIRECTORY, CajaVFSDirectory))
-#define CAJA_VFS_DIRECTORY_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_VFS_DIRECTORY, CajaVFSDirectoryClass))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_VFS_DIRECTORY, CajaVFSDirectory))
+#define CAJA_VFS_DIRECTORY_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_VFS_DIRECTORY, \
+                           CajaVFSDirectoryClass))
 #define CAJA_IS_VFS_DIRECTORY(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_VFS_DIRECTORY))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_VFS_DIRECTORY))
 #define CAJA_IS_VFS_DIRECTORY_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_VFS_DIRECTORY))
-#define CAJA_VFS_DIRECTORY_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_VFS_DIRECTORY, CajaVFSDirectoryClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_VFS_DIRECTORY))
+#define CAJA_VFS_DIRECTORY_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_VFS_DIRECTORY, \
+                             CajaVFSDirectoryClass))
 
 typedef struct CajaVFSDirectoryDetails CajaVFSDirectoryDetails;
 
-typedef struct
-{
-    CajaDirectory parent_slot;
+typedef struct {
+  CajaDirectory parent_slot;
 } CajaVFSDirectory;
 
-typedef struct
-{
-    CajaDirectoryClass parent_slot;
+typedef struct {
+  CajaDirectoryClass parent_slot;
 } CajaVFSDirectoryClass;
 
-GType   caja_vfs_directory_get_type (void);
+GType caja_vfs_directory_get_type(void);
 
 #endif /* CAJA_VFS_DIRECTORY_H */

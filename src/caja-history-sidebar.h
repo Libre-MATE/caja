@@ -28,24 +28,23 @@
 #define _CAJA_HISTORY_SIDEBAR_H
 
 #include <gtk/gtk.h>
-
 #include <libcaja-private/caja-view.h>
 #include <libcaja-private/caja-window-info.h>
 
-#define CAJA_HISTORY_SIDEBAR_ID    "history"
+#define CAJA_HISTORY_SIDEBAR_ID "history"
 
 #define CAJA_TYPE_HISTORY_SIDEBAR caja_history_sidebar_get_type()
-#define CAJA_HISTORY_SIDEBAR(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_HISTORY_SIDEBAR, CajaHistorySidebar))
+#define CAJA_HISTORY_SIDEBAR(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_HISTORY_SIDEBAR, \
+                              CajaHistorySidebar))
 
-typedef struct
-{
-    GtkScrolledWindow parent;
-    GtkTreeView *tree_view;
-    CajaWindowInfo *window;
+typedef struct {
+  GtkScrolledWindow parent;
+  GtkTreeView *tree_view;
+  CajaWindowInfo *window;
 } CajaHistorySidebar;
 
-GType caja_history_sidebar_get_type (void);
-void caja_history_sidebar_register (void);
+GType caja_history_sidebar_get_type(void);
+void caja_history_sidebar_register(void);
 
 #endif

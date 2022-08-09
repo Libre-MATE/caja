@@ -27,29 +27,19 @@
 
 #include <gdk/gdk.h>
 
-gboolean         caja_link_local_create                      (const char        *directory_uri,
-        const char        *base_name,
-        const char        *display_name,
-        const char        *image,
-        const char        *target_uri,
-        const GdkPoint    *point,
-        int                screen,
-        gboolean           unique_filename,
-        GError           **error);
-gboolean         caja_link_local_set_text                    (const char        *uri,
-        const char        *text);
-gboolean         caja_link_local_set_icon                    (const char        *uri,
-        const char        *icon);
-char *           caja_link_local_get_text                    (const char        *uri);
-char *           caja_link_local_get_additional_text         (const char        *uri);
-char *           caja_link_local_get_link_uri                (const char        *uri);
-void             caja_link_get_link_info_given_file_contents (const char        *file_contents,
-        int                link_file_size,
-        const char        *file_uri,
-        char             **uri,
-        char             **name,
-        char             **icon,
-        gboolean          *is_launcher,
-        gboolean          *is_foreign);
+gboolean caja_link_local_create(const char *directory_uri,
+                                const char *base_name, const char *display_name,
+                                const char *image, const char *target_uri,
+                                const GdkPoint *point, int screen,
+                                gboolean unique_filename, GError **error);
+gboolean caja_link_local_set_text(const char *uri, const char *text);
+gboolean caja_link_local_set_icon(const char *uri, const char *icon);
+char *caja_link_local_get_text(const char *uri);
+char *caja_link_local_get_additional_text(const char *uri);
+char *caja_link_local_get_link_uri(const char *uri);
+void caja_link_get_link_info_given_file_contents(
+    const char *file_contents, int link_file_size, const char *file_uri,
+    char **uri, char **name, char **icon, gboolean *is_launcher,
+    gboolean *is_foreign);
 
 #endif /* CAJA_LINK_H */

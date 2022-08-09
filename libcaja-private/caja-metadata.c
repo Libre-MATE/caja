@@ -20,12 +20,12 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include <config.h>
 #include "caja-metadata.h"
+
+#include <config.h>
 #include <glib.h>
 
-static char *used_metadata_names[] =
-{
+static char *used_metadata_names[] = {
     CAJA_METADATA_KEY_DEFAULT_VIEW,
     CAJA_METADATA_KEY_LOCATION_BACKGROUND_COLOR,
     CAJA_METADATA_KEY_LOCATION_BACKGROUND_IMAGE,
@@ -61,24 +61,18 @@ static char *used_metadata_names[] =
     CAJA_METADATA_KEY_SCREEN,
     CAJA_METADATA_KEY_EMBLEMS,
     CAJA_METADATA_KEY_TRUSTED_LAUNCHER,
-    NULL
-};
+    NULL};
 
-guint
-caja_metadata_get_id (const char *metadata)
-{
-    static GHashTable *hash;
+guint caja_metadata_get_id(const char *metadata) {
+  static GHashTable *hash;
 
-    if (hash == NULL)
-    {
-        int i;
+  if (hash == NULL) {
+    int i;
 
-        hash = g_hash_table_new (g_str_hash, g_str_equal);
-        for (i = 0; used_metadata_names[i] != NULL; i++)
-            g_hash_table_insert (hash,
-                                 used_metadata_names[i],
-                                 GINT_TO_POINTER (i + 1));
-    }
+    hash = g_hash_table_new(g_str_hash, g_str_equal);
+    for (i = 0; used_metadata_names[i] != NULL; i++)
+      g_hash_table_insert(hash, used_metadata_names[i], GINT_TO_POINTER(i + 1));
+  }
 
-    return GPOINTER_TO_INT (g_hash_table_lookup (hash, metadata));
+  return GPOINTER_TO_INT(g_hash_table_lookup(hash, metadata));
 }

@@ -16,9 +16,9 @@
    Library General Public License for more details.
 
    You should have received a copy of the GNU Library General Public
-   License along application the Mate Library; see the file COPYING.LIB.  If not,
-   write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
-   Boston, MA 02110-1301, USA.
+   License along application the Mate Library; see the file COPYING.LIB.  If
+   not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth
+   Floor, Boston, MA 02110-1301, USA.
 
    Authors: Dave Camp <dave@novell.com>
 */
@@ -28,30 +28,34 @@
 
 #include <gtk/gtk.h>
 
-#define CAJA_TYPE_MIME_APPLICATION_CHOOSER         (caja_mime_application_chooser_get_type ())
-#define CAJA_MIME_APPLICATION_CHOOSER(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_MIME_APPLICATION_CHOOSER, CajaMimeApplicationChooser))
-#define CAJA_MIME_APPLICATION_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_MIME_APPLICATION_CHOOSER, CajaMimeApplicationChooserClass))
+#define CAJA_TYPE_MIME_APPLICATION_CHOOSER \
+  (caja_mime_application_chooser_get_type())
+#define CAJA_MIME_APPLICATION_CHOOSER(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_MIME_APPLICATION_CHOOSER, \
+                              CajaMimeApplicationChooser))
+#define CAJA_MIME_APPLICATION_CHOOSER_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_MIME_APPLICATION_CHOOSER, \
+                           CajaMimeApplicationChooserClass))
 #define CAJA_IS_MIME_APPLICATION_CHOOSER(obj)      (G_TYPE_INSTANCE_CHECK_TYPE ((obj), CAJA_TYPE_MIME_APPLICATION_CHOOSER)
 
-typedef struct _CajaMimeApplicationChooser        CajaMimeApplicationChooser;
-typedef struct _CajaMimeApplicationChooserClass   CajaMimeApplicationChooserClass;
-typedef struct _CajaMimeApplicationChooserDetails CajaMimeApplicationChooserDetails;
+typedef struct _CajaMimeApplicationChooser CajaMimeApplicationChooser;
+typedef struct _CajaMimeApplicationChooserClass CajaMimeApplicationChooserClass;
+typedef struct _CajaMimeApplicationChooserDetails
+    CajaMimeApplicationChooserDetails;
 
-struct _CajaMimeApplicationChooser
-{
-    GtkBox parent;
-    CajaMimeApplicationChooserDetails *details;
+struct _CajaMimeApplicationChooser {
+  GtkBox parent;
+  CajaMimeApplicationChooserDetails *details;
 };
 
-struct _CajaMimeApplicationChooserClass
-{
-    GtkBoxClass parent_class;
+struct _CajaMimeApplicationChooserClass {
+  GtkBoxClass parent_class;
 };
 
-GType      caja_mime_application_chooser_get_type (void);
-GtkWidget* caja_mime_application_chooser_new      (const char *uri,
-        const char *mime_type);
-GtkWidget* caja_mime_application_chooser_new_for_multiple_files (GList *uris,
-        const char *mime_type);
+GType caja_mime_application_chooser_get_type(void);
+GtkWidget *caja_mime_application_chooser_new(const char *uri,
+                                             const char *mime_type);
+GtkWidget *caja_mime_application_chooser_new_for_multiple_files(
+    GList *uris, const char *mime_type);
 
 #endif /* CAJA_MIME_APPLICATION_CHOOSER_H */

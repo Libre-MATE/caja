@@ -29,32 +29,35 @@
 
 #include <gtk/gtk.h>
 
-#define CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED caja_cell_renderer_text_ellipsized_get_type()
-#define CAJA_CELL_RENDERER_TEXT_ELLIPSIZED(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED, CajaCellRendererTextEllipsized))
-#define CAJA_CELL_RENDERER_TEXT_ELLIPSIZED_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED, CajaCellRendererTextEllipsizedClass))
+#define CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED \
+  caja_cell_renderer_text_ellipsized_get_type()
+#define CAJA_CELL_RENDERER_TEXT_ELLIPSIZED(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED, \
+                              CajaCellRendererTextEllipsized))
+#define CAJA_CELL_RENDERER_TEXT_ELLIPSIZED_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED, \
+                           CajaCellRendererTextEllipsizedClass))
 #define CAJA_IS_CELL_RENDERER_TEXT_ELLIPSIZED(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED))
 #define CAJA_IS_CELL_RENDERER_TEXT_ELLIPSIZED_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED))
-#define CAJA_CELL_RENDERER_TEXT_ELLIPSIZED_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED, CajaCellRendererTextEllipsizedClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED))
+#define CAJA_CELL_RENDERER_TEXT_ELLIPSIZED_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_CELL_RENDERER_TEXT_ELLIPSIZED, \
+                             CajaCellRendererTextEllipsizedClass))
 
 typedef struct _CajaCellRendererTextEllipsized CajaCellRendererTextEllipsized;
-typedef struct _CajaCellRendererTextEllipsizedClass CajaCellRendererTextEllipsizedClass;
+typedef struct _CajaCellRendererTextEllipsizedClass
+    CajaCellRendererTextEllipsizedClass;
 
-struct _CajaCellRendererTextEllipsized
-{
-    GtkCellRendererText parent;
+struct _CajaCellRendererTextEllipsized {
+  GtkCellRendererText parent;
 };
 
-struct _CajaCellRendererTextEllipsizedClass
-{
-    GtkCellRendererTextClass parent_class;
+struct _CajaCellRendererTextEllipsizedClass {
+  GtkCellRendererTextClass parent_class;
 };
 
-GType		 caja_cell_renderer_text_ellipsized_get_type (void);
-GtkCellRenderer *caja_cell_renderer_text_ellipsized_new      (void);
+GType caja_cell_renderer_text_ellipsized_get_type(void);
+GtkCellRenderer *caja_cell_renderer_text_ellipsized_new(void);
 
 #endif /* CAJA_CELL_RENDERER_TEXT_ELLIPSIZED_H */

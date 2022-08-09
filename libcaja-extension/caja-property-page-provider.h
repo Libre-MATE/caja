@@ -16,7 +16,8 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author:  Dave Camp <dave@ximian.com>
  *
@@ -32,19 +33,26 @@
 #define CAJA_PROPERTY_PAGE_PROVIDER_H
 
 #include <glib-object.h>
+
 #include "caja-extension-types.h"
 #include "caja-file-info.h"
 #include "caja-property-page.h"
 
 G_BEGIN_DECLS
 
-#define CAJA_TYPE_PROPERTY_PAGE_PROVIDER           (caja_property_page_provider_get_type ())
-#define CAJA_PROPERTY_PAGE_PROVIDER(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_PROPERTY_PAGE_PROVIDER, CajaPropertyPageProvider))
-#define CAJA_IS_PROPERTY_PAGE_PROVIDER(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_PROPERTY_PAGE_PROVIDER))
-#define CAJA_PROPERTY_PAGE_PROVIDER_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), CAJA_TYPE_PROPERTY_PAGE_PROVIDER, CajaPropertyPageProviderIface))
+#define CAJA_TYPE_PROPERTY_PAGE_PROVIDER \
+  (caja_property_page_provider_get_type())
+#define CAJA_PROPERTY_PAGE_PROVIDER(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_PROPERTY_PAGE_PROVIDER, \
+                              CajaPropertyPageProvider))
+#define CAJA_IS_PROPERTY_PAGE_PROVIDER(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_PROPERTY_PAGE_PROVIDER))
+#define CAJA_PROPERTY_PAGE_PROVIDER_GET_IFACE(obj)                        \
+  (G_TYPE_INSTANCE_GET_INTERFACE((obj), CAJA_TYPE_PROPERTY_PAGE_PROVIDER, \
+                                 CajaPropertyPageProviderIface))
 
-typedef struct _CajaPropertyPageProvider       CajaPropertyPageProvider;
-typedef struct _CajaPropertyPageProviderIface  CajaPropertyPageProviderIface;
+typedef struct _CajaPropertyPageProvider CajaPropertyPageProvider;
+typedef struct _CajaPropertyPageProviderIface CajaPropertyPageProviderIface;
 
 /**
  * CajaPropertyPageProviderIface:
@@ -56,16 +64,15 @@ typedef struct _CajaPropertyPageProviderIface  CajaPropertyPageProviderIface;
  */
 
 struct _CajaPropertyPageProviderIface {
-    GTypeInterface g_iface;
+  GTypeInterface g_iface;
 
-    GList *(*get_pages) (CajaPropertyPageProvider *provider,
-                         GList                    *files);
+  GList *(*get_pages)(CajaPropertyPageProvider *provider, GList *files);
 };
 
 /* Interface Functions */
-GType  caja_property_page_provider_get_type  (void);
-GList *caja_property_page_provider_get_pages (CajaPropertyPageProvider *provider,
-                                              GList                    *files);
+GType caja_property_page_provider_get_type(void);
+GList *caja_property_page_provider_get_pages(CajaPropertyPageProvider *provider,
+                                             GList *files);
 
 G_END_DECLS
 

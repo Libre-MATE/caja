@@ -26,28 +26,34 @@
 
 #include "caja-search-engine.h"
 
-#define CAJA_TYPE_SEARCH_ENGINE_BEAGLE		(caja_search_engine_beagle_get_type ())
-#define CAJA_SEARCH_ENGINE_BEAGLE(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SEARCH_ENGINE_BEAGLE, CajaSearchEngineBeagle))
-#define CAJA_SEARCH_ENGINE_BEAGLE_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SEARCH_ENGINE_BEAGLE, CajaSearchEngineBeagleClass))
-#define CAJA_IS_SEARCH_ENGINE_BEAGLE(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SEARCH_ENGINE_BEAGLE))
-#define CAJA_IS_SEARCH_ENGINE_BEAGLE_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SEARCH_ENGINE_BEAGLE))
-#define CAJA_SEARCH_ENGINE_BEAGLE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SEARCH_ENGINE_BEAGLE, CajaSearchEngineBeagleClass))
+#define CAJA_TYPE_SEARCH_ENGINE_BEAGLE (caja_search_engine_beagle_get_type())
+#define CAJA_SEARCH_ENGINE_BEAGLE(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SEARCH_ENGINE_BEAGLE, \
+                              CajaSearchEngineBeagle))
+#define CAJA_SEARCH_ENGINE_BEAGLE_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SEARCH_ENGINE_BEAGLE, \
+                           CajaSearchEngineBeagleClass))
+#define CAJA_IS_SEARCH_ENGINE_BEAGLE(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SEARCH_ENGINE_BEAGLE))
+#define CAJA_IS_SEARCH_ENGINE_BEAGLE_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SEARCH_ENGINE_BEAGLE))
+#define CAJA_SEARCH_ENGINE_BEAGLE_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SEARCH_ENGINE_BEAGLE, \
+                             CajaSearchEngineBeagleClass))
 
 typedef struct CajaSearchEngineBeagleDetails CajaSearchEngineBeagleDetails;
 
-typedef struct CajaSearchEngineBeagle
-{
-    CajaSearchEngine parent;
-    CajaSearchEngineBeagleDetails *details;
+typedef struct CajaSearchEngineBeagle {
+  CajaSearchEngine parent;
+  CajaSearchEngineBeagleDetails* details;
 } CajaSearchEngineBeagle;
 
-typedef struct
-{
-    CajaSearchEngineClass parent_class;
+typedef struct {
+  CajaSearchEngineClass parent_class;
 } CajaSearchEngineBeagleClass;
 
-GType          caja_search_engine_beagle_get_type  (void);
+GType caja_search_engine_beagle_get_type(void);
 
-CajaSearchEngine* caja_search_engine_beagle_new       (void);
+CajaSearchEngine* caja_search_engine_beagle_new(void);
 
 #endif /* CAJA_SEARCH_ENGINE_BEAGLE_H */

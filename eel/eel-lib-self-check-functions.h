@@ -28,7 +28,7 @@
 
 #include "eel-self-checks.h"
 
-void eel_run_lib_self_checks (void);
+void eel_run_lib_self_checks(void);
 
 /* Putting the prototypes for these self-check functions in each
    header file for the files they are defined in would make compiling
@@ -41,15 +41,13 @@ void eel_run_lib_self_checks (void);
    can be used to do operations on the whole list of functions.
 */
 
-#define EEL_LIB_FOR_EACH_SELF_CHECK_FUNCTION(macro) \
-	macro (eel_self_check_background) \
-	macro (eel_self_check_gdk_extensions) \
-	macro (eel_self_check_glib_extensions) \
-	macro (eel_self_check_string) \
-/* Add new self-check functions to the list above this line. */
+#define EEL_LIB_FOR_EACH_SELF_CHECK_FUNCTION(macro)                           \
+  macro(eel_self_check_background) macro(eel_self_check_gdk_extensions)       \
+      macro(eel_self_check_glib_extensions)                                   \
+          macro(eel_self_check_string) /* Add new self-check functions to the \
+                                          list above this line. */
 
 /* Generate prototypes for all the functions. */
-EEL_LIB_FOR_EACH_SELF_CHECK_FUNCTION (EEL_SELF_CHECK_FUNCTION_PROTOTYPE)
+EEL_LIB_FOR_EACH_SELF_CHECK_FUNCTION(EEL_SELF_CHECK_FUNCTION_PROTOTYPE)
 
-#endif	/* __EEL_LIB_SELF_CHECK_FUNCTIONS_H__ */
-
+#endif /* __EEL_LIB_SELF_CHECK_FUNCTIONS_H__ */

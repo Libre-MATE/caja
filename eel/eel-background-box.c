@@ -22,43 +22,33 @@
    Author: Dave Camp <dave@ximian.com>
 */
 
-#include <config.h>
 #include "eel-background-box.h"
+
+#include <config.h>
 
 #include "eel-background.h"
 
-G_DEFINE_TYPE (EelBackgroundBox, eel_background_box, GTK_TYPE_EVENT_BOX)
+G_DEFINE_TYPE(EelBackgroundBox, eel_background_box, GTK_TYPE_EVENT_BOX)
 
-static gboolean
-eel_background_box_draw (GtkWidget *widget,
-                         cairo_t *cr)
-{
-    eel_background_draw (widget, cr);
-    gtk_container_propagate_draw (GTK_CONTAINER (widget),
-                                  gtk_bin_get_child (GTK_BIN (widget)),
-                                  cr);
-    return TRUE;
+static gboolean eel_background_box_draw(GtkWidget *widget, cairo_t *cr) {
+  eel_background_draw(widget, cr);
+  gtk_container_propagate_draw(GTK_CONTAINER(widget),
+                               gtk_bin_get_child(GTK_BIN(widget)), cr);
+  return TRUE;
 }
 
-static void
-eel_background_box_init (EelBackgroundBox *box)
-{
+static void eel_background_box_init(EelBackgroundBox *box) {}
+
+static void eel_background_box_class_init(EelBackgroundBoxClass *klass) {
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
+  widget_class->draw = eel_background_box_draw;
 }
 
-static void
-eel_background_box_class_init (EelBackgroundBoxClass *klass)
-{
-    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-    widget_class->draw = eel_background_box_draw;
+GtkWidget *eel_background_box_new(void) {
+  EelBackgroundBox *background_box;
 
-}
+  background_box =
+      EEL_BACKGROUND_BOX(gtk_widget_new(eel_background_box_get_type(), NULL));
 
-GtkWidget*
-eel_background_box_new (void)
-{
-    EelBackgroundBox *background_box;
-
-    background_box = EEL_BACKGROUND_BOX (gtk_widget_new (eel_background_box_get_type (), NULL));
-
-    return GTK_WIDGET (background_box);
+  return GTK_WIDGET(background_box);
 }

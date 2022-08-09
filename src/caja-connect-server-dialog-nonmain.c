@@ -22,9 +22,7 @@
  */
 
 #include <config.h>
-
 #include <gio/gio.h>
-
 #include <libcaja-private/caja-global-preferences.h>
 
 #include "caja-connect-server-dialog.h"
@@ -36,62 +34,48 @@
 
 static GSimpleAsyncResult *display_location_res = NULL;
 
-static void
-window_go_to_cb (CajaWindow *window,
-		 GError *error,
-		 gpointer user_data)
-{
-    if (error != NULL) {
-    	g_simple_async_result_set_from_error (display_location_res, error);
-    }
+static void window_go_to_cb(CajaWindow *window, GError *error,
+                            gpointer user_data) {
+  if (error != NULL) {
+    g_simple_async_result_set_from_error(display_location_res, error);
+  }
 
-    g_simple_async_result_complete (display_location_res);
+  g_simple_async_result_complete(display_location_res);
 
-    g_object_unref (display_location_res);
-    display_location_res = NULL;
+  g_object_unref(display_location_res);
+  display_location_res = NULL;
 }
 
-gboolean
-caja_connect_server_dialog_display_location_finish (CajaConnectServerDialog *self,
-						    GAsyncResult *res,
-						    GError **error)
-{
-    if (g_simple_async_result_propagate_error (G_SIMPLE_ASYNC_RESULT (res), error)) {
-    	return FALSE;
-    }
+gboolean caja_connect_server_dialog_display_location_finish(
+    CajaConnectServerDialog *self, GAsyncResult *res, GError **error) {
+  if (g_simple_async_result_propagate_error(G_SIMPLE_ASYNC_RESULT(res),
+                                            error)) {
+    return FALSE;
+  }
 
-    return TRUE;
+  return TRUE;
 }
 
-void
-caja_connect_server_dialog_display_location_async (CajaConnectServerDialog *self,
-    						   CajaApplication *application,
-    						   GFile *location,
-    						   GAsyncReadyCallback callback,
-    						   gpointer user_data)
-{
-    CajaWindow *window;
-    GtkWidget *widget;
+void caja_connect_server_dialog_display_location_async(
+    CajaConnectServerDialog *self, CajaApplication *application,
+    GFile *location, GAsyncReadyCallback callback, gpointer user_data) {
+  CajaWindow *window;
+  GtkWidget *widget;
 
-    widget = GTK_WIDGET (self);
+  widget = GTK_WIDGET(self);
 
-    display_location_res =
-        g_simple_async_result_new (G_OBJECT (self),
-        			   callback, user_data,
-        			   caja_connect_server_dialog_display_location_async);
+  display_location_res = g_simple_async_result_new(
+      G_OBJECT(self), callback, user_data,
+      caja_connect_server_dialog_display_location_async);
 
-    if (g_settings_get_boolean (caja_preferences, CAJA_PREFERENCES_ALWAYS_USE_BROWSER)) {
-        window = caja_application_create_navigation_window (application,
-        						    gtk_widget_get_screen (widget));
-    } else {
-    	window = caja_application_get_spatial_window (application,
-    							  NULL,
-    							  NULL,
-    							  location,
-    							  gtk_widget_get_screen (widget),
-    							  NULL);
-    }
+  if (g_settings_get_boolean(caja_preferences,
+                             CAJA_PREFERENCES_ALWAYS_USE_BROWSER)) {
+    window = caja_application_create_navigation_window(
+        application, gtk_widget_get_screen(widget));
+  } else {
+    window = caja_application_get_spatial_window(
+        application, NULL, NULL, location, gtk_widget_get_screen(widget), NULL);
+  }
 
-    caja_window_go_to_full (window, location,
-    			    window_go_to_cb, self);
+  caja_window_go_to_full(window, location, window_go_to_cb, self);
 }

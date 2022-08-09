@@ -19,42 +19,38 @@
    Boston, MA 02110-1301, USA.
 
    Authors:
-	Anders Carlsson <andersca@gnu.org>
-	Michael Meeks   <michael@ximian.com>
+        Anders Carlsson <andersca@gnu.org>
+        Michael Meeks   <michael@ximian.com>
 */
-#include <config.h>
-#include <gtk/gtk.h>
-#include <atk/atkrelationset.h>
-
 #include "eel-accessibility.h"
 
-void
-eel_accessibility_set_up_label_widget_relation (GtkWidget *label, GtkWidget *widget)
-{
-    AtkObject *atk_widget, *atk_label;
+#include <atk/atkrelationset.h>
+#include <config.h>
+#include <gtk/gtk.h>
 
-    atk_label = gtk_widget_get_accessible (label);
-    atk_widget = gtk_widget_get_accessible (widget);
+void eel_accessibility_set_up_label_widget_relation(GtkWidget *label,
+                                                    GtkWidget *widget) {
+  AtkObject *atk_widget, *atk_label;
 
-    /* Create the label -> widget relation */
-    atk_object_add_relationship (atk_label, ATK_RELATION_LABEL_FOR, atk_widget);
+  atk_label = gtk_widget_get_accessible(label);
+  atk_widget = gtk_widget_get_accessible(widget);
 
-    /* Create the widget -> label relation */
-    atk_object_add_relationship (atk_widget, ATK_RELATION_LABELLED_BY, atk_label);
+  /* Create the label -> widget relation */
+  atk_object_add_relationship(atk_label, ATK_RELATION_LABEL_FOR, atk_widget);
+
+  /* Create the widget -> label relation */
+  atk_object_add_relationship(atk_widget, ATK_RELATION_LABELLED_BY, atk_label);
 }
 
-static GQuark
-get_quark_gobject (void)
-{
-    static GQuark quark_accessible_gobject = 0;
+static GQuark get_quark_gobject(void) {
+  static GQuark quark_accessible_gobject = 0;
 
-    if (!quark_accessible_gobject)
-    {
-        quark_accessible_gobject = g_quark_from_static_string
-                                   ("object-for-accessible");
-    }
+  if (!quark_accessible_gobject) {
+    quark_accessible_gobject =
+        g_quark_from_static_string("object-for-accessible");
+  }
 
-    return quark_accessible_gobject;
+  return quark_accessible_gobject;
 }
 
 /**
@@ -66,13 +62,10 @@ get_quark_gobject (void)
  *
  * Return value: an associated accessible.
  **/
-AtkObject *
-eel_accessibility_for_object (gpointer object)
-{
-    if (GTK_IS_WIDGET (object))
-        return gtk_widget_get_accessible (object);
+AtkObject *eel_accessibility_for_object(gpointer object) {
+  if (GTK_IS_WIDGET(object)) return gtk_widget_get_accessible(object);
 
-    return atk_gobject_accessible_for_object (object);
+  return atk_gobject_accessible_for_object(object);
 }
 
 /**
@@ -84,179 +77,136 @@ eel_accessibility_for_object (gpointer object)
  *
  * Return value: the accessible's associated GObject
  **/
-gpointer
-eel_accessibility_get_gobject (AtkObject *object)
-{
-    return g_object_get_qdata (G_OBJECT (object), get_quark_gobject ());
+gpointer eel_accessibility_get_gobject(AtkObject *object) {
+  return g_object_get_qdata(G_OBJECT(object), get_quark_gobject());
 }
 
-static GailTextUtil *
-get_simple_text (gpointer object)
-{
-    GObject *gobject;
-    EelAccessibleTextIface *aif;
+static GailTextUtil *get_simple_text(gpointer object) {
+  GObject *gobject;
+  EelAccessibleTextIface *aif;
 
-    if (GTK_IS_ACCESSIBLE (object))
-    {
-        gobject = G_OBJECT (gtk_accessible_get_widget (GTK_ACCESSIBLE (object)));
-    }
-    else
-    {
-        gobject = eel_accessibility_get_gobject (object);
-    }
+  if (GTK_IS_ACCESSIBLE(object)) {
+    gobject = G_OBJECT(gtk_accessible_get_widget(GTK_ACCESSIBLE(object)));
+  } else {
+    gobject = eel_accessibility_get_gobject(object);
+  }
 
-    if (!gobject)
-    {
-        return NULL;
-    }
-
-    aif = EEL_ACCESSIBLE_TEXT_GET_IFACE (gobject);
-    if (!aif)
-    {
-        g_warning ("No accessible text inferface on '%s'",
-                   g_type_name_from_instance ((gpointer) gobject));
-
-    }
-    else if (aif->get_text)
-    {
-        return aif->get_text (gobject);
-    }
-
+  if (!gobject) {
     return NULL;
+  }
+
+  aif = EEL_ACCESSIBLE_TEXT_GET_IFACE(gobject);
+  if (!aif) {
+    g_warning("No accessible text inferface on '%s'",
+              g_type_name_from_instance((gpointer)gobject));
+
+  } else if (aif->get_text) {
+    return aif->get_text(gobject);
+  }
+
+  return NULL;
 }
 
-char *
-eel_accessibility_text_get_text (AtkText *text,
-                                 gint     start_pos,
-                                 gint     end_pos)
-{
-    GailTextUtil *util = get_simple_text (text);
-    g_return_val_if_fail (util != NULL, NULL);
+char *eel_accessibility_text_get_text(AtkText *text, gint start_pos,
+                                      gint end_pos) {
+  GailTextUtil *util = get_simple_text(text);
+  g_return_val_if_fail(util != NULL, NULL);
 
-    return gail_text_util_get_substring (util, start_pos, end_pos);
+  return gail_text_util_get_substring(util, start_pos, end_pos);
 }
 
-gunichar
-eel_accessibility_text_get_character_at_offset (AtkText *text,
-        gint     offset)
-{
-    char *txt, *index;
-    gint sucks1 = 0, sucks2 = -1;
-    gunichar c;
-    GailTextUtil *util = get_simple_text (text);
-    g_return_val_if_fail (util != NULL, 0);
+gunichar eel_accessibility_text_get_character_at_offset(AtkText *text,
+                                                        gint offset) {
+  char *txt, *index;
+  gint sucks1 = 0, sucks2 = -1;
+  gunichar c;
+  GailTextUtil *util = get_simple_text(text);
+  g_return_val_if_fail(util != NULL, 0);
 
-    txt = gail_text_util_get_substring (util, sucks1, sucks2);
+  txt = gail_text_util_get_substring(util, sucks1, sucks2);
 
-    index = g_utf8_offset_to_pointer (txt, offset);
-    c = g_utf8_get_char (index);
-    g_free (txt);
+  index = g_utf8_offset_to_pointer(txt, offset);
+  c = g_utf8_get_char(index);
+  g_free(txt);
 
-    return c;
+  return c;
 }
 
-char *
-eel_accessibility_text_get_text_before_offset (AtkText	      *text,
-        gint            offset,
-        AtkTextBoundary boundary_type,
-        gint           *start_offset,
-        gint           *end_offset)
-{
-    GailTextUtil *util = get_simple_text (text);
-    g_return_val_if_fail (util != NULL, NULL);
+char *eel_accessibility_text_get_text_before_offset(
+    AtkText *text, gint offset, AtkTextBoundary boundary_type,
+    gint *start_offset, gint *end_offset) {
+  GailTextUtil *util = get_simple_text(text);
+  g_return_val_if_fail(util != NULL, NULL);
 
-    return gail_text_util_get_text (
-               util, NULL, GAIL_BEFORE_OFFSET,
-               boundary_type, offset, start_offset, end_offset);
+  return gail_text_util_get_text(util, NULL, GAIL_BEFORE_OFFSET, boundary_type,
+                                 offset, start_offset, end_offset);
 }
 
-char *
-eel_accessibility_text_get_text_at_offset (AtkText        *text,
-        gint            offset,
-        AtkTextBoundary boundary_type,
-        gint           *start_offset,
-        gint           *end_offset)
-{
-    GailTextUtil *util = get_simple_text (text);
-    g_return_val_if_fail (util != NULL, NULL);
+char *eel_accessibility_text_get_text_at_offset(AtkText *text, gint offset,
+                                                AtkTextBoundary boundary_type,
+                                                gint *start_offset,
+                                                gint *end_offset) {
+  GailTextUtil *util = get_simple_text(text);
+  g_return_val_if_fail(util != NULL, NULL);
 
-    return gail_text_util_get_text (
-               util, NULL, GAIL_AT_OFFSET,
-               boundary_type, offset, start_offset, end_offset);
+  return gail_text_util_get_text(util, NULL, GAIL_AT_OFFSET, boundary_type,
+                                 offset, start_offset, end_offset);
 }
 
-gchar*
-eel_accessibility_text_get_text_after_offset  (AtkText	      *text,
-        gint            offset,
-        AtkTextBoundary boundary_type,
-        gint           *start_offset,
-        gint           *end_offset)
-{
-    GailTextUtil *util = get_simple_text (text);
-    g_return_val_if_fail (util != NULL, NULL);
+gchar *eel_accessibility_text_get_text_after_offset(
+    AtkText *text, gint offset, AtkTextBoundary boundary_type,
+    gint *start_offset, gint *end_offset) {
+  GailTextUtil *util = get_simple_text(text);
+  g_return_val_if_fail(util != NULL, NULL);
 
-    return gail_text_util_get_text (
-               util, NULL, GAIL_AFTER_OFFSET,
-               boundary_type, offset, start_offset, end_offset);
+  return gail_text_util_get_text(util, NULL, GAIL_AFTER_OFFSET, boundary_type,
+                                 offset, start_offset, end_offset);
 }
 
-gint
-eel_accessibility_text_get_character_count (AtkText *text)
-{
-    GailTextUtil *util = get_simple_text (text);
-    g_return_val_if_fail (util != NULL, -1);
+gint eel_accessibility_text_get_character_count(AtkText *text) {
+  GailTextUtil *util = get_simple_text(text);
+  g_return_val_if_fail(util != NULL, -1);
 
-    return gtk_text_buffer_get_char_count (util->buffer);
+  return gtk_text_buffer_get_char_count(util->buffer);
 }
 
-GType
-eel_accessible_text_get_type (void)
-{
-    static GType type = 0;
+GType eel_accessible_text_get_type(void) {
+  static GType type = 0;
 
-    if (!type)
-    {
-        const GTypeInfo tinfo =
-        {
-            sizeof (AtkTextIface),     /* class_size */
-            NULL,                      /* base_init */
-            NULL,                      /* base_finalize */
-            NULL,                      /* class_init */
-            NULL,                      /* class_finalize */
-            NULL,                      /* class_data */
-            0,                         /* instance_size */
-            0,                         /* n_preallocs */
-            NULL,                      /* instance_init */
-            NULL                       /* value_table */
-        };
+  if (!type) {
+    const GTypeInfo tinfo = {
+        sizeof(AtkTextIface), /* class_size */
+        NULL,                 /* base_init */
+        NULL,                 /* base_finalize */
+        NULL,                 /* class_init */
+        NULL,                 /* class_finalize */
+        NULL,                 /* class_data */
+        0,                    /* instance_size */
+        0,                    /* n_preallocs */
+        NULL,                 /* instance_init */
+        NULL                  /* value_table */
+    };
 
-        type = g_type_register_static (
-                   G_TYPE_INTERFACE, "EelAccessibleText", &tinfo, 0);
-    }
+    type = g_type_register_static(G_TYPE_INTERFACE, "EelAccessibleText", &tinfo,
+                                  0);
+  }
 
-    return type;
+  return type;
 }
 
-void
-eel_accessibility_set_name (gpointer    object,
-                            const char *name)
-{
-    AtkObject *atk_object = eel_accessibility_for_object (object);
+void eel_accessibility_set_name(gpointer object, const char *name) {
+  AtkObject *atk_object = eel_accessibility_for_object(object);
 
-    if (atk_object)
-    {
-        atk_object_set_name (atk_object, name);
-    }
+  if (atk_object) {
+    atk_object_set_name(atk_object, name);
+  }
 }
 
-void
-eel_accessibility_set_description (gpointer    object,
-                                   const char *description)
-{
-    AtkObject *atk_object = eel_accessibility_for_object (object);
+void eel_accessibility_set_description(gpointer object,
+                                       const char *description) {
+  AtkObject *atk_object = eel_accessibility_for_object(object);
 
-    if (atk_object)
-    {
-        atk_object_set_description (atk_object, description);
-    }
+  if (atk_object) {
+    atk_object_set_description(atk_object, description);
+  }
 }

@@ -30,32 +30,34 @@
 #include "caja-directory.h"
 
 #define CAJA_TYPE_DESKTOP_DIRECTORY caja_desktop_directory_get_type()
-#define CAJA_DESKTOP_DIRECTORY(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_DESKTOP_DIRECTORY, CajaDesktopDirectory))
-#define CAJA_DESKTOP_DIRECTORY_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_DESKTOP_DIRECTORY, CajaDesktopDirectoryClass))
+#define CAJA_DESKTOP_DIRECTORY(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_DESKTOP_DIRECTORY, \
+                              CajaDesktopDirectory))
+#define CAJA_DESKTOP_DIRECTORY_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_DESKTOP_DIRECTORY, \
+                           CajaDesktopDirectoryClass))
 #define CAJA_IS_DESKTOP_DIRECTORY(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_DESKTOP_DIRECTORY))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_DESKTOP_DIRECTORY))
 #define CAJA_IS_DESKTOP_DIRECTORY_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_DESKTOP_DIRECTORY))
-#define CAJA_DESKTOP_DIRECTORY_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_DESKTOP_DIRECTORY, CajaDesktopDirectoryClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_DESKTOP_DIRECTORY))
+#define CAJA_DESKTOP_DIRECTORY_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_DESKTOP_DIRECTORY, \
+                             CajaDesktopDirectoryClass))
 
 typedef struct CajaDesktopDirectoryDetails CajaDesktopDirectoryDetails;
 
-typedef struct
-{
-    CajaDirectory parent_slot;
-    CajaDesktopDirectoryDetails *details;
+typedef struct {
+  CajaDirectory parent_slot;
+  CajaDesktopDirectoryDetails *details;
 } CajaDesktopDirectory;
 
-typedef struct
-{
-    CajaDirectoryClass parent_slot;
+typedef struct {
+  CajaDirectoryClass parent_slot;
 
 } CajaDesktopDirectoryClass;
 
-GType   caja_desktop_directory_get_type             (void);
-CajaDirectory * caja_desktop_directory_get_real_directory   (CajaDesktopDirectory *desktop_directory);
+GType caja_desktop_directory_get_type(void);
+CajaDirectory *caja_desktop_directory_get_real_directory(
+    CajaDesktopDirectory *desktop_directory);
 
 #endif /* CAJA_DESKTOP_DIRECTORY_H */

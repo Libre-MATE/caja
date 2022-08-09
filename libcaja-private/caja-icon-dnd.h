@@ -22,35 +22,31 @@
 
    Authors: Ettore Perazzoli <ettore@gnu.org>,
             Darin Adler <darin@bentspoon.com>,
-	    Andy Hertzfeld <andy@eazel.com>
+            Andy Hertzfeld <andy@eazel.com>
 */
 
 #ifndef CAJA_ICON_DND_H
 #define CAJA_ICON_DND_H
 
-#include "caja-icon-container.h"
 #include "caja-dnd.h"
+#include "caja-icon-container.h"
 
 /* DnD-related information. */
-typedef struct
-{
-    /* inherited drag info context */
-    CajaDragInfo drag_info;
+typedef struct {
+  /* inherited drag info context */
+  CajaDragInfo drag_info;
 
-    gboolean highlighted;
+  gboolean highlighted;
 
-    /* Shadow for the icons being dragged.  */
-    EelCanvasItem *shadow;
+  /* Shadow for the icons being dragged.  */
+  EelCanvasItem *shadow;
 } CajaIconDndInfo;
 
-void   caja_icon_dnd_init                  (CajaIconContainer *container);
-void   caja_icon_dnd_fini                  (CajaIconContainer *container);
-void   caja_icon_dnd_begin_drag            (CajaIconContainer *container,
-        GdkDragAction          actions,
-        gint                   button,
-        GdkEventMotion        *event,
-        int                    start_x,
-        int                    start_y);
-void   caja_icon_dnd_end_drag              (CajaIconContainer *container);
+void caja_icon_dnd_init(CajaIconContainer *container);
+void caja_icon_dnd_fini(CajaIconContainer *container);
+void caja_icon_dnd_begin_drag(CajaIconContainer *container,
+                              GdkDragAction actions, gint button,
+                              GdkEventMotion *event, int start_x, int start_y);
+void caja_icon_dnd_end_drag(CajaIconContainer *container);
 
 #endif /* CAJA_ICON_DND_H */

@@ -29,29 +29,30 @@
 #include "caja-vfs-file.h"
 
 #define CAJA_TYPE_SAVED_SEARCH_FILE caja_saved_search_file_get_type()
-#define CAJA_SAVED_SEARCH_FILE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SAVED_SEARCH_FILE, CajaSavedSearchFile))
-#define CAJA_SAVED_SEARCH_FILE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SAVED_SEARCH_FILE, CajaSavedSearchFileClass))
+#define CAJA_SAVED_SEARCH_FILE(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SAVED_SEARCH_FILE, \
+                              CajaSavedSearchFile))
+#define CAJA_SAVED_SEARCH_FILE_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SAVED_SEARCH_FILE, \
+                           CajaSavedSearchFileClass))
 #define CAJA_IS_SAVED_SEARCH_FILE(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SAVED_SEARCH_FILE))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SAVED_SEARCH_FILE))
 #define CAJA_IS_SAVED_SEARCH_FILE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SAVED_SEARCH_FILE))
-#define CAJA_SAVED_SEARCH_FILE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SAVED_SEARCH_FILE, CajaSavedSearchFileClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SAVED_SEARCH_FILE))
+#define CAJA_SAVED_SEARCH_FILE_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SAVED_SEARCH_FILE, \
+                             CajaSavedSearchFileClass))
 
 typedef struct CajaSavedSearchFileDetails CajaSavedSearchFileDetails;
 
-typedef struct
-{
-    CajaFile parent_slot;
+typedef struct {
+  CajaFile parent_slot;
 } CajaSavedSearchFile;
 
-typedef struct
-{
-    CajaFileClass parent_slot;
+typedef struct {
+  CajaFileClass parent_slot;
 } CajaSavedSearchFileClass;
 
-GType   caja_saved_search_file_get_type (void);
+GType caja_saved_search_file_get_type(void);
 
 #endif /* CAJA_SAVED_SEARCH_FILE_H */

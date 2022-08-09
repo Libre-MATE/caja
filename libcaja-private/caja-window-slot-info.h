@@ -25,80 +25,78 @@
 #ifndef CAJA_WINDOW_SLOT_INFO_H
 #define CAJA_WINDOW_SLOT_INFO_H
 
-#include "caja-window-info.h"
 #include "caja-view.h"
+#include "caja-window-info.h"
 
-#define CAJA_TYPE_WINDOW_SLOT_INFO           (caja_window_slot_info_get_type ())
-#define CAJA_WINDOW_SLOT_INFO(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_WINDOW_SLOT_INFO, CajaWindowSlotInfo))
-#define CAJA_IS_WINDOW_SLOT_INFO(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_WINDOW_SLOT_INFO))
-#define CAJA_WINDOW_SLOT_INFO_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), CAJA_TYPE_WINDOW_SLOT_INFO, CajaWindowSlotInfoIface))
+#define CAJA_TYPE_WINDOW_SLOT_INFO (caja_window_slot_info_get_type())
+#define CAJA_WINDOW_SLOT_INFO(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_WINDOW_SLOT_INFO, \
+                              CajaWindowSlotInfo))
+#define CAJA_IS_WINDOW_SLOT_INFO(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_WINDOW_SLOT_INFO))
+#define CAJA_WINDOW_SLOT_INFO_GET_IFACE(obj)                        \
+  (G_TYPE_INSTANCE_GET_INTERFACE((obj), CAJA_TYPE_WINDOW_SLOT_INFO, \
+                                 CajaWindowSlotInfoIface))
 
 typedef struct _CajaWindowSlotInfoIface CajaWindowSlotInfoIface;
 
-struct _CajaWindowSlotInfoIface
-{
-    GTypeInterface g_iface;
+struct _CajaWindowSlotInfoIface {
+  GTypeInterface g_iface;
 
-    /* signals */
+  /* signals */
 
-    /* emitted right after this slot becomes active.
-     * Views should connect to this signal and merge their UI
-     * into the main window.
-     */
-    void  (* active)  (CajaWindowSlotInfo *slot);
-    /* emitted right before this slot becomes inactive.
-     * Views should connect to this signal and unmerge their UI
-     * from the main window.
-     */
-    void  (* inactive) (CajaWindowSlotInfo *slot);
+  /* emitted right after this slot becomes active.
+   * Views should connect to this signal and merge their UI
+   * into the main window.
+   */
+  void (*active)(CajaWindowSlotInfo *slot);
+  /* emitted right before this slot becomes inactive.
+   * Views should connect to this signal and unmerge their UI
+   * from the main window.
+   */
+  void (*inactive)(CajaWindowSlotInfo *slot);
 
-    /* returns the window info associated with this slot */
-    CajaWindowInfo * (* get_window) (CajaWindowSlotInfo *slot);
+  /* returns the window info associated with this slot */
+  CajaWindowInfo *(*get_window)(CajaWindowSlotInfo *slot);
 
-    /* Returns the number of selected items in the view */
-    int  (* get_selection_count)  (CajaWindowSlotInfo    *slot);
+  /* Returns the number of selected items in the view */
+  int (*get_selection_count)(CajaWindowSlotInfo *slot);
 
-    /* Returns a list of uris for th selected items in the view, caller frees it */
-    GList *(* get_selection)      (CajaWindowSlotInfo    *slot);
+  /* Returns a list of uris for th selected items in the view, caller frees it
+   */
+  GList *(*get_selection)(CajaWindowSlotInfo *slot);
 
-    char * (* get_current_location)  (CajaWindowSlotInfo *slot);
-    CajaView * (* get_current_view) (CajaWindowSlotInfo *slot);
-    void   (* set_status)            (CajaWindowSlotInfo *slot,
-                                      const char *status);
-    char * (* get_title)             (CajaWindowSlotInfo *slot);
+  char *(*get_current_location)(CajaWindowSlotInfo *slot);
+  CajaView *(*get_current_view)(CajaWindowSlotInfo *slot);
+  void (*set_status)(CajaWindowSlotInfo *slot, const char *status);
+  char *(*get_title)(CajaWindowSlotInfo *slot);
 
-    void   (* open_location)      (CajaWindowSlotInfo *slot,
-                                   GFile *location,
-                                   CajaWindowOpenMode mode,
-                                   CajaWindowOpenFlags flags,
-                                   GList *selection,
-                                   CajaWindowGoToCallback callback,
-                                   gpointer user_data);
-    void   (* make_hosting_pane_active) (CajaWindowSlotInfo *slot);
+  void (*open_location)(CajaWindowSlotInfo *slot, GFile *location,
+                        CajaWindowOpenMode mode, CajaWindowOpenFlags flags,
+                        GList *selection, CajaWindowGoToCallback callback,
+                        gpointer user_data);
+  void (*make_hosting_pane_active)(CajaWindowSlotInfo *slot);
 };
 
-GType                             caja_window_slot_info_get_type            (void);
-CajaWindowInfo *              caja_window_slot_info_get_window          (CajaWindowSlotInfo            *slot);
-#define caja_window_slot_info_open_location(slot, location, mode, flags, selection) \
-	caja_window_slot_info_open_location_full(slot, location, mode, \
-						 flags, selection, NULL, NULL)
+GType caja_window_slot_info_get_type(void);
+CajaWindowInfo *caja_window_slot_info_get_window(CajaWindowSlotInfo *slot);
+#define caja_window_slot_info_open_location(slot, location, mode, flags, \
+                                            selection)                   \
+  caja_window_slot_info_open_location_full(slot, location, mode, flags,  \
+                                           selection, NULL, NULL)
 
-void                              caja_window_slot_info_open_location_full
-	(CajaWindowSlotInfo *slot,
-        GFile                             *location,
-        CajaWindowOpenMode                 mode,
-        CajaWindowOpenFlags                flags,
-        GList                             *selection,
-        CajaWindowGoToCallback		   callback,
-        gpointer			   user_data);
-void                              caja_window_slot_info_set_status          (CajaWindowSlotInfo            *slot,
-        const char *status);
-void                              caja_window_slot_info_make_hosting_pane_active (CajaWindowSlotInfo       *slot);
+void caja_window_slot_info_open_location_full(
+    CajaWindowSlotInfo *slot, GFile *location, CajaWindowOpenMode mode,
+    CajaWindowOpenFlags flags, GList *selection,
+    CajaWindowGoToCallback callback, gpointer user_data);
+void caja_window_slot_info_set_status(CajaWindowSlotInfo *slot,
+                                      const char *status);
+void caja_window_slot_info_make_hosting_pane_active(CajaWindowSlotInfo *slot);
 
-char *                            caja_window_slot_info_get_current_location (CajaWindowSlotInfo           *slot);
-CajaView *                    caja_window_slot_info_get_current_view     (CajaWindowSlotInfo           *slot);
-int                               caja_window_slot_info_get_selection_count  (CajaWindowSlotInfo           *slot);
-GList *                           caja_window_slot_info_get_selection        (CajaWindowSlotInfo           *slot);
-char *                            caja_window_slot_info_get_title            (CajaWindowSlotInfo           *slot);
+char *caja_window_slot_info_get_current_location(CajaWindowSlotInfo *slot);
+CajaView *caja_window_slot_info_get_current_view(CajaWindowSlotInfo *slot);
+int caja_window_slot_info_get_selection_count(CajaWindowSlotInfo *slot);
+GList *caja_window_slot_info_get_selection(CajaWindowSlotInfo *slot);
+char *caja_window_slot_info_get_title(CajaWindowSlotInfo *slot);
 
 #endif /* CAJA_WINDOW_SLOT_INFO_H */

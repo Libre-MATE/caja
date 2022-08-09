@@ -29,47 +29,43 @@
 
 #include "caja-file.h"
 
-typedef struct
-{
-    char *from_uri;
-    char *to_uri;
+typedef struct {
+  char *from_uri;
+  char *to_uri;
 } URIPair;
 
-typedef struct
-{
-    GFile *from;
-    GFile *to;
+typedef struct {
+  GFile *from;
+  GFile *to;
 } GFilePair;
 
-typedef struct
-{
-    GFile *location;
-    gboolean set;
-    GdkPoint point;
-    int screen;
+typedef struct {
+  GFile *location;
+  gboolean set;
+  GdkPoint point;
+  int screen;
 } CajaFileChangesQueuePosition;
 
 /* Almost-public change notification calls */
-void caja_directory_notify_files_added   (GList *files);
-void caja_directory_notify_files_moved   (GList *file_pairs);
-void caja_directory_notify_files_changed (GList *files);
-void caja_directory_notify_files_removed (GList *files);
+void caja_directory_notify_files_added(GList *files);
+void caja_directory_notify_files_moved(GList *file_pairs);
+void caja_directory_notify_files_changed(GList *files);
+void caja_directory_notify_files_removed(GList *files);
 
-void caja_directory_schedule_metadata_copy   (GList        *file_pairs);
-void caja_directory_schedule_metadata_move   (GList        *file_pairs);
-void caja_directory_schedule_metadata_remove (GList        *files);
+void caja_directory_schedule_metadata_copy(GList *file_pairs);
+void caja_directory_schedule_metadata_move(GList *file_pairs);
+void caja_directory_schedule_metadata_remove(GList *files);
 
-void caja_directory_schedule_metadata_copy_by_uri   (GList        *uri_pairs);
-void caja_directory_schedule_metadata_move_by_uri   (GList        *uri_pairs);
-void caja_directory_schedule_metadata_remove_by_uri (GList        *uris);
-void caja_directory_schedule_position_set    (GList        *position_setting_list);
+void caja_directory_schedule_metadata_copy_by_uri(GList *uri_pairs);
+void caja_directory_schedule_metadata_move_by_uri(GList *uri_pairs);
+void caja_directory_schedule_metadata_remove_by_uri(GList *uris);
+void caja_directory_schedule_position_set(GList *position_setting_list);
 
 /* Change notification hack.
  * This is called when code modifies the file and it needs to trigger
  * a notification. Eventually this should become private, but for now
  * it needs to be used for code like the thumbnail generation.
  */
-void caja_file_changed                       (CajaFile *file);
+void caja_file_changed(CajaFile *file);
 
-#endif	/* __CAJA_DIRECTORY_NOTIFY_H__ */
-
+#endif /* __CAJA_DIRECTORY_NOTIFY_H__ */

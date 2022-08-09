@@ -15,7 +15,8 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author: 20kdc <gamemanj@hotmail.co.uk>
  *  Based on caja-menu-provider.h by Dave Camp <dave@ximian.com>
@@ -31,19 +32,24 @@
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
+
 #include "caja-extension-types.h"
 #include "caja-file-info.h"
 #include "caja-menu.h"
 
 G_BEGIN_DECLS
 
-#define CAJA_TYPE_CONFIGURABLE           (caja_configurable_get_type ())
-#define CAJA_CONFIGURABLE(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_CONFIGURABLE, CajaConfigurable))
-#define CAJA_IS_CONFIGURABLE(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_CONFIGURABLE))
-#define CAJA_CONFIGURABLE_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), CAJA_TYPE_CONFIGURABLE, CajaConfigurableIface))
+#define CAJA_TYPE_CONFIGURABLE (caja_configurable_get_type())
+#define CAJA_CONFIGURABLE(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_CONFIGURABLE, CajaConfigurable))
+#define CAJA_IS_CONFIGURABLE(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_CONFIGURABLE))
+#define CAJA_CONFIGURABLE_GET_IFACE(obj)                        \
+  (G_TYPE_INSTANCE_GET_INTERFACE((obj), CAJA_TYPE_CONFIGURABLE, \
+                                 CajaConfigurableIface))
 
-typedef struct _CajaConfigurable       CajaConfigurable;
-typedef struct _CajaConfigurableIface  CajaConfigurableIface;
+typedef struct _CajaConfigurable CajaConfigurable;
+typedef struct _CajaConfigurableIface CajaConfigurableIface;
 
 /**
  * CajaConfigurableIface:
@@ -54,14 +60,14 @@ typedef struct _CajaConfigurableIface  CajaConfigurableIface;
  */
 
 struct _CajaConfigurableIface {
-    GTypeInterface g_iface;
+  GTypeInterface g_iface;
 
-    void (*run_config) (CajaConfigurable *provider);
+  void (*run_config)(CajaConfigurable *provider);
 };
 
 /* Interface Functions */
-GType caja_configurable_get_type   (void);
-void  caja_configurable_run_config (CajaConfigurable *provider);
+GType caja_configurable_get_type(void);
+void caja_configurable_run_config(CajaConfigurable *provider);
 
 G_END_DECLS
 

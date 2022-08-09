@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 
 /* caja-keep-last-vertical-box.h: Subclass of GtkBox that clips off
- 				      items that don't fit, except the last one.
+                                      items that don't fit, except the last one.
 
    Copyright (C) 2000 Eazel, Inc.
 
@@ -29,31 +29,32 @@
 #include <gtk/gtk.h>
 
 #define CAJA_TYPE_KEEP_LAST_VERTICAL_BOX caja_keep_last_vertical_box_get_type()
-#define CAJA_KEEP_LAST_VERTICAL_BOX(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX, CajaKeepLastVerticalBox))
-#define CAJA_KEEP_LAST_VERTICAL_BOX_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX, CajaKeepLastVerticalBoxClass))
+#define CAJA_KEEP_LAST_VERTICAL_BOX(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX, \
+                              CajaKeepLastVerticalBox))
+#define CAJA_KEEP_LAST_VERTICAL_BOX_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX, \
+                           CajaKeepLastVerticalBoxClass))
 #define CAJA_IS_KEEP_LAST_VERTICAL_BOX(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX))
 #define CAJA_IS_KEEP_LAST_VERTICAL_BOX_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX))
-#define CAJA_KEEP_LAST_VERTICAL_BOX_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX, CajaKeepLastVerticalBoxClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX))
+#define CAJA_KEEP_LAST_VERTICAL_BOX_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_KEEP_LAST_VERTICAL_BOX, \
+                             CajaKeepLastVerticalBoxClass))
 
 typedef struct CajaKeepLastVerticalBox CajaKeepLastVerticalBox;
 typedef struct CajaKeepLastVerticalBoxClass CajaKeepLastVerticalBoxClass;
 
-struct CajaKeepLastVerticalBox
-{
-    GtkBox parent;
+struct CajaKeepLastVerticalBox {
+  GtkBox parent;
 };
 
-struct CajaKeepLastVerticalBoxClass
-{
-    GtkBoxClass parent_class;
+struct CajaKeepLastVerticalBoxClass {
+  GtkBoxClass parent_class;
 };
 
-GType      caja_keep_last_vertical_box_get_type  (void);
-GtkWidget *caja_keep_last_vertical_box_new       (gint spacing);
+GType caja_keep_last_vertical_box_get_type(void);
+GtkWidget *caja_keep_last_vertical_box_new(gint spacing);
 
 #endif /* CAJA_KEEP_LAST_VERTICAL_BOX_H */

@@ -33,36 +33,41 @@
 
 #include <gtk/gtk.h>
 
-#define CAJA_TYPE_NAVIGATION_ACTION            (caja_navigation_action_get_type ())
-#define CAJA_NAVIGATION_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_NAVIGATION_ACTION, CajaNavigationAction))
-#define CAJA_NAVIGATION_ACTION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_NAVIGATION_ACTION, CajaNavigationActionClass))
-#define CAJA_IS_NAVIGATION_ACTION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_NAVIGATION_ACTION))
-#define CAJA_IS_NAVIGATION_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), CAJA_TYPE_NAVIGATION_ACTION))
-#define CAJA_NAVIGATION_ACTION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_NAVIGATION_ACTION, CajaNavigationActionClass))
+#define CAJA_TYPE_NAVIGATION_ACTION (caja_navigation_action_get_type())
+#define CAJA_NAVIGATION_ACTION(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_NAVIGATION_ACTION, \
+                              CajaNavigationAction))
+#define CAJA_NAVIGATION_ACTION_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_NAVIGATION_ACTION, \
+                           CajaNavigationActionClass))
+#define CAJA_IS_NAVIGATION_ACTION(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_NAVIGATION_ACTION))
+#define CAJA_IS_NAVIGATION_ACTION_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((obj), CAJA_TYPE_NAVIGATION_ACTION))
+#define CAJA_NAVIGATION_ACTION_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_NAVIGATION_ACTION, \
+                             CajaNavigationActionClass))
 
-typedef struct _CajaNavigationAction       CajaNavigationAction;
-typedef struct _CajaNavigationActionClass  CajaNavigationActionClass;
+typedef struct _CajaNavigationAction CajaNavigationAction;
+typedef struct _CajaNavigationActionClass CajaNavigationActionClass;
 typedef struct _CajaNavigationActionPrivate CajaNavigationActionPrivate;
 
-typedef enum
-{
-    CAJA_NAVIGATION_DIRECTION_BACK,
-    CAJA_NAVIGATION_DIRECTION_FORWARD
+typedef enum {
+  CAJA_NAVIGATION_DIRECTION_BACK,
+  CAJA_NAVIGATION_DIRECTION_FORWARD
 } CajaNavigationDirection;
 
-struct _CajaNavigationAction
-{
-    GtkAction parent;
+struct _CajaNavigationAction {
+  GtkAction parent;
 
-    /*< private >*/
-    CajaNavigationActionPrivate *priv;
+  /*< private >*/
+  CajaNavigationActionPrivate *priv;
 };
 
-struct _CajaNavigationActionClass
-{
-    GtkActionClass parent_class;
+struct _CajaNavigationActionClass {
+  GtkActionClass parent_class;
 };
 
-GType    caja_navigation_action_get_type   (void);
+GType caja_navigation_action_get_type(void);
 
 #endif

@@ -30,41 +30,42 @@
 #include "caja-file.h"
 
 #define CAJA_TYPE_COLUMN_CHOOSER caja_column_chooser_get_type()
-#define CAJA_COLUMN_CHOOSER(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_COLUMN_CHOOSER, CajaColumnChooser))
-#define CAJA_COLUMN_CHOOSER_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_COLUMN_CHOOSER, CajaColumnChooserClass))
+#define CAJA_COLUMN_CHOOSER(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_COLUMN_CHOOSER, \
+                              CajaColumnChooser))
+#define CAJA_COLUMN_CHOOSER_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_COLUMN_CHOOSER, \
+                           CajaColumnChooserClass))
 #define CAJA_IS_COLUMN_CHOOSER(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_COLUMN_CHOOSER))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_COLUMN_CHOOSER))
 #define CAJA_IS_COLUMN_CHOOSER_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_COLUMN_CHOOSER))
-#define CAJA_COLUMN_CHOOSER_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_COLUMN_CHOOSER, CajaColumnChooserClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_COLUMN_CHOOSER))
+#define CAJA_COLUMN_CHOOSER_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_COLUMN_CHOOSER, \
+                             CajaColumnChooserClass))
 
 typedef struct _CajaColumnChooserPrivate CajaColumnChooserPrivate;
 
-typedef struct
-{
-    GtkBox parent;
+typedef struct {
+  GtkBox parent;
 
-    CajaColumnChooserPrivate *details;
+  CajaColumnChooserPrivate *details;
 } CajaColumnChooser;
 
-typedef struct
-{
-    GtkBoxClass parent_slot;
+typedef struct {
+  GtkBoxClass parent_slot;
 
-    void (*changed) (CajaColumnChooser *chooser);
-    void (*use_default) (CajaColumnChooser *chooser);
+  void (*changed)(CajaColumnChooser *chooser);
+  void (*use_default)(CajaColumnChooser *chooser);
 } CajaColumnChooserClass;
 
-GType      caja_column_chooser_get_type            (void);
-GtkWidget *caja_column_chooser_new                 (CajaFile *file);
-void       caja_column_chooser_set_settings    (CajaColumnChooser   *chooser,
-        char                   **visible_columns,
-        char                   **column_order);
-void       caja_column_chooser_get_settings    (CajaColumnChooser *chooser,
-        char                  ***visible_columns,
-        char                  ***column_order);
+GType caja_column_chooser_get_type(void);
+GtkWidget *caja_column_chooser_new(CajaFile *file);
+void caja_column_chooser_set_settings(CajaColumnChooser *chooser,
+                                      char **visible_columns,
+                                      char **column_order);
+void caja_column_chooser_get_settings(CajaColumnChooser *chooser,
+                                      char ***visible_columns,
+                                      char ***column_order);
 
 #endif /* CAJA_COLUMN_CHOOSER_H */

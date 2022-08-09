@@ -28,30 +28,36 @@
 
 #include <gtk/gtk.h>
 
-#define CAJA_TYPE_VIEW_AS_ACTION            (caja_view_as_action_get_type ())
-#define CAJA_VIEW_AS_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_VIEW_AS_ACTION, CajaViewAsAction))
-#define CAJA_VIEW_AS_ACTION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_VIEW_AS_ACTION, CajaViewAsActionClass))
-#define CAJA_IS_VIEW_AS_ACTION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_VIEW_AS_ACTION))
-#define CAJA_IS_VIEW_AS_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), CAJA_TYPE_VIEW_AS_ACTION))
-#define CAJA_VIEW_AS_ACTION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_VIEW_AS_ACTION, CajaViewAsActionClass))
+#define CAJA_TYPE_VIEW_AS_ACTION (caja_view_as_action_get_type())
+#define CAJA_VIEW_AS_ACTION(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_VIEW_AS_ACTION, \
+                              CajaViewAsAction))
+#define CAJA_VIEW_AS_ACTION_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_VIEW_AS_ACTION, \
+                           CajaViewAsActionClass))
+#define CAJA_IS_VIEW_AS_ACTION(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_VIEW_AS_ACTION))
+#define CAJA_IS_VIEW_AS_ACTION_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((obj), CAJA_TYPE_VIEW_AS_ACTION))
+#define CAJA_VIEW_AS_ACTION_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_VIEW_AS_ACTION, \
+                             CajaViewAsActionClass))
 
-typedef struct _CajaViewAsAction       CajaViewAsAction;
-typedef struct _CajaViewAsActionClass  CajaViewAsActionClass;
+typedef struct _CajaViewAsAction CajaViewAsAction;
+typedef struct _CajaViewAsActionClass CajaViewAsActionClass;
 typedef struct _CajaViewAsActionPrivate CajaViewAsActionPrivate;
 
-struct _CajaViewAsAction
-{
-    GtkAction parent;
+struct _CajaViewAsAction {
+  GtkAction parent;
 
-    /*< private >*/
-    CajaViewAsActionPrivate *priv;
+  /*< private >*/
+  CajaViewAsActionPrivate *priv;
 };
 
-struct _CajaViewAsActionClass
-{
-    GtkActionClass parent_class;
+struct _CajaViewAsActionClass {
+  GtkActionClass parent_class;
 };
 
-GType    caja_view_as_action_get_type   (void);
+GType caja_view_as_action_get_type(void);
 
 #endif

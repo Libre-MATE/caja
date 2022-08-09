@@ -35,16 +35,16 @@
 #ifndef EEL_ART_GTK_EXTENSIONS_H
 #define EEL_ART_GTK_EXTENSIONS_H
 
-#include "eel-gtk-extensions.h"
 #include "eel-art-extensions.h"
+#include "eel-gtk-extensions.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-    /* GtkWidget bounds and dimensions */
-    EelIRect      eel_gtk_widget_get_bounds                 (GtkWidget    *widget);
-    EelDimensions eel_gtk_widget_get_dimensions             (GtkWidget    *widget);
+/* GtkWidget bounds and dimensions */
+EelIRect eel_gtk_widget_get_bounds(GtkWidget *widget);
+EelDimensions eel_gtk_widget_get_dimensions(GtkWidget *widget);
 
 #ifdef __cplusplus
 }

@@ -27,14 +27,12 @@
 #ifndef CAJA_WINDOW_H
 #define CAJA_WINDOW_H
 
-#include <gtk/gtk.h>
-
 #include <eel/eel-glib-extensions.h>
-
+#include <gtk/gtk.h>
 #include <libcaja-private/caja-bookmark.h>
 #include <libcaja-private/caja-entry.h>
-#include <libcaja-private/caja-window-info.h>
 #include <libcaja-private/caja-search-directory.h>
+#include <libcaja-private/caja-window-info.h>
 
 #include "caja-application.h"
 #include "caja-information-panel.h"
@@ -42,15 +40,15 @@
 
 #define CAJA_TYPE_WINDOW caja_window_get_type()
 #define CAJA_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_WINDOW, CajaWindow))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_WINDOW, CajaWindow))
 #define CAJA_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_WINDOW, CajaWindowClass))
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_WINDOW, CajaWindowClass))
 #define CAJA_IS_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_WINDOW))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_WINDOW))
 #define CAJA_IS_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_WINDOW))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_WINDOW))
 #define CAJA_WINDOW_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_WINDOW, CajaWindowClass))
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_WINDOW, CajaWindowClass))
 
 #ifndef CAJA_WINDOW_DEFINED
 #define CAJA_WINDOW_DEFINED
@@ -62,108 +60,88 @@ typedef struct CajaWindow CajaWindow;
 typedef struct CajaWindowSlot CajaWindowSlot;
 #endif
 
-typedef struct _CajaWindowPane      CajaWindowPane;
+typedef struct _CajaWindowPane CajaWindowPane;
 
 typedef struct CajaWindowSlotClass CajaWindowSlotClass;
 typedef enum CajaWindowOpenSlotFlags CajaWindowOpenSlotFlags;
 
-typedef enum
-{
-    CAJA_WINDOW_NOT_SHOWN,
-    CAJA_WINDOW_POSITION_SET,
-    CAJA_WINDOW_SHOULD_SHOW
+typedef enum {
+  CAJA_WINDOW_NOT_SHOWN,
+  CAJA_WINDOW_POSITION_SET,
+  CAJA_WINDOW_SHOULD_SHOW
 } CajaWindowShowState;
 
-enum CajaWindowOpenSlotFlags
-{
-    CAJA_WINDOW_OPEN_SLOT_NONE = 0,
-    CAJA_WINDOW_OPEN_SLOT_APPEND = 1
+enum CajaWindowOpenSlotFlags {
+  CAJA_WINDOW_OPEN_SLOT_NONE = 0,
+  CAJA_WINDOW_OPEN_SLOT_APPEND = 1
 };
 
 typedef struct _CajaWindowPrivate CajaWindowPrivate;
 
-typedef struct
-{
-    GtkWindowClass parent_spot;
+typedef struct {
+  GtkWindowClass parent_spot;
 
-    CajaWindowType window_type;
-    const char *bookmarks_placeholder;
+  CajaWindowType window_type;
+  const char *bookmarks_placeholder;
 
-    /* Function pointers for overriding, without corresponding signals */
+  /* Function pointers for overriding, without corresponding signals */
 
-    char * (* get_title) (CajaWindow *window);
-    void   (* sync_title) (CajaWindow *window,
-                           CajaWindowSlot *slot);
-    CajaIconInfo * (* get_icon) (CajaWindow *window,
-                                 CajaWindowSlot *slot);
+  char *(*get_title)(CajaWindow *window);
+  void (*sync_title)(CajaWindow *window, CajaWindowSlot *slot);
+  CajaIconInfo *(*get_icon)(CajaWindow *window, CajaWindowSlot *slot);
 
-    void   (* sync_allow_stop) (CajaWindow *window,
-                                CajaWindowSlot *slot);
-    void   (* set_allow_up) (CajaWindow *window, gboolean allow);
-    void   (* reload)              (CajaWindow *window);
-    void   (* prompt_for_location) (CajaWindow *window, const char *initial);
-    void   (* get_min_size) (CajaWindow *window, guint *default_width, guint *default_height);
-    void   (* get_default_size) (CajaWindow *window, guint *default_width, guint *default_height);
-    void   (* close) (CajaWindow *window);
+  void (*sync_allow_stop)(CajaWindow *window, CajaWindowSlot *slot);
+  void (*set_allow_up)(CajaWindow *window, gboolean allow);
+  void (*reload)(CajaWindow *window);
+  void (*prompt_for_location)(CajaWindow *window, const char *initial);
+  void (*get_min_size)(CajaWindow *window, guint *default_width,
+                       guint *default_height);
+  void (*get_default_size)(CajaWindow *window, guint *default_width,
+                           guint *default_height);
+  void (*close)(CajaWindow *window);
 
-    CajaWindowSlot * (* open_slot) (CajaWindowPane *pane,
-                                    CajaWindowOpenSlotFlags flags);
-    void                 (* close_slot) (CajaWindowPane *pane,
-                                         CajaWindowSlot *slot);
-    void                 (* set_active_slot) (CajaWindowPane *pane,
-            CajaWindowSlot *slot);
+  CajaWindowSlot *(*open_slot)(CajaWindowPane *pane,
+                               CajaWindowOpenSlotFlags flags);
+  void (*close_slot)(CajaWindowPane *pane, CajaWindowSlot *slot);
+  void (*set_active_slot)(CajaWindowPane *pane, CajaWindowSlot *slot);
 
-    /* Signals used only for keybindings */
-    gboolean (* go_up) (CajaWindow *window, gboolean close);
+  /* Signals used only for keybindings */
+  gboolean (*go_up)(CajaWindow *window, gboolean close);
 } CajaWindowClass;
 
-struct CajaWindow
-{
-    GtkWindow parent_object;
+struct CajaWindow {
+  GtkWindow parent_object;
 
-    CajaWindowPrivate *details;
+  CajaWindowPrivate *details;
 
-    CajaApplication *application;
+  CajaApplication *application;
 };
 
-GType            caja_window_get_type             (void);
-void             caja_window_show_window          (CajaWindow    *window);
-void             caja_window_close                (CajaWindow    *window);
+GType caja_window_get_type(void);
+void caja_window_show_window(CajaWindow *window);
+void caja_window_close(CajaWindow *window);
 
-void             caja_window_connect_content_view (CajaWindow    *window,
-        CajaView      *view);
-void             caja_window_disconnect_content_view (CajaWindow    *window,
-        CajaView      *view);
+void caja_window_connect_content_view(CajaWindow *window, CajaView *view);
+void caja_window_disconnect_content_view(CajaWindow *window, CajaView *view);
 
-void             caja_window_go_to                (CajaWindow    *window,
-        GFile             *location);
-void             caja_window_go_to_tab            (CajaWindow    *window,
-        GFile             *location);
-void             caja_window_go_to_full           (CajaWindow    *window,
-        GFile             *location,
-        CajaWindowGoToCallback callback,
-        gpointer           user_data);
-void             caja_window_go_to_with_selection (CajaWindow    *window,
-        GFile             *location,
-        GList             *new_selection);
-void             caja_window_go_home              (CajaWindow    *window);
-void             caja_window_new_tab              (CajaWindow    *window);
-void             caja_window_new_window           (CajaWindow    *window);
-void             caja_window_go_up                (CajaWindow    *window,
-        gboolean           close_behind,
-        gboolean           new_tab);
-void             caja_window_prompt_for_location  (CajaWindow    *window,
-        const char        *initial);
-void             caja_window_display_error        (CajaWindow    *window,
-        const char        *error_msg);
-void             caja_window_reload               (CajaWindow    *window,
-        gboolean           new_tab);
-void             caja_window_allow_reload         (CajaWindow    *window,
-        gboolean           allow);
-void             caja_window_allow_up             (CajaWindow    *window,
-        gboolean           allow);
-void             caja_window_allow_stop           (CajaWindow    *window,
-        gboolean           allow);
-GtkUIManager *   caja_window_get_ui_manager       (CajaWindow    *window);
+void caja_window_go_to(CajaWindow *window, GFile *location);
+void caja_window_go_to_tab(CajaWindow *window, GFile *location);
+void caja_window_go_to_full(CajaWindow *window, GFile *location,
+                            CajaWindowGoToCallback callback,
+                            gpointer user_data);
+void caja_window_go_to_with_selection(CajaWindow *window, GFile *location,
+                                      GList *new_selection);
+void caja_window_go_home(CajaWindow *window);
+void caja_window_new_tab(CajaWindow *window);
+void caja_window_new_window(CajaWindow *window);
+void caja_window_go_up(CajaWindow *window, gboolean close_behind,
+                       gboolean new_tab);
+void caja_window_prompt_for_location(CajaWindow *window, const char *initial);
+void caja_window_display_error(CajaWindow *window, const char *error_msg);
+void caja_window_reload(CajaWindow *window, gboolean new_tab);
+void caja_window_allow_reload(CajaWindow *window, gboolean allow);
+void caja_window_allow_up(CajaWindow *window, gboolean allow);
+void caja_window_allow_stop(CajaWindow *window, gboolean allow);
+GtkUIManager *caja_window_get_ui_manager(CajaWindow *window);
 
 #endif

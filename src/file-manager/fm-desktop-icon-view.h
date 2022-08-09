@@ -28,33 +28,34 @@
 #include "fm-icon-view.h"
 
 #define FM_TYPE_DESKTOP_ICON_VIEW fm_desktop_icon_view_get_type()
-#define FM_DESKTOP_ICON_VIEW(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), FM_TYPE_DESKTOP_ICON_VIEW, FMDesktopIconView))
-#define FM_DESKTOP_ICON_VIEW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), FM_TYPE_DESKTOP_ICON_VIEW, FMDesktopIconViewClass))
+#define FM_DESKTOP_ICON_VIEW(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), FM_TYPE_DESKTOP_ICON_VIEW, \
+                              FMDesktopIconView))
+#define FM_DESKTOP_ICON_VIEW_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), FM_TYPE_DESKTOP_ICON_VIEW, \
+                           FMDesktopIconViewClass))
 #define FM_IS_DESKTOP_ICON_VIEW(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), FM_TYPE_DESKTOP_ICON_VIEW))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), FM_TYPE_DESKTOP_ICON_VIEW))
 #define FM_IS_DESKTOP_ICON_VIEW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), FM_TYPE_DESKTOP_ICON_VIEW))
-#define FM_DESKTOP_ICON_VIEW_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), FM_TYPE_DESKTOP_ICON_VIEW, FMDesktopIconViewClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), FM_TYPE_DESKTOP_ICON_VIEW))
+#define FM_DESKTOP_ICON_VIEW_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), FM_TYPE_DESKTOP_ICON_VIEW, \
+                             FMDesktopIconViewClass))
 
 #define FM_DESKTOP_ICON_VIEW_ID "OAFIID:Caja_File_Manager_Desktop_Icon_View"
 
 typedef struct _FMDesktopIconViewPrivate FMDesktopIconViewPrivate;
-typedef struct
-{
-    FMIconView parent;
-    FMDesktopIconViewPrivate *priv;
+typedef struct {
+  FMIconView parent;
+  FMDesktopIconViewPrivate *priv;
 } FMDesktopIconView;
 
-typedef struct
-{
-    FMIconViewClass parent_class;
+typedef struct {
+  FMIconViewClass parent_class;
 } FMDesktopIconViewClass;
 
 /* GObject support */
-GType   fm_desktop_icon_view_get_type (void);
-void fm_desktop_icon_view_register (void);
+GType fm_desktop_icon_view_get_type(void);
+void fm_desktop_icon_view_register(void);
 
 #endif /* FM_DESKTOP_ICON_VIEW_H */

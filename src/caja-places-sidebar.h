@@ -25,25 +25,27 @@
 #define _CAJA_PLACES_SIDEBAR_H
 
 #include <gtk/gtk.h>
-
 #include <libcaja-private/caja-view.h>
 #include <libcaja-private/caja-window-info.h>
 
-#define CAJA_PLACES_SIDEBAR_ID    "places"
+#define CAJA_PLACES_SIDEBAR_ID "places"
 
 #define CAJA_TYPE_PLACES_SIDEBAR caja_places_sidebar_get_type()
-#define CAJA_PLACES_SIDEBAR(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_PLACES_SIDEBAR, CajaPlacesSidebar))
-#define CAJA_PLACES_SIDEBAR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_PLACES_SIDEBAR, CajaPlacesSidebarClass))
+#define CAJA_PLACES_SIDEBAR(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_PLACES_SIDEBAR, \
+                              CajaPlacesSidebar))
+#define CAJA_PLACES_SIDEBAR_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_PLACES_SIDEBAR, \
+                           CajaPlacesSidebarClass))
 #define CAJA_IS_PLACES_SIDEBAR(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_PLACES_SIDEBAR))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_PLACES_SIDEBAR))
 #define CAJA_IS_PLACES_SIDEBAR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_PLACES_SIDEBAR))
-#define CAJA_PLACES_SIDEBAR_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_PLACES_SIDEBAR, CajaPlacesSidebarClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_PLACES_SIDEBAR))
+#define CAJA_PLACES_SIDEBAR_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_PLACES_SIDEBAR, \
+                             CajaPlacesSidebarClass))
 
-GType caja_places_sidebar_get_type (void);
-void caja_places_sidebar_register (void);
+GType caja_places_sidebar_get_type(void);
+void caja_places_sidebar_register(void);
 
 #endif

@@ -21,141 +21,116 @@
    Boston, MA 02110-1301, USA.
 
    Authors: Darin Adler <darin@eazel.com>
-	    Pavel Cisler <pavel@eazel.com>
-	    Mike Fleming  <mfleming@eazel.com>
+            Pavel Cisler <pavel@eazel.com>
+            Mike Fleming  <mfleming@eazel.com>
             John Sullivan <sullivan@eazel.com>
 */
 
-#include <config.h>
 #include "eel-vfs-extensions.h"
-#include "eel-glib-extensions.h"
-#include "eel-lib-self-check-functions.h"
+
+#include <config.h>
+#include <gio/gio.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
-#include <gio/gio.h>
+#include <stdlib.h>
+#include <string.h>
 
+#include "eel-glib-extensions.h"
+#include "eel-lib-self-check-functions.h"
 #include "eel-string.h"
 
-#include <string.h>
-#include <stdlib.h>
-
-gboolean
-eel_uri_is_trash (const char *uri)
-{
-    return eel_istr_has_prefix (uri, "trash:");
+gboolean eel_uri_is_trash(const char *uri) {
+  return eel_istr_has_prefix(uri, "trash:");
 }
 
-gboolean
-eel_uri_is_search (const char *uri)
-{
-    return eel_istr_has_prefix (uri, EEL_SEARCH_URI);
+gboolean eel_uri_is_search(const char *uri) {
+  return eel_istr_has_prefix(uri, EEL_SEARCH_URI);
 }
 
-gboolean
-eel_uri_is_desktop (const char *uri)
-{
-    return eel_istr_has_prefix (uri, EEL_DESKTOP_URI);
+gboolean eel_uri_is_desktop(const char *uri) {
+  return eel_istr_has_prefix(uri, EEL_DESKTOP_URI);
 }
 
-char *
-eel_make_valid_utf8 (const char *name)
-{
-    GString *string;
-    const char *remainder, *invalid;
-    int remaining_bytes;
+char *eel_make_valid_utf8(const char *name) {
+  GString *string;
+  const char *remainder, *invalid;
+  int remaining_bytes;
 
-    string = NULL;
-    remainder = name;
-    remaining_bytes = strlen (name);
+  string = NULL;
+  remainder = name;
+  remaining_bytes = strlen(name);
 
-    while (remaining_bytes != 0)
-    {
-        int valid_bytes;
+  while (remaining_bytes != 0) {
+    int valid_bytes;
 
-        if (g_utf8_validate (remainder, remaining_bytes, &invalid))
-        {
-            break;
-        }
-        valid_bytes = invalid - remainder;
-
-        if (string == NULL)
-        {
-            string = g_string_sized_new (remaining_bytes);
-        }
-        g_string_append_len (string, remainder, valid_bytes);
-        g_string_append_c (string, '?');
-
-        remaining_bytes -= valid_bytes + 1;
-        remainder = invalid + 1;
+    if (g_utf8_validate(remainder, remaining_bytes, &invalid)) {
+      break;
     }
+    valid_bytes = invalid - remainder;
 
-    if (string == NULL)
-    {
-        return g_strdup (name);
+    if (string == NULL) {
+      string = g_string_sized_new(remaining_bytes);
     }
+    g_string_append_len(string, remainder, valid_bytes);
+    g_string_append_c(string, '?');
 
-    g_string_append (string, remainder);
-    g_string_append (string, _(" (invalid Unicode)"));
-    g_assert (g_utf8_validate (string->str, -1, NULL));
+    remaining_bytes -= valid_bytes + 1;
+    remainder = invalid + 1;
+  }
 
-    return g_string_free (string, FALSE);
+  if (string == NULL) {
+    return g_strdup(name);
+  }
+
+  g_string_append(string, remainder);
+  g_string_append(string, _(" (invalid Unicode)"));
+  g_assert(g_utf8_validate(string->str, -1, NULL));
+
+  return g_string_free(string, FALSE);
 }
 
-char *
-eel_filename_strip_extension (const char * filename_with_extension)
-{
-    char *filename, *end, *end2;
+char *eel_filename_strip_extension(const char *filename_with_extension) {
+  char *filename, *end, *end2;
 
-    if (filename_with_extension == NULL)
-    {
-        return NULL;
+  if (filename_with_extension == NULL) {
+    return NULL;
+  }
+
+  filename = g_strdup(filename_with_extension);
+
+  end = strrchr(filename, '.');
+
+  if (end && end != filename) {
+    if (strcmp(end, ".gz") == 0 || strcmp(end, ".bz2") == 0 ||
+        strcmp(end, ".sit") == 0 || strcmp(end, ".Z") == 0) {
+      end2 = end - 1;
+      while (end2 > filename && *end2 != '.') {
+        end2--;
+      }
+      if (end2 != filename) {
+        end = end2;
+      }
     }
+    *end = '\0';
+  }
 
-    filename = g_strdup (filename_with_extension);
-
-    end = strrchr (filename, '.');
-
-    if (end && end != filename)
-    {
-        if (strcmp (end, ".gz") == 0 ||
-                strcmp (end, ".bz2") == 0 ||
-                strcmp (end, ".sit") == 0 ||
-                strcmp (end, ".Z") == 0)
-        {
-            end2 = end - 1;
-            while (end2 > filename &&
-                    *end2 != '.')
-            {
-                end2--;
-            }
-            if (end2 != filename)
-            {
-                end = end2;
-            }
-        }
-        *end = '\0';
-    }
-
-    return filename;
+  return filename;
 }
 
-void
-eel_filename_get_rename_region (const char           *filename,
-                                int                  *start_offset,
-                                int                  *end_offset)
-{
-    char *filename_without_extension;
+void eel_filename_get_rename_region(const char *filename, int *start_offset,
+                                    int *end_offset) {
+  char *filename_without_extension;
 
-    g_return_if_fail (start_offset != NULL);
-    g_return_if_fail (end_offset != NULL);
+  g_return_if_fail(start_offset != NULL);
+  g_return_if_fail(end_offset != NULL);
 
-    *start_offset = 0;
-    *end_offset = 0;
+  *start_offset = 0;
+  *end_offset = 0;
 
-    g_return_if_fail (filename != NULL);
+  g_return_if_fail(filename != NULL);
 
-    filename_without_extension = eel_filename_strip_extension (filename);
-    *end_offset = g_utf8_strlen (filename_without_extension, -1);
+  filename_without_extension = eel_filename_strip_extension(filename);
+  *end_offset = g_utf8_strlen(filename_without_extension, -1);
 
-    g_free (filename_without_extension);
+  g_free(filename_without_extension);
 }

@@ -16,7 +16,8 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author:  Dave Camp <dave@ximian.com>
  *
@@ -27,35 +28,42 @@
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
+
 #include "caja-extension-types.h"
 
 G_BEGIN_DECLS
 
-#define CAJA_TYPE_PROPERTY_PAGE            (caja_property_page_get_type())
-#define CAJA_PROPERTY_PAGE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_PROPERTY_PAGE, CajaPropertyPage))
-#define CAJA_PROPERTY_PAGE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_PROPERTY_PAGE, CajaPropertyPageClass))
-#define CAJA_IS_PROPERTY_PAGE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_PROPERTY_PAGE))
-#define CAJA_IS_PROPERTY_PAGE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), CAJA_TYPE_PROPERTY_PAGE))
-#define CAJA_PROPERTY_PAGE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_PROPERTY_PAGE, CajaPropertyPageClass))
+#define CAJA_TYPE_PROPERTY_PAGE (caja_property_page_get_type())
+#define CAJA_PROPERTY_PAGE(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_PROPERTY_PAGE, CajaPropertyPage))
+#define CAJA_PROPERTY_PAGE_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_PROPERTY_PAGE, \
+                           CajaPropertyPageClass))
+#define CAJA_IS_PROPERTY_PAGE(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_PROPERTY_PAGE))
+#define CAJA_IS_PROPERTY_PAGE_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((obj), CAJA_TYPE_PROPERTY_PAGE))
+#define CAJA_PROPERTY_PAGE_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_PROPERTY_PAGE, \
+                             CajaPropertyPageClass))
 
-typedef struct _CajaPropertyPage        CajaPropertyPage;
+typedef struct _CajaPropertyPage CajaPropertyPage;
 typedef struct _CajaPropertyPageDetails CajaPropertyPageDetails;
-typedef struct _CajaPropertyPageClass   CajaPropertyPageClass;
+typedef struct _CajaPropertyPageClass CajaPropertyPageClass;
 
 struct _CajaPropertyPage {
-    GObject parent;
+  GObject parent;
 
-    CajaPropertyPageDetails *details;
+  CajaPropertyPageDetails *details;
 };
 
 struct _CajaPropertyPageClass {
-    GObjectClass parent;
+  GObjectClass parent;
 };
 
-GType             caja_property_page_get_type  (void);
-CajaPropertyPage *caja_property_page_new       (const char *name,
-                                                GtkWidget  *label,
-                                                GtkWidget  *page);
+GType caja_property_page_get_type(void);
+CajaPropertyPage *caja_property_page_new(const char *name, GtkWidget *label,
+                                         GtkWidget *page);
 
 /* CajaPropertyPage has the following properties:
  *   name (string)        - the identifier for the property page

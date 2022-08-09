@@ -21,8 +21,8 @@
  *
  * Author: Andy Hertzfeld <andy@eazel.com>
  *
- *  This is the header file for the index panel widget, which displays overview information
- *  in a vertical panel and hosts the meta-views.
+ *  This is the header file for the index panel widget, which displays overview
+ * information in a vertical panel and hosts the meta-views.
  */
 
 #ifndef CAJA_INFORMATION_PANEL_H
@@ -31,36 +31,37 @@
 #include <eel/eel-background-box.h>
 
 #define CAJA_TYPE_INFORMATION_PANEL caja_information_panel_get_type()
-#define CAJA_INFORMATION_PANEL(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_INFORMATION_PANEL, CajaInformationPanel))
-#define CAJA_INFORMATION_PANEL_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_INFORMATION_PANEL, CajaInformationPanelClass))
+#define CAJA_INFORMATION_PANEL(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_INFORMATION_PANEL, \
+                              CajaInformationPanel))
+#define CAJA_INFORMATION_PANEL_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_INFORMATION_PANEL, \
+                           CajaInformationPanelClass))
 #define CAJA_IS_INFORMATION_PANEL(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_INFORMATION_PANEL))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_INFORMATION_PANEL))
 #define CAJA_IS_INFORMATION_PANEL_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_INFORMATION_PANEL))
-#define CAJA_INFORMATION_PANEL_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_INFORMATION_PANEL, CajaInformationPanelClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_INFORMATION_PANEL))
+#define CAJA_INFORMATION_PANEL_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_INFORMATION_PANEL, \
+                             CajaInformationPanelClass))
 
 typedef struct _CajaInformationPanelPrivate CajaInformationPanelPrivate;
 
 #define CAJA_INFORMATION_PANEL_ID "information"
 
-typedef struct
-{
-    EelBackgroundBox parent_slot;
-    CajaInformationPanelPrivate *details;
+typedef struct {
+  EelBackgroundBox parent_slot;
+  CajaInformationPanelPrivate *details;
 } CajaInformationPanel;
 
-typedef struct
-{
-    EelBackgroundBoxClass parent_slot;
+typedef struct {
+  EelBackgroundBoxClass parent_slot;
 
-    void (*location_changed) (CajaInformationPanel *information_panel,
-                              const char *location);
+  void (*location_changed)(CajaInformationPanel *information_panel,
+                           const char *location);
 } CajaInformationPanelClass;
 
-GType            caja_information_panel_get_type     (void);
-void             caja_information_panel_register     (void);
+GType caja_information_panel_get_type(void);
+void caja_information_panel_register(void);
 
 #endif /* CAJA_INFORMATION_PANEL_H */

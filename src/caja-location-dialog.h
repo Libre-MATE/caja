@@ -25,31 +25,34 @@
 #define CAJA_LOCATION_DIALOG_H
 
 #include <gtk/gtk.h>
+
 #include "caja-window.h"
 
-#define CAJA_TYPE_LOCATION_DIALOG         (caja_location_dialog_get_type ())
-#define CAJA_LOCATION_DIALOG(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_LOCATION_DIALOG, CajaLocationDialog))
-#define CAJA_LOCATION_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_LOCATION_DIALOG, CajaLocationDialogClass))
+#define CAJA_TYPE_LOCATION_DIALOG (caja_location_dialog_get_type())
+#define CAJA_LOCATION_DIALOG(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_LOCATION_DIALOG, \
+                              CajaLocationDialog))
+#define CAJA_LOCATION_DIALOG_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_LOCATION_DIALOG, \
+                           CajaLocationDialogClass))
 #define CAJA_IS_LOCATION_DIALOG(obj)      (G_TYPE_INSTANCE_CHECK_TYPE ((obj), CAJA_TYPE_LOCATION_DIALOG)
 
-typedef struct _CajaLocationDialog        CajaLocationDialog;
-typedef struct _CajaLocationDialogClass   CajaLocationDialogClass;
+typedef struct _CajaLocationDialog CajaLocationDialog;
+typedef struct _CajaLocationDialogClass CajaLocationDialogClass;
 typedef struct _CajaLocationDialogDetails CajaLocationDialogDetails;
 
-struct _CajaLocationDialog
-{
-    GtkDialog parent;
-    CajaLocationDialogDetails *details;
+struct _CajaLocationDialog {
+  GtkDialog parent;
+  CajaLocationDialogDetails *details;
 };
 
-struct _CajaLocationDialogClass
-{
-    GtkDialogClass parent_class;
+struct _CajaLocationDialogClass {
+  GtkDialogClass parent_class;
 };
 
-GType      caja_location_dialog_get_type     (void);
-GtkWidget* caja_location_dialog_new          (CajaWindow         *window);
-void       caja_location_dialog_set_location (CajaLocationDialog *dialog,
-        const char             *location);
+GType caja_location_dialog_get_type(void);
+GtkWidget *caja_location_dialog_new(CajaWindow *window);
+void caja_location_dialog_set_location(CajaLocationDialog *dialog,
+                                       const char *location);
 
 #endif /* CAJA_LOCATION_DIALOG_H */

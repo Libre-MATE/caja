@@ -20,8 +20,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
  *
- *  This is the header file for the index panel widget, which displays oversidebar information
- *  in a vertical panel and hosts the meta-sidebars.
+ *  This is the header file for the index panel widget, which displays
+ * oversidebar information in a vertical panel and hosts the meta-sidebars.
  */
 
 #ifndef CAJA_EMBLEM_SIDEBAR_H
@@ -30,33 +30,34 @@
 #include <gtk/gtk.h>
 
 #define CAJA_TYPE_EMBLEM_SIDEBAR caja_emblem_sidebar_get_type()
-#define CAJA_EMBLEM_SIDEBAR(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_EMBLEM_SIDEBAR, CajaEmblemSidebar))
-#define CAJA_EMBLEM_SIDEBAR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_EMBLEM_SIDEBAR, CajaEmblemSidebarClass))
+#define CAJA_EMBLEM_SIDEBAR(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_EMBLEM_SIDEBAR, \
+                              CajaEmblemSidebar))
+#define CAJA_EMBLEM_SIDEBAR_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_EMBLEM_SIDEBAR, \
+                           CajaEmblemSidebarClass))
 #define CAJA_IS_EMBLEM_SIDEBAR(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_EMBLEM_SIDEBAR))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_EMBLEM_SIDEBAR))
 #define CAJA_IS_EMBLEM_SIDEBAR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_EMBLEM_SIDEBAR))
-#define CAJA_EMBLEM_SIDEBAR_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_EMBLEM_SIDEBAR, CajaEmblemSidebarClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_EMBLEM_SIDEBAR))
+#define CAJA_EMBLEM_SIDEBAR_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_EMBLEM_SIDEBAR, \
+                             CajaEmblemSidebarClass))
 
 #define CAJA_EMBLEM_SIDEBAR_ID "emblems"
 
 typedef struct CajaEmblemSidebarDetails CajaEmblemSidebarDetails;
 
-typedef struct
-{
-    GtkBox parent_slot;
-    CajaEmblemSidebarDetails *details;
+typedef struct {
+  GtkBox parent_slot;
+  CajaEmblemSidebarDetails *details;
 } CajaEmblemSidebar;
 
-typedef struct
-{
-    GtkBoxClass parent_slot;
+typedef struct {
+  GtkBoxClass parent_slot;
 } CajaEmblemSidebarClass;
 
-GType	caja_emblem_sidebar_get_type     (void);
-void    caja_emblem_sidebar_register     (void);
+GType caja_emblem_sidebar_get_type(void);
+void caja_emblem_sidebar_register(void);
 
 #endif /* CAJA_EMBLEM_SIDEBAR_H */

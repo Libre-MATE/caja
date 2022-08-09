@@ -30,36 +30,37 @@
 #include "caja-desktop-link.h"
 
 #define CAJA_TYPE_DESKTOP_LINK_MONITOR caja_desktop_link_monitor_get_type()
-#define CAJA_DESKTOP_LINK_MONITOR(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_DESKTOP_LINK_MONITOR, CajaDesktopLinkMonitor))
-#define CAJA_DESKTOP_LINK_MONITOR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_DESKTOP_LINK_MONITOR, CajaDesktopLinkMonitorClass))
+#define CAJA_DESKTOP_LINK_MONITOR(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_DESKTOP_LINK_MONITOR, \
+                              CajaDesktopLinkMonitor))
+#define CAJA_DESKTOP_LINK_MONITOR_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_DESKTOP_LINK_MONITOR, \
+                           CajaDesktopLinkMonitorClass))
 #define CAJA_IS_DESKTOP_LINK_MONITOR(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_DESKTOP_LINK_MONITOR))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_DESKTOP_LINK_MONITOR))
 #define CAJA_IS_DESKTOP_LINK_MONITOR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_DESKTOP_LINK_MONITOR))
-#define CAJA_DESKTOP_LINK_MONITOR_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_DESKTOP_LINK_MONITOR, CajaDesktopLinkMonitorClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_DESKTOP_LINK_MONITOR))
+#define CAJA_DESKTOP_LINK_MONITOR_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_DESKTOP_LINK_MONITOR, \
+                             CajaDesktopLinkMonitorClass))
 
 typedef struct CajaDesktopLinkMonitorDetails CajaDesktopLinkMonitorDetails;
 
-typedef struct
-{
-    GObject parent_slot;
-    CajaDesktopLinkMonitorDetails *details;
+typedef struct {
+  GObject parent_slot;
+  CajaDesktopLinkMonitorDetails *details;
 } CajaDesktopLinkMonitor;
 
-typedef struct
-{
-    GObjectClass parent_slot;
+typedef struct {
+  GObjectClass parent_slot;
 } CajaDesktopLinkMonitorClass;
 
-GType   caja_desktop_link_monitor_get_type (void);
+GType caja_desktop_link_monitor_get_type(void);
 
-CajaDesktopLinkMonitor *   caja_desktop_link_monitor_get (void);
+CajaDesktopLinkMonitor *caja_desktop_link_monitor_get(void);
 
 /* Used by caja-desktop-link.c */
-char * caja_desktop_link_monitor_make_filename_unique (CajaDesktopLinkMonitor *monitor,
-        const char *filename);
+char *caja_desktop_link_monitor_make_filename_unique(
+    CajaDesktopLinkMonitor *monitor, const char *filename);
 
 #endif /* CAJA_DESKTOP_LINK_MONITOR_H */

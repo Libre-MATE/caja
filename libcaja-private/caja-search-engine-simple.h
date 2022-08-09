@@ -26,28 +26,34 @@
 
 #include "caja-search-engine.h"
 
-#define CAJA_TYPE_SEARCH_ENGINE_SIMPLE		(caja_search_engine_simple_get_type ())
-#define CAJA_SEARCH_ENGINE_SIMPLE(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SEARCH_ENGINE_SIMPLE, CajaSearchEngineSimple))
-#define CAJA_SEARCH_ENGINE_SIMPLE_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SEARCH_ENGINE_SIMPLE, CajaSearchEngineSimpleClass))
-#define CAJA_IS_SEARCH_ENGINE_SIMPLE(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SEARCH_ENGINE_SIMPLE))
-#define CAJA_IS_SEARCH_ENGINE_SIMPLE_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SEARCH_ENGINE_SIMPLE))
-#define CAJA_SEARCH_ENGINE_SIMPLE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SEARCH_ENGINE_SIMPLE, CajaSearchEngineSimpleClass))
+#define CAJA_TYPE_SEARCH_ENGINE_SIMPLE (caja_search_engine_simple_get_type())
+#define CAJA_SEARCH_ENGINE_SIMPLE(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SEARCH_ENGINE_SIMPLE, \
+                              CajaSearchEngineSimple))
+#define CAJA_SEARCH_ENGINE_SIMPLE_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SEARCH_ENGINE_SIMPLE, \
+                           CajaSearchEngineSimpleClass))
+#define CAJA_IS_SEARCH_ENGINE_SIMPLE(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SEARCH_ENGINE_SIMPLE))
+#define CAJA_IS_SEARCH_ENGINE_SIMPLE_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SEARCH_ENGINE_SIMPLE))
+#define CAJA_SEARCH_ENGINE_SIMPLE_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SEARCH_ENGINE_SIMPLE, \
+                             CajaSearchEngineSimpleClass))
 
 typedef struct CajaSearchEngineSimpleDetails CajaSearchEngineSimpleDetails;
 
-typedef struct CajaSearchEngineSimple
-{
-    CajaSearchEngine parent;
-    CajaSearchEngineSimpleDetails *details;
+typedef struct CajaSearchEngineSimple {
+  CajaSearchEngine parent;
+  CajaSearchEngineSimpleDetails* details;
 } CajaSearchEngineSimple;
 
-typedef struct
-{
-    CajaSearchEngineClass parent_class;
+typedef struct {
+  CajaSearchEngineClass parent_class;
 } CajaSearchEngineSimpleClass;
 
-GType          caja_search_engine_simple_get_type  (void);
+GType caja_search_engine_simple_get_type(void);
 
-CajaSearchEngine* caja_search_engine_simple_new       (void);
+CajaSearchEngine* caja_search_engine_simple_new(void);
 
 #endif /* CAJA_SEARCH_ENGINE_SIMPLE_H */

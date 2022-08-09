@@ -26,39 +26,40 @@
 #ifndef CAJA_OPEN_WITH_DIALOG_H
 #define CAJA_OPEN_WITH_DIALOG_H
 
-#include <gtk/gtk.h>
 #include <gio/gio.h>
+#include <gtk/gtk.h>
 
-#define CAJA_TYPE_OPEN_WITH_DIALOG         (caja_open_with_dialog_get_type ())
-#define CAJA_OPEN_WITH_DIALOG(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_OPEN_WITH_DIALOG, CajaOpenWithDialog))
-#define CAJA_OPEN_WITH_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_OPEN_WITH_DIALOG, CajaOpenWithDialogClass))
+#define CAJA_TYPE_OPEN_WITH_DIALOG (caja_open_with_dialog_get_type())
+#define CAJA_OPEN_WITH_DIALOG(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_OPEN_WITH_DIALOG, \
+                              CajaOpenWithDialog))
+#define CAJA_OPEN_WITH_DIALOG_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_OPEN_WITH_DIALOG, \
+                           CajaOpenWithDialogClass))
 #define CAJA_IS_OPEN_WITH_DIALOG(obj)      (G_TYPE_INSTANCE_CHECK_TYPE ((obj), CAJA_TYPE_OPEN_WITH_DIALOG)
 
-typedef struct _CajaOpenWithDialog        CajaOpenWithDialog;
-typedef struct _CajaOpenWithDialogClass   CajaOpenWithDialogClass;
+typedef struct _CajaOpenWithDialog CajaOpenWithDialog;
+typedef struct _CajaOpenWithDialogClass CajaOpenWithDialogClass;
 typedef struct _CajaOpenWithDialogDetails CajaOpenWithDialogDetails;
 
-struct _CajaOpenWithDialog
-{
-    GtkDialog parent;
-    CajaOpenWithDialogDetails *details;
+struct _CajaOpenWithDialog {
+  GtkDialog parent;
+  CajaOpenWithDialogDetails *details;
 };
 
-struct _CajaOpenWithDialogClass
-{
-    GtkDialogClass parent_class;
+struct _CajaOpenWithDialogClass {
+  GtkDialogClass parent_class;
 
-    void (*application_selected) (CajaOpenWithDialog *dialog,
-                                  GAppInfo *application);
+  void (*application_selected)(CajaOpenWithDialog *dialog,
+                               GAppInfo *application);
 };
 
-GType      caja_open_with_dialog_get_type (void);
-GtkWidget* caja_open_with_dialog_new      (const char *uri,
-        const char *mime_type,
-        const char *extension);
-GtkWidget* caja_add_application_dialog_new (const char *uri,
-        const char *mime_type);
-GtkWidget* caja_add_application_dialog_new_for_multiple_files (const char *extension,
-        const char *mime_type);
+GType caja_open_with_dialog_get_type(void);
+GtkWidget *caja_open_with_dialog_new(const char *uri, const char *mime_type,
+                                     const char *extension);
+GtkWidget *caja_add_application_dialog_new(const char *uri,
+                                           const char *mime_type);
+GtkWidget *caja_add_application_dialog_new_for_multiple_files(
+    const char *extension, const char *mime_type);
 
 #endif /* CAJA_OPEN_WITH_DIALOG_H */

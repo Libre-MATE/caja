@@ -27,42 +27,43 @@
 #ifndef CAJA_SPATIAL_WINDOW_H
 #define CAJA_SPATIAL_WINDOW_H
 
-#include "caja-window.h"
 #include "caja-window-private.h"
+#include "caja-window.h"
 
 #define CAJA_TYPE_SPATIAL_WINDOW caja_spatial_window_get_type()
-#define CAJA_SPATIAL_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SPATIAL_WINDOW, CajaSpatialWindow))
-#define CAJA_SPATIAL_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SPATIAL_WINDOW, CajaSpatialWindowClass))
+#define CAJA_SPATIAL_WINDOW(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SPATIAL_WINDOW, \
+                              CajaSpatialWindow))
+#define CAJA_SPATIAL_WINDOW_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SPATIAL_WINDOW, \
+                           CajaSpatialWindowClass))
 #define CAJA_IS_SPATIAL_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SPATIAL_WINDOW))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SPATIAL_WINDOW))
 #define CAJA_IS_SPATIAL_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SPATIAL_WINDOW))
-#define CAJA_SPATIAL_WINDOW_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SPATIAL_WINDOW, CajaSpatialWindowClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SPATIAL_WINDOW))
+#define CAJA_SPATIAL_WINDOW_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SPATIAL_WINDOW, \
+                             CajaSpatialWindowClass))
 
 #ifndef CAJA_SPATIAL_WINDOW_DEFINED
 #define CAJA_SPATIAL_WINDOW_DEFINED
-typedef struct _CajaSpatialWindow        CajaSpatialWindow;
+typedef struct _CajaSpatialWindow CajaSpatialWindow;
 #endif
-typedef struct _CajaSpatialWindowClass   CajaSpatialWindowClass;
+typedef struct _CajaSpatialWindowClass CajaSpatialWindowClass;
 typedef struct _CajaSpatialWindowPrivate CajaSpatialWindowPrivate;
 
-struct _CajaSpatialWindow
-{
-    CajaWindow parent_object;
+struct _CajaSpatialWindow {
+  CajaWindow parent_object;
 
-    CajaSpatialWindowPrivate *details;
+  CajaSpatialWindowPrivate *details;
 };
 
-struct _CajaSpatialWindowClass
-{
-    CajaWindowClass parent_spot;
+struct _CajaSpatialWindowClass {
+  CajaWindowClass parent_spot;
 };
 
-GType            caja_spatial_window_get_type			(void);
-void             caja_spatial_window_set_location_button		(CajaSpatialWindow *window,
-        GFile                 *location);
+GType caja_spatial_window_get_type(void);
+void caja_spatial_window_set_location_button(CajaSpatialWindow *window,
+                                             GFile *location);
 
 #endif

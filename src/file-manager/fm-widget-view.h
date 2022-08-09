@@ -21,18 +21,19 @@
  * */
 
 #ifndef __FM_WIDGET_VIEW_H__
-#define __FM_WIDGET_VIEW_H__  1
+#define __FM_WIDGET_VIEW_H__ 1
 
 #include "fm-directory-view.h"
 
 G_BEGIN_DECLS
 
-#define FM_WIDGET_VIEW_ID                "OAFIID:Caja_File_Manager_Widget_View"
-#define FM_TYPE_WIDGET_VIEW              (fm_widget_view_get_type ())
-G_DECLARE_FINAL_TYPE (FMWidgetView, fm_widget_view, FM, WIDGET_VIEW, FMDirectoryView)
+#define FM_WIDGET_VIEW_ID "OAFIID:Caja_File_Manager_Widget_View"
+#define FM_TYPE_WIDGET_VIEW (fm_widget_view_get_type())
+G_DECLARE_FINAL_TYPE(FMWidgetView, fm_widget_view, FM, WIDGET_VIEW,
+                     FMDirectoryView)
 
-FMWidgetView* fm_widget_view_new      (void);
-void          fm_widget_view_register (void);
+FMWidgetView* fm_widget_view_new(void);
+void fm_widget_view_register(void);
 
 G_END_DECLS
 

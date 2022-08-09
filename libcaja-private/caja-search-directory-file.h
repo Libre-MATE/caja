@@ -29,31 +29,33 @@
 #include "caja-file.h"
 
 #define CAJA_TYPE_SEARCH_DIRECTORY_FILE caja_search_directory_file_get_type()
-#define CAJA_SEARCH_DIRECTORY_FILE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SEARCH_DIRECTORY_FILE, CajaSearchDirectoryFile))
-#define CAJA_SEARCH_DIRECTORY_FILE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SEARCH_DIRECTORY_FILE, CajaSearchDirectoryFileClass))
+#define CAJA_SEARCH_DIRECTORY_FILE(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SEARCH_DIRECTORY_FILE, \
+                              CajaSearchDirectoryFile))
+#define CAJA_SEARCH_DIRECTORY_FILE_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SEARCH_DIRECTORY_FILE, \
+                           CajaSearchDirectoryFileClass))
 #define CAJA_IS_SEARCH_DIRECTORY_FILE(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SEARCH_DIRECTORY_FILE))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SEARCH_DIRECTORY_FILE))
 #define CAJA_IS_SEARCH_DIRECTORY_FILE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SEARCH_DIRECTORY_FILE))
-#define CAJA_SEARCH_DIRECTORY_FILE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SEARCH_DIRECTORY_FILE, CajaSearchDirectoryFileClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SEARCH_DIRECTORY_FILE))
+#define CAJA_SEARCH_DIRECTORY_FILE_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SEARCH_DIRECTORY_FILE, \
+                             CajaSearchDirectoryFileClass))
 
 typedef struct CajaSearchDirectoryFileDetails CajaSearchDirectoryFileDetails;
 
-typedef struct
-{
-    CajaFile parent_slot;
-    CajaSearchDirectoryFileDetails *details;
+typedef struct {
+  CajaFile parent_slot;
+  CajaSearchDirectoryFileDetails *details;
 } CajaSearchDirectoryFile;
 
-typedef struct
-{
-    CajaFileClass parent_slot;
+typedef struct {
+  CajaFileClass parent_slot;
 } CajaSearchDirectoryFileClass;
 
-GType   caja_search_directory_file_get_type (void);
-void    caja_search_directory_file_update_display_name (CajaSearchDirectoryFile *search_file);
+GType caja_search_directory_file_get_type(void);
+void caja_search_directory_file_update_display_name(
+    CajaSearchDirectoryFile *search_file);
 
 #endif /* CAJA_SEARCH_DIRECTORY_FILE_H */

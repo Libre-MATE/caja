@@ -30,48 +30,40 @@ G_BEGIN_DECLS
 
 #define CAJA_TYPE_SIDE_PANE caja_side_pane_get_type()
 #define CAJA_SIDE_PANE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SIDE_PANE, CajaSidePane))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SIDE_PANE, CajaSidePane))
 #define CAJA_SIDE_PANE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SIDE_PANE, CajaSidePaneClass))
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SIDE_PANE, CajaSidePaneClass))
 #define CAJA_IS_SIDE_PANE(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SIDE_PANE))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SIDE_PANE))
 #define CAJA_IS_SIDE_PANE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SIDE_PANE))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SIDE_PANE))
 #define CAJA_SIDE_PANE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SIDE_PANE, CajaSidePaneClass))
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SIDE_PANE, CajaSidePaneClass))
 
-    typedef struct _CajaSidePanePrivate CajaSidePanePrivate;
+typedef struct _CajaSidePanePrivate CajaSidePanePrivate;
 
-    typedef struct
-    {
-        GtkBox parent;
-        CajaSidePanePrivate *details;
-    } CajaSidePane;
+typedef struct {
+  GtkBox parent;
+  CajaSidePanePrivate *details;
+} CajaSidePane;
 
-    typedef struct
-    {
-        GtkBoxClass parent_slot;
+typedef struct {
+  GtkBoxClass parent_slot;
 
-        void (*close_requested) (CajaSidePane *side_pane);
-        void (*switch_page) (CajaSidePane *side_pane,
-                             GtkWidget *child);
-    } CajaSidePaneClass;
+  void (*close_requested)(CajaSidePane *side_pane);
+  void (*switch_page)(CajaSidePane *side_pane, GtkWidget *child);
+} CajaSidePaneClass;
 
-    GType                  caja_side_pane_get_type        (void);
-    CajaSidePane      *caja_side_pane_new             (void);
-    void                   caja_side_pane_add_panel       (CajaSidePane *side_pane,
-            GtkWidget        *widget,
-            const char       *title,
-            const char       *tooltip);
-    void                   caja_side_pane_remove_panel    (CajaSidePane *side_pane,
-            GtkWidget        *widget);
-    void                   caja_side_pane_show_panel      (CajaSidePane *side_pane,
-            GtkWidget        *widget);
-    void                   caja_side_pane_set_panel_image (CajaSidePane *side_pane,
-            GtkWidget        *widget,
-            GdkPixbuf        *pixbuf);
-    GtkWidget             *caja_side_pane_get_current_panel (CajaSidePane *side_pane);
-    GtkWidget             *caja_side_pane_get_title        (CajaSidePane *side_pane);
+GType caja_side_pane_get_type(void);
+CajaSidePane *caja_side_pane_new(void);
+void caja_side_pane_add_panel(CajaSidePane *side_pane, GtkWidget *widget,
+                              const char *title, const char *tooltip);
+void caja_side_pane_remove_panel(CajaSidePane *side_pane, GtkWidget *widget);
+void caja_side_pane_show_panel(CajaSidePane *side_pane, GtkWidget *widget);
+void caja_side_pane_set_panel_image(CajaSidePane *side_pane, GtkWidget *widget,
+                                    GdkPixbuf *pixbuf);
+GtkWidget *caja_side_pane_get_current_panel(CajaSidePane *side_pane);
+GtkWidget *caja_side_pane_get_title(CajaSidePane *side_pane);
 
 G_END_DECLS
 

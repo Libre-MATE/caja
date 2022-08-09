@@ -34,37 +34,36 @@ extern "C" {
 
 #define EEL_TYPE_BACKGROUND_BOX eel_background_box_get_type()
 #define EEL_BACKGROUND_BOX(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EEL_TYPE_BACKGROUND_BOX, EelBackgroundBox))
-#define EEL_BACKGROUND_BOX_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), EEL_TYPE_BACKGROUND_BOX, EelBackgroundBoxClass))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), EEL_TYPE_BACKGROUND_BOX, EelBackgroundBox))
+#define EEL_BACKGROUND_BOX_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), EEL_TYPE_BACKGROUND_BOX, \
+                           EelBackgroundBoxClass))
 #define EEL_IS_BACKGROUND_BOX(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EEL_TYPE_BACKGROUND_BOX))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), EEL_TYPE_BACKGROUND_BOX))
 #define EEL_IS_BACKGROUND_BOX_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), EEL_TYPE_BACKGROUND_BOX))
-#define EEL_BACKGROUND_BOX_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), EEL_TYPE_BACKGROUND_BOX, EelBackgroundBoxClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), EEL_TYPE_BACKGROUND_BOX))
+#define EEL_BACKGROUND_BOX_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), EEL_TYPE_BACKGROUND_BOX, \
+                             EelBackgroundBoxClass))
 
-    typedef struct EelBackgroundBox	       EelBackgroundBox;
-    typedef struct EelBackgroundBoxClass       EelBackgroundBoxClass;
-    typedef struct EelBackgroundBoxDetails     EelBackgroundBoxDetails;
+typedef struct EelBackgroundBox EelBackgroundBox;
+typedef struct EelBackgroundBoxClass EelBackgroundBoxClass;
+typedef struct EelBackgroundBoxDetails EelBackgroundBoxDetails;
 
-    struct EelBackgroundBox
-    {
-        /* Superclass */
-        GtkEventBox event_box;
-    };
+struct EelBackgroundBox {
+  /* Superclass */
+  GtkEventBox event_box;
+};
 
-    struct EelBackgroundBoxClass
-    {
-        GtkEventBoxClass parent_class;
-    };
+struct EelBackgroundBoxClass {
+  GtkEventBoxClass parent_class;
+};
 
-    GType      eel_background_box_get_type (void);
-    GtkWidget *eel_background_box_new      (void);
+GType eel_background_box_get_type(void);
+GtkWidget *eel_background_box_new(void);
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* EEL_BACKGROUND_TABLE_H */
-

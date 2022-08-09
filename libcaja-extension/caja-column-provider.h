@@ -16,7 +16,8 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author:  Dave Camp <dave@ximian.com>
  *
@@ -32,18 +33,24 @@
 #define CAJA_COLUMN_PROVIDER_H
 
 #include <glib-object.h>
-#include "caja-extension-types.h"
+
 #include "caja-column.h"
+#include "caja-extension-types.h"
 
 G_BEGIN_DECLS
 
-#define CAJA_TYPE_COLUMN_PROVIDER           (caja_column_provider_get_type ())
-#define CAJA_COLUMN_PROVIDER(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_COLUMN_PROVIDER, CajaColumnProvider))
-#define CAJA_IS_COLUMN_PROVIDER(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_COLUMN_PROVIDER))
-#define CAJA_COLUMN_PROVIDER_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), CAJA_TYPE_COLUMN_PROVIDER, CajaColumnProviderIface))
+#define CAJA_TYPE_COLUMN_PROVIDER (caja_column_provider_get_type())
+#define CAJA_COLUMN_PROVIDER(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_COLUMN_PROVIDER, \
+                              CajaColumnProvider))
+#define CAJA_IS_COLUMN_PROVIDER(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_COLUMN_PROVIDER))
+#define CAJA_COLUMN_PROVIDER_GET_IFACE(obj)                        \
+  (G_TYPE_INSTANCE_GET_INTERFACE((obj), CAJA_TYPE_COLUMN_PROVIDER, \
+                                 CajaColumnProviderIface))
 
-typedef struct _CajaColumnProvider       CajaColumnProvider;
-typedef struct _CajaColumnProviderIface  CajaColumnProviderIface;
+typedef struct _CajaColumnProvider CajaColumnProvider;
+typedef struct _CajaColumnProviderIface CajaColumnProviderIface;
 
 /**
  * CajaColumnProviderIface:
@@ -55,14 +62,14 @@ typedef struct _CajaColumnProviderIface  CajaColumnProviderIface;
  */
 
 struct _CajaColumnProviderIface {
-    GTypeInterface g_iface;
+  GTypeInterface g_iface;
 
-    GList *(*get_columns) (CajaColumnProvider *provider);
+  GList *(*get_columns)(CajaColumnProvider *provider);
 };
 
 /* Interface Functions */
-GType  caja_column_provider_get_type    (void);
-GList *caja_column_provider_get_columns (CajaColumnProvider *provider);
+GType caja_column_provider_get_type(void);
+GList *caja_column_provider_get_columns(CajaColumnProvider *provider);
 
 G_END_DECLS
 

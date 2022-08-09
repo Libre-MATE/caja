@@ -20,9 +20,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  * */
 
-#include <config.h>
 #include "caja-widget-view-provider.h"
 
+#include <config.h>
 #include <glib-object.h>
 
 /**
@@ -35,37 +35,29 @@
  * in the file manager.
  */
 
-static void
-caja_widget_view_provider_base_init (gpointer g_class)
-{
-}
+static void caja_widget_view_provider_base_init(gpointer g_class) {}
 
-GType
-caja_widget_view_provider_get_type (void)
-{
-    static GType type = 0;
+GType caja_widget_view_provider_get_type(void) {
+  static GType type = 0;
 
-    if (!type) {
-        const GTypeInfo info = {
-            sizeof (CajaWidgetViewProviderIface),
-            caja_widget_view_provider_base_init,
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            0,
-            0,
-            NULL,
-            NULL
-        };
+  if (!type) {
+    const GTypeInfo info = {sizeof(CajaWidgetViewProviderIface),
+                            caja_widget_view_provider_base_init,
+                            NULL,
+                            NULL,
+                            NULL,
+                            NULL,
+                            0,
+                            0,
+                            NULL,
+                            NULL};
 
-        type = g_type_register_static (G_TYPE_INTERFACE,
-                                       "CajaWidgetViewProvider",
-                                       &info, 0);
-        g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
-    }
+    type = g_type_register_static(G_TYPE_INTERFACE, "CajaWidgetViewProvider",
+                                  &info, 0);
+    g_type_interface_add_prerequisite(type, G_TYPE_OBJECT);
+  }
 
-    return type;
+  return type;
 }
 
 /**
@@ -76,13 +68,13 @@ caja_widget_view_provider_get_type (void)
  *
  * Returns: The #GtkWidget used to show the contents.
  **/
-GtkWidget *
-caja_widget_view_provider_get_widget (CajaWidgetViewProvider *provider)
-{
-    g_return_val_if_fail (CAJA_IS_WIDGET_VIEW_PROVIDER (provider), NULL);
-    g_return_val_if_fail (CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->get_widget != NULL, NULL);
+GtkWidget *caja_widget_view_provider_get_widget(
+    CajaWidgetViewProvider *provider) {
+  g_return_val_if_fail(CAJA_IS_WIDGET_VIEW_PROVIDER(provider), NULL);
+  g_return_val_if_fail(
+      CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->get_widget != NULL, NULL);
 
-    return CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->get_widget (provider);
+  return CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->get_widget(provider);
 }
 
 /**
@@ -93,12 +85,14 @@ caja_widget_view_provider_get_widget (CajaWidgetViewProvider *provider)
  *
  * Add a file of this location into the widget view.
  **/
-void caja_widget_view_provider_add_file (CajaWidgetViewProvider *provider, CajaFile *file, CajaFile *directory)
-{
-    g_return_if_fail (CAJA_IS_WIDGET_VIEW_PROVIDER (provider));
-    g_return_if_fail (CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->add_file != NULL);
+void caja_widget_view_provider_add_file(CajaWidgetViewProvider *provider,
+                                        CajaFile *file, CajaFile *directory) {
+  g_return_if_fail(CAJA_IS_WIDGET_VIEW_PROVIDER(provider));
+  g_return_if_fail(CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->add_file !=
+                   NULL);
 
-    CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->add_file (provider, file, directory);
+  CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->add_file(provider, file,
+                                                          directory);
 }
 
 /**
@@ -108,12 +102,14 @@ void caja_widget_view_provider_add_file (CajaWidgetViewProvider *provider, CajaF
  *
  * Set the location of this #CajaWidgetViewProvider.
  **/
-void caja_widget_view_provider_set_location (CajaWidgetViewProvider *provider, const char *location)
-{
-    g_return_if_fail (CAJA_IS_WIDGET_VIEW_PROVIDER (provider));
-    g_return_if_fail (CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->set_location != NULL);
+void caja_widget_view_provider_set_location(CajaWidgetViewProvider *provider,
+                                            const char *location) {
+  g_return_if_fail(CAJA_IS_WIDGET_VIEW_PROVIDER(provider));
+  g_return_if_fail(
+      CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->set_location != NULL);
 
-    CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->set_location (provider, location);
+  CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->set_location(provider,
+                                                              location);
 }
 
 /**
@@ -123,12 +119,13 @@ void caja_widget_view_provider_set_location (CajaWidgetViewProvider *provider, c
  *
  * Set parent #GtkWindow of this #CajaWidgetViewProvider.
  **/
-void caja_widget_view_provider_set_window (CajaWidgetViewProvider *provider, GtkWindow *window)
-{
-    g_return_if_fail (CAJA_IS_WIDGET_VIEW_PROVIDER (provider));
-    g_return_if_fail (CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->set_window != NULL);
+void caja_widget_view_provider_set_window(CajaWidgetViewProvider *provider,
+                                          GtkWindow *window) {
+  g_return_if_fail(CAJA_IS_WIDGET_VIEW_PROVIDER(provider));
+  g_return_if_fail(CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->set_window !=
+                   NULL);
 
-    CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->set_window (provider, window);
+  CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->set_window(provider, window);
 }
 
 /**
@@ -137,29 +134,35 @@ void caja_widget_view_provider_set_window (CajaWidgetViewProvider *provider, Gtk
  *
  * Return value: The item count of this #CajaWidgetViewProvider
  **/
-guint caja_widget_view_provider_get_item_count (CajaWidgetViewProvider *provider)
-{
-    g_return_val_if_fail (CAJA_IS_WIDGET_VIEW_PROVIDER (provider), 0);
-    g_return_val_if_fail (CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->get_item_count != NULL, 0);
+guint caja_widget_view_provider_get_item_count(
+    CajaWidgetViewProvider *provider) {
+  g_return_val_if_fail(CAJA_IS_WIDGET_VIEW_PROVIDER(provider), 0);
+  g_return_val_if_fail(
+      CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->get_item_count != NULL, 0);
 
-    return CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->get_item_count (provider);
+  return CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->get_item_count(
+      provider);
 }
 
 /**
  * caja_widget_view_provider_get_first_visible_file:
  * @provider: a #CajaWidgetViewProvider
  *
- * Return the first visible file. When use start visit the location, the caja's status is waiting, until
- * get the first visible file.
+ * Return the first visible file. When use start visit the location, the caja's
+ *status is waiting, until get the first visible file.
  *
  * Return value: the first visible file.
  **/
-gchar* caja_widget_view_provider_get_first_visible_file (CajaWidgetViewProvider *provider)
-{
-    g_return_val_if_fail (CAJA_IS_WIDGET_VIEW_PROVIDER (provider), NULL);
-    g_return_val_if_fail (CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->get_first_visible_file != NULL, NULL);
+gchar *caja_widget_view_provider_get_first_visible_file(
+    CajaWidgetViewProvider *provider) {
+  g_return_val_if_fail(CAJA_IS_WIDGET_VIEW_PROVIDER(provider), NULL);
+  g_return_val_if_fail(
+      CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->get_first_visible_file !=
+          NULL,
+      NULL);
 
-    return CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->get_first_visible_file (provider);
+  return CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->get_first_visible_file(
+      provider);
 }
 
 /**
@@ -168,12 +171,12 @@ gchar* caja_widget_view_provider_get_first_visible_file (CajaWidgetViewProvider 
  *
  * Clear the content of this widget view.
  **/
-void caja_widget_view_provider_clear (CajaWidgetViewProvider *provider)
-{
-    g_return_if_fail (CAJA_IS_WIDGET_VIEW_PROVIDER (provider));
-    g_return_if_fail (CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->clear != NULL);
+void caja_widget_view_provider_clear(CajaWidgetViewProvider *provider) {
+  g_return_if_fail(CAJA_IS_WIDGET_VIEW_PROVIDER(provider));
+  g_return_if_fail(CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->clear !=
+                   NULL);
 
-    CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->clear (provider);
+  CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->clear(provider);
 }
 
 /**
@@ -185,15 +188,17 @@ void caja_widget_view_provider_clear (CajaWidgetViewProvider *provider)
  *
  * Whether this widget view works for the uri.
  *
- * Return value: True to use custom widget view, False to ignore, and caja use normal view.
+ * Return value: True to use custom widget view, False to ignore, and caja use
+ *normal view.
  **/
-gboolean caja_widget_view_provider_supports_uri (CajaWidgetViewProvider *provider,
-                                                 const char *uri,
-                                                 GFileType file_type,
-                                                 const char *mime_type)
-{
-    g_return_val_if_fail (CAJA_IS_WIDGET_VIEW_PROVIDER (provider), FALSE);
-    g_return_val_if_fail (CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->supports_uri!= NULL, FALSE);
+gboolean caja_widget_view_provider_supports_uri(
+    CajaWidgetViewProvider *provider, const char *uri, GFileType file_type,
+    const char *mime_type) {
+  g_return_val_if_fail(CAJA_IS_WIDGET_VIEW_PROVIDER(provider), FALSE);
+  g_return_val_if_fail(
+      CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->supports_uri != NULL,
+      FALSE);
 
-    return CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE (provider)->supports_uri (provider, uri, file_type, mime_type);
+  return CAJA_WIDGET_VIEW_PROVIDER_GET_IFACE(provider)->supports_uri(
+      provider, uri, file_type, mime_type);
 }

@@ -22,9 +22,9 @@
    Authors: Ramiro Estrugo <ramiro@eazel.com>
 */
 
-#include <config.h>
-
 #include "eel-art-gtk-extensions.h"
+
+#include <config.h>
 
 /**
  * eel_gtk_widget_get_bounds:
@@ -34,37 +34,31 @@
  * relative to its parent.  In the Gtk universe this is known as "allocation."
  *
  */
-EelIRect
-eel_gtk_widget_get_bounds (GtkWidget *gtk_widget)
-{
-    GtkAllocation allocation;
-    g_return_val_if_fail (GTK_IS_WIDGET (gtk_widget), eel_irect_empty);
+EelIRect eel_gtk_widget_get_bounds(GtkWidget *gtk_widget) {
+  GtkAllocation allocation;
+  g_return_val_if_fail(GTK_IS_WIDGET(gtk_widget), eel_irect_empty);
 
-    gtk_widget_get_allocation (gtk_widget, &allocation);
-    return eel_irect_assign (allocation.x,
-                             allocation.y,
-                             (int) allocation.width,
-                             (int) allocation.height);
+  gtk_widget_get_allocation(gtk_widget, &allocation);
+  return eel_irect_assign(allocation.x, allocation.y, (int)allocation.width,
+                          (int)allocation.height);
 }
 
 /**
  * eel_gtk_widget_get_dimensions:
  * @gtk_widget: The source GtkWidget.
  *
- * Return value: The widget's dimensions.  The returned dimensions are only valid
- *               after the widget's geometry has been "allocated" by its container.
+ * Return value: The widget's dimensions.  The returned dimensions are only
+ * valid after the widget's geometry has been "allocated" by its container.
  */
-EelDimensions
-eel_gtk_widget_get_dimensions (GtkWidget *gtk_widget)
-{
-    EelDimensions dimensions;
-    GtkAllocation allocation;
+EelDimensions eel_gtk_widget_get_dimensions(GtkWidget *gtk_widget) {
+  EelDimensions dimensions;
+  GtkAllocation allocation;
 
-    g_return_val_if_fail (GTK_IS_WIDGET (gtk_widget), eel_dimensions_empty);
+  g_return_val_if_fail(GTK_IS_WIDGET(gtk_widget), eel_dimensions_empty);
 
-    gtk_widget_get_allocation (gtk_widget, &allocation);
-    dimensions.width = (int) allocation.width;
-    dimensions.height = (int) allocation.height;
+  gtk_widget_get_allocation(gtk_widget, &allocation);
+  dimensions.width = (int)allocation.width;
+  dimensions.height = (int)allocation.height;
 
-    return dimensions;
+  return dimensions;
 }

@@ -30,14 +30,13 @@
 #include "caja-file.h"
 
 /* Returns NULL if there's no thumbnail yet. */
-void       caja_create_thumbnail                (CajaFile *file);
-gboolean   caja_can_thumbnail                   (CajaFile *file);
-gboolean   caja_can_thumbnail_internally        (CajaFile *file);
-gboolean   caja_thumbnail_is_mimetype_limited_by_size
-(const char *mime_type);
+void caja_create_thumbnail(CajaFile *file);
+gboolean caja_can_thumbnail(CajaFile *file);
+gboolean caja_can_thumbnail_internally(CajaFile *file);
+gboolean caja_thumbnail_is_mimetype_limited_by_size(const char *mime_type);
 
 /* Queue handling: */
-void       caja_thumbnail_remove_from_queue     (const char   *file_uri);
-void       caja_thumbnail_prioritize            (const char   *file_uri);
+void caja_thumbnail_remove_from_queue(const char *file_uri);
+void caja_thumbnail_prioritize(const char *file_uri);
 
 #endif /* CAJA_THUMBNAILS_H */

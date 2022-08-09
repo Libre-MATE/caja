@@ -22,64 +22,50 @@
    Authors: Darin Adler <darin@eazel.com>
 */
 
-#include <config.h>
 #include "eel-xml-extensions.h"
 
-#include "eel-string.h"
+#include <config.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
-
 #include <libxml/parser.h>
 #include <stdlib.h>
 
-xmlNodePtr
-eel_xml_get_children (xmlNodePtr parent)
-{
-    if (parent == NULL)
-    {
-        return NULL;
-    }
-    return parent->children;
-}
+#include "eel-string.h"
 
-xmlNodePtr
-eel_xml_get_child_by_name_and_property (xmlNodePtr     parent,
-                                        const xmlChar *child_name,
-                                        const xmlChar *property_name,
-                                        const xmlChar *property_value)
-{
-    xmlNodePtr child;
-    xmlChar *property;
-    gboolean match;
-
-    if (parent == NULL || property_name == NULL || property_value == NULL)
-    {
-        return NULL;
-    }
-    for (child = parent->children; child != NULL; child = child->next)
-    {
-        if (child->name != NULL && xmlStrcmp (child->name, child_name) == 0)
-        {
-            property = xmlGetProp (child, property_name);
-            match = property != NULL && xmlStrcmp (property, property_value) == 0;
-            xmlFree (property);
-            if (match)
-            {
-                return child;
-            }
-        }
-    }
+xmlNodePtr eel_xml_get_children(xmlNodePtr parent) {
+  if (parent == NULL) {
     return NULL;
+  }
+  return parent->children;
 }
 
-xmlNodePtr
-eel_xml_get_root_child_by_name_and_property (xmlDocPtr      document,
-                                             const xmlChar *child_name,
-                                             const xmlChar *property_name,
-                                             const xmlChar *property_value)
-{
-    return eel_xml_get_child_by_name_and_property (xmlDocGetRootElement (document),
-                                                   child_name,
-                                                   property_name,
-                                                   property_value);
+xmlNodePtr eel_xml_get_child_by_name_and_property(
+    xmlNodePtr parent, const xmlChar *child_name, const xmlChar *property_name,
+    const xmlChar *property_value) {
+  xmlNodePtr child;
+  xmlChar *property;
+  gboolean match;
+
+  if (parent == NULL || property_name == NULL || property_value == NULL) {
+    return NULL;
+  }
+  for (child = parent->children; child != NULL; child = child->next) {
+    if (child->name != NULL && xmlStrcmp(child->name, child_name) == 0) {
+      property = xmlGetProp(child, property_name);
+      match = property != NULL && xmlStrcmp(property, property_value) == 0;
+      xmlFree(property);
+      if (match) {
+        return child;
+      }
+    }
+  }
+  return NULL;
+}
+
+xmlNodePtr eel_xml_get_root_child_by_name_and_property(
+    xmlDocPtr document, const xmlChar *child_name, const xmlChar *property_name,
+    const xmlChar *property_value) {
+  return eel_xml_get_child_by_name_and_property(xmlDocGetRootElement(document),
+                                                child_name, property_name,
+                                                property_value);
 }

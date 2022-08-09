@@ -28,56 +28,54 @@
 #include <gtk/gtk.h>
 
 #define CAJA_TYPE_CLIPBOARD_MONITOR caja_clipboard_monitor_get_type()
-#define CAJA_CLIPBOARD_MONITOR(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_CLIPBOARD_MONITOR, CajaClipboardMonitor))
-#define CAJA_CLIPBOARD_MONITOR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_CLIPBOARD_MONITOR, CajaClipboardMonitorClass))
+#define CAJA_CLIPBOARD_MONITOR(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_CLIPBOARD_MONITOR, \
+                              CajaClipboardMonitor))
+#define CAJA_CLIPBOARD_MONITOR_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_CLIPBOARD_MONITOR, \
+                           CajaClipboardMonitorClass))
 #define CAJA_IS_CLIPBOARD_MONITOR(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_CLIPBOARD_MONITOR))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_CLIPBOARD_MONITOR))
 #define CAJA_IS_CLIPBOARD_MONITOR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_CLIPBOARD_MONITOR))
-#define CAJA_CLIPBOARD_MONITOR_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_CLIPBOARD_MONITOR, CajaClipboardMonitorClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_CLIPBOARD_MONITOR))
+#define CAJA_CLIPBOARD_MONITOR_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_CLIPBOARD_MONITOR, \
+                             CajaClipboardMonitorClass))
 
 typedef struct _CajaClipboardMonitorPrivate CajaClipboardMonitorPrivate;
 typedef struct CajaClipboardInfo CajaClipboardInfo;
 
-typedef struct
-{
-    GObject parent_slot;
+typedef struct {
+  GObject parent_slot;
 
-    CajaClipboardMonitorPrivate *details;
+  CajaClipboardMonitorPrivate *details;
 } CajaClipboardMonitor;
 
-typedef struct
-{
-    GObjectClass parent_slot;
+typedef struct {
+  GObjectClass parent_slot;
 
-    void (* clipboard_changed) (CajaClipboardMonitor *monitor);
-    void (* clipboard_info) (CajaClipboardMonitor *monitor,
-                             CajaClipboardInfo *info);
+  void (*clipboard_changed)(CajaClipboardMonitor *monitor);
+  void (*clipboard_info)(CajaClipboardMonitor *monitor,
+                         CajaClipboardInfo *info);
 } CajaClipboardMonitorClass;
 
-struct CajaClipboardInfo
-{
-    GList *files;
-    gboolean cut;
+struct CajaClipboardInfo {
+  GList *files;
+  gboolean cut;
 };
 
-GType   caja_clipboard_monitor_get_type (void);
+GType caja_clipboard_monitor_get_type(void);
 
-CajaClipboardMonitor *   caja_clipboard_monitor_get (void);
-void caja_clipboard_monitor_set_clipboard_info (CajaClipboardMonitor *monitor,
-        CajaClipboardInfo *info);
-CajaClipboardInfo * caja_clipboard_monitor_get_clipboard_info (CajaClipboardMonitor *monitor);
-void caja_clipboard_monitor_emit_changed (void);
+CajaClipboardMonitor *caja_clipboard_monitor_get(void);
+void caja_clipboard_monitor_set_clipboard_info(CajaClipboardMonitor *monitor,
+                                               CajaClipboardInfo *info);
+CajaClipboardInfo *caja_clipboard_monitor_get_clipboard_info(
+    CajaClipboardMonitor *monitor);
+void caja_clipboard_monitor_emit_changed(void);
 
-void caja_clear_clipboard_callback (GtkClipboard *clipboard,
-                                    gpointer      user_data);
-void caja_get_clipboard_callback   (GtkClipboard     *clipboard,
-                                    GtkSelectionData *selection_data,
-                                    guint             info,
-                                    gpointer          user_data);
+void caja_clear_clipboard_callback(GtkClipboard *clipboard, gpointer user_data);
+void caja_get_clipboard_callback(GtkClipboard *clipboard,
+                                 GtkSelectionData *selection_data, guint info,
+                                 gpointer user_data);
 
 #endif /* CAJA_CLIPBOARD_MONITOR_H */
-

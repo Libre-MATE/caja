@@ -40,44 +40,44 @@
 #ifndef CAJA_AUTORUN_H
 #define CAJA_AUTORUN_H
 
-#include <gtk/gtk.h>
-
 #include <eel/eel-background.h>
+#include <gtk/gtk.h>
 
 #include "caja-file.h"
 
-typedef void (*CajaAutorunComboBoxChanged) (gboolean selected_ask,
-        gboolean selected_ignore,
-        gboolean selected_open_folder,
-        GAppInfo *selected_app,
-        gpointer user_data);
+typedef void (*CajaAutorunComboBoxChanged)(gboolean selected_ask,
+                                           gboolean selected_ignore,
+                                           gboolean selected_open_folder,
+                                           GAppInfo *selected_app,
+                                           gpointer user_data);
 
-typedef void (*CajaAutorunOpenWindow) (GMount *mount, gpointer user_data);
-typedef void (*CajaAutorunGetContent) (char **content, gpointer user_data);
+typedef void (*CajaAutorunOpenWindow)(GMount *mount, gpointer user_data);
+typedef void (*CajaAutorunGetContent)(char **content, gpointer user_data);
 
-void caja_autorun_prepare_combo_box (GtkWidget *combo_box,
-                                     const char *x_content_type,
-                                     gboolean include_ask,
-                                     gboolean include_open_with_other_app,
-                                     gboolean update_settings,
-                                     CajaAutorunComboBoxChanged changed_cb,
-                                     gpointer user_data);
+void caja_autorun_prepare_combo_box(
+    GtkWidget *combo_box, const char *x_content_type, gboolean include_ask,
+    gboolean include_open_with_other_app, gboolean update_settings,
+    CajaAutorunComboBoxChanged changed_cb, gpointer user_data);
 
-void caja_autorun_set_preferences (const char *x_content_type, gboolean pref_ask, gboolean pref_ignore, gboolean pref_open_folder);
-void caja_autorun_get_preferences (const char *x_content_type, gboolean *pref_ask, gboolean *pref_ignore, gboolean *pref_open_folder);
+void caja_autorun_set_preferences(const char *x_content_type, gboolean pref_ask,
+                                  gboolean pref_ignore,
+                                  gboolean pref_open_folder);
+void caja_autorun_get_preferences(const char *x_content_type,
+                                  gboolean *pref_ask, gboolean *pref_ignore,
+                                  gboolean *pref_open_folder);
 
-void caja_autorun (GMount *mount, CajaAutorunOpenWindow open_window_func, gpointer user_data);
+void caja_autorun(GMount *mount, CajaAutorunOpenWindow open_window_func,
+                  gpointer user_data);
 
-char **caja_autorun_get_cached_x_content_types_for_mount (GMount       *mount);
+char **caja_autorun_get_cached_x_content_types_for_mount(GMount *mount);
 
-void caja_autorun_get_x_content_types_for_mount_async (GMount *mount,
-        CajaAutorunGetContent callback,
-        GCancellable *cancellable,
-        gpointer user_data);
+void caja_autorun_get_x_content_types_for_mount_async(
+    GMount *mount, CajaAutorunGetContent callback, GCancellable *cancellable,
+    gpointer user_data);
 
-void caja_autorun_launch_for_mount (GMount *mount, GAppInfo *app_info);
+void caja_autorun_launch_for_mount(GMount *mount, GAppInfo *app_info);
 
-void caja_allow_autorun_for_volume (GVolume *volume);
-void caja_allow_autorun_for_volume_finish (GVolume *volume);
+void caja_allow_autorun_for_volume(GVolume *volume);
+void caja_allow_autorun_for_volume_finish(GVolume *volume);
 
 #endif /* CAJA_AUTORUN_H */

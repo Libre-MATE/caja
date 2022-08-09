@@ -29,53 +29,44 @@
 
 #include "caja-window.h"
 
-#define CAJA_TYPE_CONNECT_SERVER_DIALOG\
-	(caja_connect_server_dialog_get_type ())
-#define CAJA_CONNECT_SERVER_DIALOG(obj)\
-        (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_CONNECT_SERVER_DIALOG,\
-				     CajaConnectServerDialog))
-#define CAJA_CONNECT_SERVER_DIALOG_CLASS(klass)\
-	(G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_CONNECT_SERVER_DIALOG,\
-				  CajaConnectServerDialogClass))
-#define CAJA_IS_CONNECT_SERVER_DIALOG(obj)\
-	(G_TYPE_INSTANCE_CHECK_TYPE ((obj), CAJA_TYPE_CONNECT_SERVER_DIALOG)
+#define CAJA_TYPE_CONNECT_SERVER_DIALOG (caja_connect_server_dialog_get_type())
+#define CAJA_CONNECT_SERVER_DIALOG(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_CONNECT_SERVER_DIALOG, \
+                              CajaConnectServerDialog))
+#define CAJA_CONNECT_SERVER_DIALOG_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_CONNECT_SERVER_DIALOG, \
+                           CajaConnectServerDialogClass))
+#define CAJA_IS_CONNECT_SERVER_DIALOG(obj) \
+        (G_TYPE_INSTANCE_CHECK_TYPE ((obj), CAJA_TYPE_CONNECT_SERVER_DIALOG)
 
 typedef struct _CajaConnectServerDialog CajaConnectServerDialog;
 typedef struct _CajaConnectServerDialogClass CajaConnectServerDialogClass;
 typedef struct _CajaConnectServerDialogPrivate CajaConnectServerDialogPrivate;
 
-struct _CajaConnectServerDialog
-{
-    GtkDialog parent;
-    CajaConnectServerDialogPrivate *details;
+struct _CajaConnectServerDialog {
+  GtkDialog parent;
+  CajaConnectServerDialogPrivate *details;
 };
 
-struct _CajaConnectServerDialogClass
-{
-    GtkDialogClass parent_class;
+struct _CajaConnectServerDialogClass {
+  GtkDialogClass parent_class;
 };
 
-GType caja_connect_server_dialog_get_type (void);
+GType caja_connect_server_dialog_get_type(void);
 
-GtkWidget* caja_connect_server_dialog_new (CajaWindow *window);
+GtkWidget *caja_connect_server_dialog_new(CajaWindow *window);
 
-void caja_connect_server_dialog_display_location_async (CajaConnectServerDialog *self,
-							    CajaApplication *application,
-							    GFile *location,
-							    GAsyncReadyCallback callback,
-							    gpointer user_data);
-gboolean caja_connect_server_dialog_display_location_finish (CajaConnectServerDialog *self,
-								 GAsyncResult *result,
-								 GError **error);
+void caja_connect_server_dialog_display_location_async(
+    CajaConnectServerDialog *self, CajaApplication *application,
+    GFile *location, GAsyncReadyCallback callback, gpointer user_data);
+gboolean caja_connect_server_dialog_display_location_finish(
+    CajaConnectServerDialog *self, GAsyncResult *result, GError **error);
 
-void caja_connect_server_dialog_fill_details_async (CajaConnectServerDialog *self,
-							GMountOperation *operation,
-							const gchar *default_user,
-							const gchar *default_domain,
-							GAskPasswordFlags flags,
-							GAsyncReadyCallback callback,
-							gpointer user_data);
-gboolean caja_connect_server_dialog_fill_details_finish (CajaConnectServerDialog *self,
-							     GAsyncResult *result);
+void caja_connect_server_dialog_fill_details_async(
+    CajaConnectServerDialog *self, GMountOperation *operation,
+    const gchar *default_user, const gchar *default_domain,
+    GAskPasswordFlags flags, GAsyncReadyCallback callback, gpointer user_data);
+gboolean caja_connect_server_dialog_fill_details_finish(
+    CajaConnectServerDialog *self, GAsyncResult *result);
 
 #endif /* CAJA_CONNECT_SERVER_DIALOG_H */

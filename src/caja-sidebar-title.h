@@ -29,49 +29,45 @@
 #ifndef CAJA_SIDEBAR_TITLE_H
 #define CAJA_SIDEBAR_TITLE_H
 
-#include <gtk/gtk.h>
-
 #include <eel/eel-background.h>
-
+#include <gtk/gtk.h>
 #include <libcaja-private/caja-file.h>
 
 #define CAJA_TYPE_SIDEBAR_TITLE caja_sidebar_title_get_type()
 #define CAJA_SIDEBAR_TITLE(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SIDEBAR_TITLE, CajaSidebarTitle))
-#define CAJA_SIDEBAR_TITLE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SIDEBAR_TITLE, CajaSidebarTitleClass))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SIDEBAR_TITLE, CajaSidebarTitle))
+#define CAJA_SIDEBAR_TITLE_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SIDEBAR_TITLE, \
+                           CajaSidebarTitleClass))
 #define CAJA_IS_SIDEBAR_TITLE(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SIDEBAR_TITLE))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SIDEBAR_TITLE))
 #define CAJA_IS_SIDEBAR_TITLE_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SIDEBAR_TITLE))
-#define CAJA_SIDEBAR_TITLE_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SIDEBAR_TITLE, CajaSidebarTitleClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SIDEBAR_TITLE))
+#define CAJA_SIDEBAR_TITLE_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SIDEBAR_TITLE, \
+                             CajaSidebarTitleClass))
 
 typedef struct _CajaSidebarTitlePrivate CajaSidebarTitlePrivate;
 
-typedef struct
-{
-    GtkBox box;
-    CajaSidebarTitlePrivate *details;
+typedef struct {
+  GtkBox box;
+  CajaSidebarTitlePrivate *details;
 } CajaSidebarTitle;
 
-typedef struct
-{
-    GtkBoxClass parent_class;
+typedef struct {
+  GtkBoxClass parent_class;
 } CajaSidebarTitleClass;
 
-GType      caja_sidebar_title_get_type          (void);
-GtkWidget *caja_sidebar_title_new               (void);
-void       caja_sidebar_title_set_file          (CajaSidebarTitle *sidebar_title,
-        CajaFile         *file,
-        const char           *initial_text);
-void       caja_sidebar_title_set_text          (CajaSidebarTitle *sidebar_title,
-        const char           *new_title);
-char *     caja_sidebar_title_get_text          (CajaSidebarTitle *sidebar_title);
-gboolean   caja_sidebar_title_hit_test_icon     (CajaSidebarTitle *sidebar_title,
-        int                   x,
-        int                   y);
-void       caja_sidebar_title_select_text_color (CajaSidebarTitle *sidebar_title,
-        					 EelBackground        *background);
+GType caja_sidebar_title_get_type(void);
+GtkWidget *caja_sidebar_title_new(void);
+void caja_sidebar_title_set_file(CajaSidebarTitle *sidebar_title,
+                                 CajaFile *file, const char *initial_text);
+void caja_sidebar_title_set_text(CajaSidebarTitle *sidebar_title,
+                                 const char *new_title);
+char *caja_sidebar_title_get_text(CajaSidebarTitle *sidebar_title);
+gboolean caja_sidebar_title_hit_test_icon(CajaSidebarTitle *sidebar_title,
+                                          int x, int y);
+void caja_sidebar_title_select_text_color(CajaSidebarTitle *sidebar_title,
+                                          EelBackground *background);
 
 #endif /* CAJA_SIDEBAR_TITLE_H */

@@ -1,6 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 
-/* caja-file-management-properties-main.c - Start the caja-file-management preference dialog.
+/* caja-file-management-properties-main.c - Start the caja-file-management
+   preference dialog.
 
    Copyright (C) 2002 Jan Arne Petersen
 
@@ -23,43 +24,37 @@
 */
 
 #include <config.h>
-
-#include <gtk/gtk.h>
 #include <glib/gi18n.h>
-
+#include <gtk/gtk.h>
 #include <libcaja-private/caja-global-preferences.h>
 #include <libcaja-private/caja-module.h>
 
 #include "caja-file-management-properties.h"
 
-static void
-caja_file_management_properties_main_close_callback (GtkDialog *dialog,
-        int response_id)
-{
-    if (response_id == GTK_RESPONSE_CLOSE)
-    {
-        gtk_main_quit ();
-    }
+static void caja_file_management_properties_main_close_callback(
+    GtkDialog *dialog, int response_id) {
+  if (response_id == GTK_RESPONSE_CLOSE) {
+    gtk_main_quit();
+  }
 }
 
-int
-main (int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 #ifdef ENABLE_NLS
-    bindtextdomain (GETTEXT_PACKAGE, MATELOCALEDIR);
-    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-    textdomain (GETTEXT_PACKAGE);
+  bindtextdomain(GETTEXT_PACKAGE, MATELOCALEDIR);
+  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+  textdomain(GETTEXT_PACKAGE);
 #endif /* ENABLE_NLS */
 
-    gtk_init (&argc, &argv);
+  gtk_init(&argc, &argv);
 
-    caja_global_preferences_init ();
+  caja_global_preferences_init();
 
-    caja_module_setup ();
+  caja_module_setup();
 
-    caja_file_management_properties_dialog_show (G_CALLBACK (caja_file_management_properties_main_close_callback), NULL);
+  caja_file_management_properties_dialog_show(
+      G_CALLBACK(caja_file_management_properties_main_close_callback), NULL);
 
-    gtk_main ();
+  gtk_main();
 
-    return 0;
+  return 0;
 }

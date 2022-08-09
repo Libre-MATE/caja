@@ -28,53 +28,53 @@
 #ifndef CAJA_DESKTOP_WINDOW_H
 #define CAJA_DESKTOP_WINDOW_H
 
-#include "caja-window.h"
-#include "caja-application.h"
-#include "caja-spatial-window.h"
-
 #include <gtk/gtk-a11y.h>
 
+#include "caja-application.h"
+#include "caja-spatial-window.h"
+#include "caja-window.h"
+
 #define CAJA_TYPE_DESKTOP_WINDOW caja_desktop_window_get_type()
-#define CAJA_DESKTOP_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_DESKTOP_WINDOW, CajaDesktopWindow))
-#define CAJA_DESKTOP_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_DESKTOP_WINDOW, CajaDesktopWindowClass))
+#define CAJA_DESKTOP_WINDOW(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_DESKTOP_WINDOW, \
+                              CajaDesktopWindow))
+#define CAJA_DESKTOP_WINDOW_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_DESKTOP_WINDOW, \
+                           CajaDesktopWindowClass))
 #define CAJA_IS_DESKTOP_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_DESKTOP_WINDOW))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_DESKTOP_WINDOW))
 #define CAJA_IS_DESKTOP_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_DESKTOP_WINDOW))
-#define CAJA_DESKTOP_WINDOW_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_DESKTOP_WINDOW, CajaDesktopWindowClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_DESKTOP_WINDOW))
+#define CAJA_DESKTOP_WINDOW_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_DESKTOP_WINDOW, \
+                             CajaDesktopWindowClass))
 
 typedef struct _CajaDesktopWindowPrivate CajaDesktopWindowPrivate;
 
-typedef struct
-{
-    CajaSpatialWindow parent_spot;
-    CajaDesktopWindowPrivate *details;
-    gboolean affect_desktop_on_next_location_change;
+typedef struct {
+  CajaSpatialWindow parent_spot;
+  CajaDesktopWindowPrivate *details;
+  gboolean affect_desktop_on_next_location_change;
 } CajaDesktopWindow;
 
-typedef struct
-{
-    CajaSpatialWindowClass parent_spot;
+typedef struct {
+  CajaSpatialWindowClass parent_spot;
 } CajaDesktopWindowClass;
 
-GType                  caja_desktop_window_get_type            (void);
-CajaDesktopWindow *caja_desktop_window_new                 (CajaApplication *application,
-        GdkScreen           *screen);
-void                   caja_desktop_window_update_directory    (CajaDesktopWindow *window);
-gboolean               caja_desktop_window_loaded              (CajaDesktopWindow *window);
+GType caja_desktop_window_get_type(void);
+CajaDesktopWindow *caja_desktop_window_new(CajaApplication *application,
+                                           GdkScreen *screen);
+void caja_desktop_window_update_directory(CajaDesktopWindow *window);
+gboolean caja_desktop_window_loaded(CajaDesktopWindow *window);
 
-#define CAJA_TYPE_DESKTOP_WINDOW_ACCESSIBLE caja_desktop_window_accessible_get_type()
+#define CAJA_TYPE_DESKTOP_WINDOW_ACCESSIBLE \
+  caja_desktop_window_accessible_get_type()
 
-typedef struct
-{
+typedef struct {
   GtkWindowAccessible parent_spot;
 } CajaDesktopWindowAccessible;
 
-typedef struct
-{
+typedef struct {
   GtkWindowAccessibleClass parent_spot;
 } CajaDesktopWindowAccessibleClass;
 

@@ -43,10 +43,9 @@
    modified and then set.
 */
 
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
-
-#include <gdk-pixbuf/gdk-pixbuf.h>
 
 #define MATE_DESKTOP_USE_UNSTABLE_API
 #include <libmate-desktop/mate-bg.h>
@@ -56,109 +55,96 @@ typedef struct EelBackgroundClass EelBackgroundClass;
 
 #define EEL_TYPE_BACKGROUND eel_background_get_type()
 #define EEL_BACKGROUND(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), EEL_TYPE_BACKGROUND, EelBackground))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), EEL_TYPE_BACKGROUND, EelBackground))
 #define EEL_BACKGROUND_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), EEL_TYPE_BACKGROUND, EelBackgroundClass))
+  (G_TYPE_CHECK_CLASS_CAST((klass), EEL_TYPE_BACKGROUND, EelBackgroundClass))
 #define EEL_IS_BACKGROUND(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EEL_TYPE_BACKGROUND))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), EEL_TYPE_BACKGROUND))
 #define EEL_IS_BACKGROUND_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), EEL_TYPE_BACKGROUND))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), EEL_TYPE_BACKGROUND))
 #define EEL_BACKGROUND_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), EEL_TYPE_BACKGROUND, EelBackgroundClass))
+  (G_TYPE_INSTANCE_GET_CLASS((obj), EEL_TYPE_BACKGROUND, EelBackgroundClass))
 
-GType                       eel_background_get_type              (void);
-EelBackground *             eel_background_new                   (void);
+GType eel_background_get_type(void);
+EelBackground *eel_background_new(void);
 
 /* Calls to change a background. */
-void                        eel_background_set_use_base          (EelBackground   *self,
-        							  gboolean         use_base);
-void                        eel_background_set_color             (EelBackground   *self,
-        							  const gchar     *color_or_gradient);
-void                        eel_background_set_image_uri         (EelBackground   *self,
-        							  const gchar      *image_uri);
-void                        eel_background_reset                 (EelBackground   *self);
-void                        eel_bg_set_placement                 (EelBackground   *self,
-        							  MateBGPlacement  placement);
+void eel_background_set_use_base(EelBackground *self, gboolean use_base);
+void eel_background_set_color(EelBackground *self,
+                              const gchar *color_or_gradient);
+void eel_background_set_image_uri(EelBackground *self, const gchar *image_uri);
+void eel_background_reset(EelBackground *self);
+void eel_bg_set_placement(EelBackground *self, MateBGPlacement placement);
 
 /* Should be TRUE for desktop background */
-gboolean		    eel_background_is_desktop 		 (EelBackground   *self);
-void			    eel_background_set_desktop 		 (EelBackground   *self,
-        							  gboolean         is_desktop);
+gboolean eel_background_is_desktop(EelBackground *self);
+void eel_background_set_desktop(EelBackground *self, gboolean is_desktop);
 
 /* Calls to interrogate the current state of a background. */
-gchar *                     eel_bg_get_desktop_color             (EelBackground   *self);
-gchar *                     eel_background_get_color             (EelBackground   *self);
-gchar *                     eel_background_get_image_uri         (EelBackground   *self);
-gboolean                    eel_background_is_dark               (EelBackground   *self);
-gboolean                    eel_background_is_set                (EelBackground   *self);
+gchar *eel_bg_get_desktop_color(EelBackground *self);
+gchar *eel_background_get_color(EelBackground *self);
+gchar *eel_background_get_image_uri(EelBackground *self);
+gboolean eel_background_is_dark(EelBackground *self);
+gboolean eel_background_is_set(EelBackground *self);
 
 /* Helper function for widgets using EelBackground */
-void                        eel_background_draw                  (GtkWidget       *widget,
-        							  cairo_t         *cr);
+void eel_background_draw(GtkWidget *widget, cairo_t *cr);
 
-/* Handles a dragged color being dropped on a widget to change the background color. */
-void                        eel_background_set_dropped_color     (EelBackground   *self,
-        							  GtkWidget       *widget,
-        							  GdkDragAction    action,
-        							  int              drop_location_x,
-        							  int              drop_location_y,
-        							  const GtkSelectionData
-        							                  *dropped_color);
+/* Handles a dragged color being dropped on a widget to change the background
+ * color. */
+void eel_background_set_dropped_color(EelBackground *self, GtkWidget *widget,
+                                      GdkDragAction action, int drop_location_x,
+                                      int drop_location_y,
+                                      const GtkSelectionData *dropped_color);
 
-/* Handles a special-case image name that means "reset to default background" too. */
-void                        eel_background_set_dropped_image     (EelBackground   *self,
-        							  GdkDragAction    action,
-        							  const gchar     *image_uri);
+/* Handles a special-case image name that means "reset to default background"
+ * too. */
+void eel_background_set_dropped_image(EelBackground *self, GdkDragAction action,
+                                      const gchar *image_uri);
 
 /* Gets or creates a background so that it's attached to a widget. */
-EelBackground *             eel_get_widget_background            (GtkWidget       *widget);
+EelBackground *eel_get_widget_background(GtkWidget *widget);
 
 /* Thin-wrappers around mate_bg gsettings functions */
-void			    eel_bg_save_to_gsettings             (EelBackground   *self,
-								  GSettings       *settings);
-void			    eel_bg_load_from_gsettings           (EelBackground   *self,
-								  GSettings       *settings);
-void			    eel_bg_load_from_system_gsettings    (EelBackground   *self,
-								  GSettings       *settings,
-								  gboolean         apply);
+void eel_bg_save_to_gsettings(EelBackground *self, GSettings *settings);
+void eel_bg_load_from_gsettings(EelBackground *self, GSettings *settings);
+void eel_bg_load_from_system_gsettings(EelBackground *self, GSettings *settings,
+                                       gboolean apply);
 
-/* Set bg's activity status. Inactive backgrounds are drawn in the theme's INSENSITIVE color. */
-void                        eel_background_set_active            (EelBackground   *self,
-        							  gboolean         is_active);
+/* Set bg's activity status. Inactive backgrounds are drawn in the theme's
+ * INSENSITIVE color. */
+void eel_background_set_active(EelBackground *self, gboolean is_active);
 
 typedef struct EelBackgroundPrivate EelBackgroundPrivate;
 
-struct EelBackground
-{
-    GObject object;
-    EelBackgroundPrivate *details;
+struct EelBackground {
+  GObject object;
+  EelBackgroundPrivate *details;
 };
 
-struct EelBackgroundClass
-{
-    GObjectClass parent_class;
+struct EelBackgroundClass {
+  GObjectClass parent_class;
 
-    /* This signal is emitted whenever the background settings are
-     * changed.
-     */
-    void (* settings_changed) (EelBackground *);
+  /* This signal is emitted whenever the background settings are
+   * changed.
+   */
+  void (*settings_changed)(EelBackground *);
 
-    /* This signal is emitted whenever the appearance of the
-     * background has changed, like when the background settings are
-     * altered or when an image is loaded.
-     */
-    void (* appearance_changed) (EelBackground *);
+  /* This signal is emitted whenever the appearance of the
+   * background has changed, like when the background settings are
+   * altered or when an image is loaded.
+   */
+  void (*appearance_changed)(EelBackground *);
 
-    /* This signal is emitted when image loading is over - whether it
-     * was successfully loaded or not.
-     */
-    void (* image_loading_done) (EelBackground *self, gboolean successful_load);
+  /* This signal is emitted when image loading is over - whether it
+   * was successfully loaded or not.
+   */
+  void (*image_loading_done)(EelBackground *self, gboolean successful_load);
 
-    /* This signal is emitted when the background is reset by receiving
-       the reset property from a drag
-     */
-    void (* reset) (EelBackground *);
-
+  /* This signal is emitted when the background is reset by receiving
+     the reset property from a drag
+   */
+  void (*reset)(EelBackground *);
 };
 
 #endif /* EEL_BACKGROUND_H */

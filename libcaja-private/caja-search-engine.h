@@ -28,51 +28,57 @@
 
 #include "caja-query.h"
 
-#define CAJA_TYPE_SEARCH_ENGINE		(caja_search_engine_get_type ())
-#define CAJA_SEARCH_ENGINE(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SEARCH_ENGINE, CajaSearchEngine))
-#define CAJA_SEARCH_ENGINE_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SEARCH_ENGINE, CajaSearchEngineClass))
-#define CAJA_IS_SEARCH_ENGINE(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SEARCH_ENGINE))
-#define CAJA_IS_SEARCH_ENGINE_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SEARCH_ENGINE))
-#define CAJA_SEARCH_ENGINE_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SEARCH_ENGINE, CajaSearchEngineClass))
+#define CAJA_TYPE_SEARCH_ENGINE (caja_search_engine_get_type())
+#define CAJA_SEARCH_ENGINE(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SEARCH_ENGINE, CajaSearchEngine))
+#define CAJA_SEARCH_ENGINE_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SEARCH_ENGINE, \
+                           CajaSearchEngineClass))
+#define CAJA_IS_SEARCH_ENGINE(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SEARCH_ENGINE))
+#define CAJA_IS_SEARCH_ENGINE_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SEARCH_ENGINE))
+#define CAJA_SEARCH_ENGINE_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SEARCH_ENGINE, \
+                             CajaSearchEngineClass))
 
 typedef struct CajaSearchEngineDetails CajaSearchEngineDetails;
 
-typedef struct CajaSearchEngine
-{
-    GObject parent;
-    CajaSearchEngineDetails *details;
+typedef struct CajaSearchEngine {
+  GObject parent;
+  CajaSearchEngineDetails *details;
 } CajaSearchEngine;
 
-typedef struct
-{
-    GObjectClass parent_class;
+typedef struct {
+  GObjectClass parent_class;
 
-    /* VTable */
-    void (*set_query) (CajaSearchEngine *engine, CajaQuery *query);
-    void (*start) (CajaSearchEngine *engine);
-    void (*stop) (CajaSearchEngine *engine);
-    gboolean (*is_indexed) (CajaSearchEngine *engine);
+  /* VTable */
+  void (*set_query)(CajaSearchEngine *engine, CajaQuery *query);
+  void (*start)(CajaSearchEngine *engine);
+  void (*stop)(CajaSearchEngine *engine);
+  gboolean (*is_indexed)(CajaSearchEngine *engine);
 
-    /* Signals */
-    void (*hits_added) (CajaSearchEngine *engine, GList *hits);
-    void (*hits_subtracted) (CajaSearchEngine *engine, GList *hits);
-    void (*finished) (CajaSearchEngine *engine);
-    void (*error) (CajaSearchEngine *engine, const char *error_message);
+  /* Signals */
+  void (*hits_added)(CajaSearchEngine *engine, GList *hits);
+  void (*hits_subtracted)(CajaSearchEngine *engine, GList *hits);
+  void (*finished)(CajaSearchEngine *engine);
+  void (*error)(CajaSearchEngine *engine, const char *error_message);
 } CajaSearchEngineClass;
 
-GType          caja_search_engine_get_type  (void);
-gboolean       caja_search_engine_enabled (void);
+GType caja_search_engine_get_type(void);
+gboolean caja_search_engine_enabled(void);
 
-CajaSearchEngine* caja_search_engine_new       (void);
+CajaSearchEngine *caja_search_engine_new(void);
 
-void           caja_search_engine_set_query (CajaSearchEngine *engine, CajaQuery *query);
-void	       caja_search_engine_start (CajaSearchEngine *engine);
-void	       caja_search_engine_stop (CajaSearchEngine *engine);
-gboolean       caja_search_engine_is_indexed (CajaSearchEngine *engine);
+void caja_search_engine_set_query(CajaSearchEngine *engine, CajaQuery *query);
+void caja_search_engine_start(CajaSearchEngine *engine);
+void caja_search_engine_stop(CajaSearchEngine *engine);
+gboolean caja_search_engine_is_indexed(CajaSearchEngine *engine);
 
-void	       caja_search_engine_hits_added (CajaSearchEngine *engine, GList *hits);
-void	       caja_search_engine_hits_subtracted (CajaSearchEngine *engine, GList *hits);
-void	       caja_search_engine_finished (CajaSearchEngine *engine);
-void	       caja_search_engine_error (CajaSearchEngine *engine, const char *error_message);
+void caja_search_engine_hits_added(CajaSearchEngine *engine, GList *hits);
+void caja_search_engine_hits_subtracted(CajaSearchEngine *engine, GList *hits);
+void caja_search_engine_finished(CajaSearchEngine *engine);
+void caja_search_engine_error(CajaSearchEngine *engine,
+                              const char *error_message);
 
 #endif /* CAJA_SEARCH_ENGINE_H */

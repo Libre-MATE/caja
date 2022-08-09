@@ -32,17 +32,14 @@
 
 #include "caja-file.h"
 
-void caja_desktop_set_metadata_string (CajaFile *file,
-                                       const gchar *name,
-                                       const gchar *key,
-                                       const gchar *string);
+void caja_desktop_set_metadata_string(CajaFile *file, const gchar *name,
+                                      const gchar *key, const gchar *string);
 
-void caja_desktop_set_metadata_stringv (CajaFile *file,
-                                        const char *name,
-                                        const char *key,
-                                        const char * const *stringv);
+void caja_desktop_set_metadata_stringv(CajaFile *file, const char *name,
+                                       const char *key,
+                                       const char *const *stringv);
 
-gboolean caja_desktop_update_metadata_from_keyfile (CajaFile *file,
-                                                    const gchar *name);
+gboolean caja_desktop_update_metadata_from_keyfile(CajaFile *file,
+                                                   const gchar *name);
 
 #endif /* __CAJA_DESKTOP_METADATA_H__ */

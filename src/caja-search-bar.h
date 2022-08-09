@@ -25,47 +25,44 @@
 #define CAJA_SEARCH_BAR_H
 
 #include <gtk/gtk.h>
-
 #include <libcaja-private/caja-query.h>
 
 #include "caja-window.h"
 
 #define CAJA_TYPE_SEARCH_BAR caja_search_bar_get_type()
 #define CAJA_SEARCH_BAR(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_SEARCH_BAR, CajaSearchBar))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_SEARCH_BAR, CajaSearchBar))
 #define CAJA_SEARCH_BAR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_SEARCH_BAR, CajaSearchBarClass))
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_SEARCH_BAR, CajaSearchBarClass))
 #define CAJA_IS_SEARCH_BAR(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_SEARCH_BAR))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_SEARCH_BAR))
 #define CAJA_IS_SEARCH_BAR_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), CAJA_TYPE_SEARCH_BAR))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), CAJA_TYPE_SEARCH_BAR))
 #define CAJA_SEARCH_BAR_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), CAJA_TYPE_SEARCH_BAR, CajaSearchBarClass))
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_SEARCH_BAR, CajaSearchBarClass))
 
 typedef struct CajaSearchBarDetails CajaSearchBarDetails;
 
-typedef struct CajaSearchBar
-{
-    GtkEventBox parent;
-    CajaSearchBarDetails *details;
+typedef struct CajaSearchBar {
+  GtkEventBox parent;
+  CajaSearchBarDetails *details;
 } CajaSearchBar;
 
-typedef struct
-{
-    GtkEventBoxClass parent_class;
+typedef struct {
+  GtkEventBoxClass parent_class;
 
-    void (* activate) (CajaSearchBar *bar);
-    void (* cancel)   (CajaSearchBar *bar);
-    void (* focus_in) (CajaSearchBar *bar);
+  void (*activate)(CajaSearchBar *bar);
+  void (*cancel)(CajaSearchBar *bar);
+  void (*focus_in)(CajaSearchBar *bar);
 } CajaSearchBarClass;
 
-GType      caja_search_bar_get_type     	(void);
-GtkWidget* caja_search_bar_new          	(CajaWindow *window);
+GType caja_search_bar_get_type(void);
+GtkWidget *caja_search_bar_new(CajaWindow *window);
 
-GtkWidget *    caja_search_bar_borrow_entry  (CajaSearchBar *bar);
-void           caja_search_bar_return_entry  (CajaSearchBar *bar);
-void           caja_search_bar_grab_focus    (CajaSearchBar *bar);
-CajaQuery *caja_search_bar_get_query     (CajaSearchBar *bar);
-void           caja_search_bar_clear         (CajaSearchBar *bar);
+GtkWidget *caja_search_bar_borrow_entry(CajaSearchBar *bar);
+void caja_search_bar_return_entry(CajaSearchBar *bar);
+void caja_search_bar_grab_focus(CajaSearchBar *bar);
+CajaQuery *caja_search_bar_get_query(CajaSearchBar *bar);
+void caja_search_bar_clear(CajaSearchBar *bar);
 
 #endif /* CAJA_SEARCH_BAR_H */

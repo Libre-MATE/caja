@@ -29,7 +29,7 @@
 #ifndef __CAJA_SELF_CHECK_FUNCTIONS_H__
 #define __CAJA_SELF_CHECK_FUNCTIONS_H__
 
-void caja_run_self_checks (void);
+void caja_run_self_checks(void);
 
 /* Putting the prototypes for these self-check functions in each
    header file for the files they are defined in would make compiling
@@ -46,7 +46,6 @@ void caja_run_self_checks (void);
 /* Add new self-check functions to the list above this line. */
 
 /* Generate prototypes for all the functions. */
-CAJA_FOR_EACH_SELF_CHECK_FUNCTION (CAJA_SELF_CHECK_FUNCTION_PROTOTYPE)
+CAJA_FOR_EACH_SELF_CHECK_FUNCTION(CAJA_SELF_CHECK_FUNCTION_PROTOTYPE)
 
-#endif	/* __CAJA_SELF_CHECK_FUNCTIONS_H__ */
-
+#endif /* __CAJA_SELF_CHECK_FUNCTIONS_H__ */

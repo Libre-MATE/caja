@@ -29,30 +29,29 @@
 #define _CAJA_BOOKMARKS_SIDEBAR_H
 
 #include <gtk/gtk.h>
-
+#include <libcaja-private/caja-bookmark.h>
 #include <libcaja-private/caja-view.h>
 #include <libcaja-private/caja-window-info.h>
-#include <libcaja-private/caja-bookmark.h>
 
 #include "caja-bookmark-list.h"
 
-#define CAJA_BOOKMARKS_SIDEBAR_ID    "bookmarks"
+#define CAJA_BOOKMARKS_SIDEBAR_ID "bookmarks"
 
 #define CAJA_TYPE_BOOKMARKS_SIDEBAR caja_bookmarks_sidebar_get_type()
-#define CAJA_BOOKMARKS_SIDEBAR(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_BOOKMARKS_SIDEBAR, CajaBookmarksSidebar))
+#define CAJA_BOOKMARKS_SIDEBAR(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_BOOKMARKS_SIDEBAR, \
+                              CajaBookmarksSidebar))
 
-typedef struct
-{
-    GtkScrolledWindow parent;
-    GtkTreeView      *tree_view;
-    CajaWindowInfo   *window;
+typedef struct {
+  GtkScrolledWindow parent;
+  GtkTreeView *tree_view;
+  CajaWindowInfo *window;
 
-    char             *current_uri;
-    CajaBookmarkList *bookmarks;
+  char *current_uri;
+  CajaBookmarkList *bookmarks;
 } CajaBookmarksSidebar;
 
-GType caja_bookmarks_sidebar_get_type (void);
-void  caja_bookmarks_sidebar_register (void);
+GType caja_bookmarks_sidebar_get_type(void);
+void caja_bookmarks_sidebar_register(void);
 
 #endif

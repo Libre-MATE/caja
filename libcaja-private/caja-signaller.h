@@ -41,6 +41,6 @@
 */
 
 /* Get the one and only CajaSignaller to connect with or emit signals for */
-GObject *caja_signaller_get_current (void);
+GObject *caja_signaller_get_current(void);
 
 #endif /* CAJA_SIGNALLER_H */

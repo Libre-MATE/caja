@@ -35,11 +35,10 @@
 #include "caja-file.h"
 #include "caja-icon-container.h"
 
-void     caja_connect_background_to_file_metadata    (GtkWidget         *widget,
-                                                      CajaFile          *file,
-                                                      GdkDragAction      default_drag_action);
+void caja_connect_background_to_file_metadata(
+    GtkWidget *widget, CajaFile *file, GdkDragAction default_drag_action);
 
-void     caja_connect_desktop_background_to_settings (CajaIconContainer *icon_container);
+void caja_connect_desktop_background_to_settings(
+    CajaIconContainer *icon_container);
 
-#endif	/* __CAJA_DIRECTORY_BACKGROUND_H__ */
-
+#endif /* __CAJA_DIRECTORY_BACKGROUND_H__ */

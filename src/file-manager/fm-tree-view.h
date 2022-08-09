@@ -32,33 +32,31 @@
 
 #define FM_TYPE_TREE_VIEW fm_tree_view_get_type()
 #define FM_TREE_VIEW(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), FM_TYPE_TREE_VIEW, FMTreeView))
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), FM_TYPE_TREE_VIEW, FMTreeView))
 #define FM_TREE_VIEW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), FM_TYPE_TREE_VIEW, FMTreeViewClass))
+  (G_TYPE_CHECK_CLASS_CAST((klass), FM_TYPE_TREE_VIEW, FMTreeViewClass))
 #define FM_IS_TREE_VIEW(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), FM_TYPE_TREE_VIEW))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), FM_TYPE_TREE_VIEW))
 #define FM_IS_TREE_VIEW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), FM_TYPE_TREE_VIEW))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), FM_TYPE_TREE_VIEW))
 #define FM_TREE_VIEW_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), FM_TYPE_TREE_VIEW, FMTreeViewClass))
+  (G_TYPE_INSTANCE_GET_CLASS((obj), FM_TYPE_TREE_VIEW, FMTreeViewClass))
 
 #define TREE_SIDEBAR_ID "tree"
 
 typedef struct FMTreeViewDetails FMTreeViewDetails;
 
-typedef struct
-{
-    GtkScrolledWindow parent;
+typedef struct {
+  GtkScrolledWindow parent;
 
-    FMTreeViewDetails *details;
+  FMTreeViewDetails *details;
 } FMTreeView;
 
-typedef struct
-{
-    GtkScrolledWindowClass parent_class;
+typedef struct {
+  GtkScrolledWindowClass parent_class;
 } FMTreeViewClass;
 
-GType fm_tree_view_get_type (void);
-void fm_tree_view_register (void);
+GType fm_tree_view_get_type(void);
+void fm_tree_view_register(void);
 
 #endif /* FM_TREE_VIEW_H */

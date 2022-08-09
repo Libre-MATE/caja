@@ -24,30 +24,29 @@
 #ifndef CAJA_EXTENSIONS_H
 #define CAJA_EXTENSIONS_H
 
-#include <glib.h>
 #include <glib-object.h>
+#include <glib.h>
 
 typedef struct _Extension {
-    gchar *filename;
-    gchar *name;
-    gchar *description;
-    gchar *icon;
-    gchar **author;
-    gchar *copyright;
-    gchar *version;
-    gchar *website;
-    gboolean state;
-    GObject *module;
+  gchar *filename;
+  gchar *name;
+  gchar *description;
+  gchar *icon;
+  gchar **author;
+  gchar *copyright;
+  gchar *version;
+  gchar *website;
+  gboolean state;
+  GObject *module;
 } Extension;
 
-#define EXTENSION(x) ((Extension*)x)
+#define EXTENSION(x) ((Extension *)x)
 
-void caja_extension_register (gchar *filename, GObject *module);
+void caja_extension_register(gchar *filename, GObject *module);
 
-GList *caja_extensions_get_list (void);
-GList *caja_extensions_get_for_type (GType type);
+GList *caja_extensions_get_list(void);
+GList *caja_extensions_get_for_type(GType type);
 
-gboolean caja_extension_set_state (Extension *ext, gboolean new_state);
+gboolean caja_extension_set_state(Extension *ext, gboolean new_state);
 
-#endif // CAJA_EXTENSIONS_H
-
+#endif  // CAJA_EXTENSIONS_H

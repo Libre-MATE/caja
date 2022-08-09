@@ -26,13 +26,13 @@
 #ifndef CAJA_MONITOR_H
 #define CAJA_MONITOR_H
 
-#include <glib.h>
 #include <gio/gio.h>
+#include <glib.h>
 
 typedef struct CajaMonitor CajaMonitor;
 
-gboolean         caja_monitor_active    (void);
-CajaMonitor *caja_monitor_directory (GFile *location);
-void             caja_monitor_cancel    (CajaMonitor *monitor);
+gboolean caja_monitor_active(void);
+CajaMonitor *caja_monitor_directory(GFile *location);
+void caja_monitor_cancel(CajaMonitor *monitor);
 
 #endif /* CAJA_MONITOR_H */

@@ -15,7 +15,8 @@
  *
  *  You should have received a copy of the GNU General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Authors: James Willcox <james@gnome.org>
  *
@@ -24,25 +25,24 @@
 #ifndef FM_DITEM_PAGE_H
 #define FM_DITEM_PAGE_H
 
-#include <glib.h>
 #include <glib-object.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-    /* This is a mis-nomer. Launcher editables initially were displayed on separate
-     * a property notebook page, which implemented the CajaPropertyPageProvider
-     * interface.
-     *
-     * Nowadays, they are displayed on the "Basic" page, so just the setup
-     * routines are left.
-     */
+/* This is a mis-nomer. Launcher editables initially were displayed on separate
+ * a property notebook page, which implemented the CajaPropertyPageProvider
+ * interface.
+ *
+ * Nowadays, they are displayed on the "Basic" page, so just the setup
+ * routines are left.
+ */
 
-    GtkWidget *fm_ditem_page_make_box (GtkSizeGroup *label_size_group,
-                                       GList *files);
-    gboolean   fm_ditem_page_should_show (GList *files);
+GtkWidget *fm_ditem_page_make_box(GtkSizeGroup *label_size_group, GList *files);
+gboolean fm_ditem_page_should_show(GList *files);
 
 #ifdef __cplusplus
 }

@@ -27,44 +27,43 @@
 #define FM_PROPERTIES_WINDOW_H
 
 #include <gtk/gtk.h>
-
 #include <libcaja-private/caja-file.h>
 
 typedef struct FMPropertiesWindow FMPropertiesWindow;
 
 #define FM_TYPE_PROPERTIES_WINDOW fm_properties_window_get_type()
-#define FM_PROPERTIES_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_CAST ((obj), FM_TYPE_PROPERTIES_WINDOW, FMPropertiesWindow))
-#define FM_PROPERTIES_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_CAST ((klass), FM_TYPE_PROPERTIES_WINDOW, FMPropertiesWindowClass))
+#define FM_PROPERTIES_WINDOW(obj)                               \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), FM_TYPE_PROPERTIES_WINDOW, \
+                              FMPropertiesWindow))
+#define FM_PROPERTIES_WINDOW_CLASS(klass)                      \
+  (G_TYPE_CHECK_CLASS_CAST((klass), FM_TYPE_PROPERTIES_WINDOW, \
+                           FMPropertiesWindowClass))
 #define FM_IS_PROPERTIES_WINDOW(obj) \
-  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), FM_TYPE_PROPERTIES_WINDOW))
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), FM_TYPE_PROPERTIES_WINDOW))
 #define FM_IS_PROPERTIES_WINDOW_CLASS(klass) \
-  (G_TYPE_CHECK_CLASS_TYPE ((klass), FM_TYPE_PROPERTIES_WINDOW))
-#define FM_PROPERTIES_WINDOW_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), FM_TYPE_PROPERTIES_WINDOW, FMPropertiesWindowClass))
+  (G_TYPE_CHECK_CLASS_TYPE((klass), FM_TYPE_PROPERTIES_WINDOW))
+#define FM_PROPERTIES_WINDOW_GET_CLASS(obj)                    \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), FM_TYPE_PROPERTIES_WINDOW, \
+                             FMPropertiesWindowClass))
 
 typedef struct _FMPropertiesWindowPrivate FMPropertiesWindowPrivate;
 
-struct FMPropertiesWindow
-{
-    GtkDialog window;
-    FMPropertiesWindowPrivate *details;
+struct FMPropertiesWindow {
+  GtkDialog window;
+  FMPropertiesWindowPrivate *details;
 };
 
-struct FMPropertiesWindowClass
-{
-    GtkDialogClass parent_class;
+struct FMPropertiesWindowClass {
+  GtkDialogClass parent_class;
 
-    /* Keybinding signals */
-    void (* close)    (FMPropertiesWindow *window);
+  /* Keybinding signals */
+  void (*close)(FMPropertiesWindow *window);
 };
 
 typedef struct FMPropertiesWindowClass FMPropertiesWindowClass;
 
-GType   fm_properties_window_get_type   (void);
+GType fm_properties_window_get_type(void);
 
-void 	fm_properties_window_present 	(GList *files,
-        GtkWidget *parent_widget);
+void fm_properties_window_present(GList *files, GtkWidget *parent_widget);
 
 #endif /* FM_PROPERTIES_WINDOW_H */

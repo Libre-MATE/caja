@@ -23,36 +23,39 @@
 #ifndef __CAJA_TRASH_BAR_H
 #define __CAJA_TRASH_BAR_H
 
-#include "caja-window.h"
-
 #include <gtk/gtk.h>
+
+#include "caja-window.h"
 
 G_BEGIN_DECLS
 
-#define CAJA_TYPE_TRASH_BAR         (caja_trash_bar_get_type ())
-#define CAJA_TRASH_BAR(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), CAJA_TYPE_TRASH_BAR, CajaTrashBar))
-#define CAJA_TRASH_BAR_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), CAJA_TYPE_TRASH_BAR, CajaTrashBarClass))
-#define CAJA_IS_TRASH_BAR(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CAJA_TYPE_TRASH_BAR))
-#define CAJA_IS_TRASH_BAR_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CAJA_TYPE_TRASH_BAR))
-#define CAJA_TRASH_BAR_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CAJA_TYPE_TRASH_BAR, CajaTrashBarClass))
+#define CAJA_TYPE_TRASH_BAR (caja_trash_bar_get_type())
+#define CAJA_TRASH_BAR(o) \
+  (G_TYPE_CHECK_INSTANCE_CAST((o), CAJA_TYPE_TRASH_BAR, CajaTrashBar))
+#define CAJA_TRASH_BAR_CLASS(k) \
+  (G_TYPE_CHECK_CLASS_CAST((k), CAJA_TYPE_TRASH_BAR, CajaTrashBarClass))
+#define CAJA_IS_TRASH_BAR(o) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((o), CAJA_TYPE_TRASH_BAR))
+#define CAJA_IS_TRASH_BAR_CLASS(k) \
+  (G_TYPE_CHECK_CLASS_TYPE((k), CAJA_TYPE_TRASH_BAR))
+#define CAJA_TRASH_BAR_GET_CLASS(o) \
+  (G_TYPE_INSTANCE_GET_CLASS((o), CAJA_TYPE_TRASH_BAR, CajaTrashBarClass))
 
 typedef struct _CajaTrashBarPrivate CajaTrashBarPrivate;
 
-typedef struct
-{
-        GtkBox	box;
-        CajaTrashBarPrivate *priv;
+typedef struct {
+  GtkBox box;
+  CajaTrashBarPrivate *priv;
 } CajaTrashBar;
 
-typedef struct
-{
-GtkBoxClass	    parent_class;
+typedef struct {
+  GtkBoxClass parent_class;
 
 } CajaTrashBarClass;
 
-GType		 caja_trash_bar_get_type	(void) G_GNUC_CONST;
+GType caja_trash_bar_get_type(void) G_GNUC_CONST;
 
-GtkWidget       *caja_trash_bar_new         (CajaWindow *window);
+GtkWidget *caja_trash_bar_new(CajaWindow *window);
 
 G_END_DECLS
 

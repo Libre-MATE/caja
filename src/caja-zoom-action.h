@@ -28,30 +28,33 @@
 
 #include <gtk/gtk.h>
 
-#define CAJA_TYPE_ZOOM_ACTION            (caja_zoom_action_get_type ())
-#define CAJA_ZOOM_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CAJA_TYPE_ZOOM_ACTION, CajaZoomAction))
-#define CAJA_ZOOM_ACTION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CAJA_TYPE_ZOOM_ACTION, CajaZoomActionClass))
-#define CAJA_IS_ZOOM_ACTION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CAJA_TYPE_ZOOM_ACTION))
-#define CAJA_IS_ZOOM_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), CAJA_TYPE_ZOOM_ACTION))
-#define CAJA_ZOOM_ACTION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_ZOOM_ACTION, CajaZoomActionClass))
+#define CAJA_TYPE_ZOOM_ACTION (caja_zoom_action_get_type())
+#define CAJA_ZOOM_ACTION(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), CAJA_TYPE_ZOOM_ACTION, CajaZoomAction))
+#define CAJA_ZOOM_ACTION_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass), CAJA_TYPE_ZOOM_ACTION, CajaZoomActionClass))
+#define CAJA_IS_ZOOM_ACTION(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), CAJA_TYPE_ZOOM_ACTION))
+#define CAJA_IS_ZOOM_ACTION_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((obj), CAJA_TYPE_ZOOM_ACTION))
+#define CAJA_ZOOM_ACTION_GET_CLASS(obj) \
+  (G_TYPE_INSTANCE_GET_CLASS((obj), CAJA_TYPE_ZOOM_ACTION, CajaZoomActionClass))
 
-typedef struct _CajaZoomAction       CajaZoomAction;
-typedef struct _CajaZoomActionClass  CajaZoomActionClass;
+typedef struct _CajaZoomAction CajaZoomAction;
+typedef struct _CajaZoomActionClass CajaZoomActionClass;
 typedef struct _CajaZoomActionPrivate CajaZoomActionPrivate;
 
-struct _CajaZoomAction
-{
-    GtkAction parent;
+struct _CajaZoomAction {
+  GtkAction parent;
 
-    /*< private >*/
-    CajaZoomActionPrivate *priv;
+  /*< private >*/
+  CajaZoomActionPrivate *priv;
 };
 
-struct _CajaZoomActionClass
-{
-    GtkActionClass parent_class;
+struct _CajaZoomActionClass {
+  GtkActionClass parent_class;
 };
 
-GType    caja_zoom_action_get_type   (void);
+GType caja_zoom_action_get_type(void);
 
 #endif

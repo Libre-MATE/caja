@@ -23,15 +23,15 @@
    Authors: Ramiro Estrugo <ramiro@eazel.com>
 */
 
-#include <config.h>
-#include <glib/gi18n.h>
+#include "caja-global-preferences.h"
 
+#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-extensions.h>
 #include <eel/eel-stock-dialogs.h>
 #include <eel/eel-string.h>
+#include <glib/gi18n.h>
 
-#include "caja-global-preferences.h"
 #include "caja-file-utilities.h"
 #include "caja-file.h"
 
@@ -51,53 +51,45 @@ GSettings *mate_lockdown_preferences;
 /*
  * Public functions
  */
-char *
-caja_global_preferences_get_default_folder_viewer_preference_as_iid (void)
-{
-    int preference_value;
-    const char *viewer_iid;
+char *caja_global_preferences_get_default_folder_viewer_preference_as_iid(
+    void) {
+  int preference_value;
+  const char *viewer_iid;
 
-    preference_value =
-        g_settings_get_enum (caja_preferences, CAJA_PREFERENCES_DEFAULT_FOLDER_VIEWER);
+  preference_value = g_settings_get_enum(
+      caja_preferences, CAJA_PREFERENCES_DEFAULT_FOLDER_VIEWER);
 
-    if (preference_value == CAJA_DEFAULT_FOLDER_VIEWER_LIST_VIEW)
-    {
-        viewer_iid = CAJA_LIST_VIEW_IID;
-    }
-    else if (preference_value == CAJA_DEFAULT_FOLDER_VIEWER_COMPACT_VIEW)
-    {
-        viewer_iid = CAJA_COMPACT_VIEW_IID;
-    }
-    else
-    {
-        viewer_iid = CAJA_ICON_VIEW_IID;
-    }
+  if (preference_value == CAJA_DEFAULT_FOLDER_VIEWER_LIST_VIEW) {
+    viewer_iid = CAJA_LIST_VIEW_IID;
+  } else if (preference_value == CAJA_DEFAULT_FOLDER_VIEWER_COMPACT_VIEW) {
+    viewer_iid = CAJA_COMPACT_VIEW_IID;
+  } else {
+    viewer_iid = CAJA_ICON_VIEW_IID;
+  }
 
-    return g_strdup (viewer_iid);
+  return g_strdup(viewer_iid);
 }
 
-void
-caja_global_preferences_init (void)
-{
-    static gboolean initialized = FALSE;
+void caja_global_preferences_init(void) {
+  static gboolean initialized = FALSE;
 
-    if (initialized)
-    {
-        return;
-    }
+  if (initialized) {
+    return;
+  }
 
-    initialized = TRUE;
+  initialized = TRUE;
 
-    caja_preferences = g_settings_new("org.mate.caja.preferences");
-    caja_media_preferences = g_settings_new("org.mate.media-handling");
-    caja_window_state = g_settings_new("org.mate.caja.window-state");
-    caja_icon_view_preferences = g_settings_new("org.mate.caja.icon-view");
-    caja_compact_view_preferences = g_settings_new("org.mate.caja.compact-view");
-    caja_desktop_preferences = g_settings_new("org.mate.caja.desktop");
-    caja_tree_sidebar_preferences = g_settings_new("org.mate.caja.sidebar-panels.tree");
-    caja_list_view_preferences = g_settings_new("org.mate.caja.list-view");
-    caja_extension_preferences = g_settings_new("org.mate.caja.extensions");
+  caja_preferences = g_settings_new("org.mate.caja.preferences");
+  caja_media_preferences = g_settings_new("org.mate.media-handling");
+  caja_window_state = g_settings_new("org.mate.caja.window-state");
+  caja_icon_view_preferences = g_settings_new("org.mate.caja.icon-view");
+  caja_compact_view_preferences = g_settings_new("org.mate.caja.compact-view");
+  caja_desktop_preferences = g_settings_new("org.mate.caja.desktop");
+  caja_tree_sidebar_preferences =
+      g_settings_new("org.mate.caja.sidebar-panels.tree");
+  caja_list_view_preferences = g_settings_new("org.mate.caja.list-view");
+  caja_extension_preferences = g_settings_new("org.mate.caja.extensions");
 
-    mate_background_preferences = g_settings_new("org.mate.background");
-    mate_lockdown_preferences = g_settings_new("org.mate.lockdown");
+  mate_background_preferences = g_settings_new("org.mate.background");
+  mate_lockdown_preferences = g_settings_new("org.mate.lockdown");
 }

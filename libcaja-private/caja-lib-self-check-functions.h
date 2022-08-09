@@ -28,7 +28,7 @@
 
 #include <eel/eel-self-checks.h>
 
-void caja_run_lib_self_checks (void);
+void caja_run_lib_self_checks(void);
 
 /* Putting the prototypes for these self-check functions in each
    header file for the files they are defined in would make compiling
@@ -41,16 +41,13 @@ void caja_run_lib_self_checks (void);
    can be used to do operations on the whole list of functions.
 */
 
-#define CAJA_LIB_FOR_EACH_SELF_CHECK_FUNCTION(macro) \
-	macro (caja_self_check_file_utilities) \
-	macro (caja_self_check_file_operations) \
-	macro (caja_self_check_directory) \
-	macro (caja_self_check_file) \
-	macro (caja_self_check_icon_container) \
-/* Add new self-check functions to the list above this line. */
+#define CAJA_LIB_FOR_EACH_SELF_CHECK_FUNCTION(macro)                           \
+  macro(caja_self_check_file_utilities) macro(caja_self_check_file_operations) \
+      macro(caja_self_check_directory) macro(caja_self_check_file) macro(      \
+          caja_self_check_icon_container) /* Add new self-check functions to   \
+                                             the list above this line. */
 
 /* Generate prototypes for all the functions. */
-CAJA_LIB_FOR_EACH_SELF_CHECK_FUNCTION (EEL_SELF_CHECK_FUNCTION_PROTOTYPE)
+CAJA_LIB_FOR_EACH_SELF_CHECK_FUNCTION(EEL_SELF_CHECK_FUNCTION_PROTOTYPE)
 
-#endif	/* __CAJA_LIB_SELF_CHECK_FUNCTIONS_H__ */
-
+#endif /* __CAJA_LIB_SELF_CHECK_FUNCTIONS_H__ */

@@ -15,7 +15,8 @@
  *
  *  You should have received a copy of the GNU Library General Public
  *  License along with this library; if not, write to the Free
- *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ *  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
  *
  *  Author: Alexander Larsson <alexl@redhat.com>
  *
@@ -30,7 +31,7 @@
 extern "C" {
 #endif
 
-    extern CajaFileInfo *(*caja_file_info_getter) (GFile *location, gboolean create);
+extern CajaFileInfo *(*caja_file_info_getter)(GFile *location, gboolean create);
 
 #ifdef __cplusplus
 }
