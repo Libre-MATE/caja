@@ -1839,8 +1839,7 @@ static void load_custom_css(GtkCssProvider *provider, const gchar *filename,
   g_free(path);
 }
 
-static void reload_theme_css(GtkSettings *settings,
-                             GParamSpec *unused G_GNUC_UNUSED,
+static void reload_theme_css(GtkSettings *settings, GParamSpec *unused,
                              GtkCssProvider *provider) {
   gchar *theme_name;
   gchar *css_theme_name;
