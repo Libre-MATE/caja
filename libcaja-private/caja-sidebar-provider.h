@@ -25,12 +25,12 @@
 #ifndef CAJA_SIDEBAR_PROVIDER_H
 #define CAJA_SIDEBAR_PROVIDER_H
 
+#include <glib.h>
+
 #include "caja-sidebar.h"
 #include "caja-window-info.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define CAJA_TYPE_SIDEBAR_PROVIDER (caja_sidebar_provider_get_type())
 #define CAJA_SIDEBAR_PROVIDER(obj)                               \
@@ -57,8 +57,6 @@ CajaSidebar *caja_sidebar_provider_create(CajaSidebarProvider *provider,
                                           CajaWindowInfo *window);
 GList *caja_list_sidebar_providers(void);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_SIDEBAR_PROVIDER_H */

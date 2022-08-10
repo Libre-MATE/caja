@@ -30,13 +30,12 @@
 #ifndef CAJA_TREE_VIEW_DRAG_DEST_H
 #define CAJA_TREE_VIEW_DRAG_DEST_H
 
+#include <glib.h>
 #include <gtk/gtk.h>
 
 #include "caja-file.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define CAJA_TYPE_TREE_VIEW_DRAG_DEST (caja_tree_view_drag_dest_get_type())
 #define CAJA_TREE_VIEW_DRAG_DEST(obj)                               \
@@ -85,8 +84,6 @@ struct _CajaTreeViewDragDestClass {
 GType caja_tree_view_drag_dest_get_type(void);
 CajaTreeViewDragDest *caja_tree_view_drag_dest_new(GtkTreeView *tree_view);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
-#endif
+#endif /* CAJA_TREE_VIEW_DRAG_DEST_H */

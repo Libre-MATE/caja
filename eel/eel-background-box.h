@@ -28,9 +28,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define EEL_TYPE_BACKGROUND_BOX eel_background_box_get_type()
 #define EEL_BACKGROUND_BOX(obj) \
@@ -62,8 +60,6 @@ struct EelBackgroundBoxClass {
 GType eel_background_box_get_type(void);
 GtkWidget *eel_background_box_new(void);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* EEL_BACKGROUND_TABLE_H */

@@ -25,11 +25,11 @@
 #ifndef EEL_IMAGE_TABLE_H
 #define EEL_IMAGE_TABLE_H
 
+#include <glib.h>
+
 #include "eel-wrap-table.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define EEL_TYPE_IMAGE_TABLE eel_image_table_get_type()
 #define EEL_IMAGE_TABLE(obj) \
@@ -84,8 +84,6 @@ GType eel_image_table_get_type(void);
 GtkWidget *eel_image_table_new(gboolean homogeneous);
 GtkWidget *eel_image_table_add_empty_image(EelImageTable *image_table);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* EEL_IMAGE_TABLE_H */

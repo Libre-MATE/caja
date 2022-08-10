@@ -27,11 +27,10 @@
 #ifndef CAJA_ENTRY_H
 #define CAJA_ENTRY_H
 
+#include <glib.h>
 #include <gtk/gtk.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define CAJA_TYPE_ENTRY caja_entry_get_type()
 #define CAJA_ENTRY(obj) \
@@ -66,8 +65,6 @@ void caja_entry_select_all_at_idle(CajaEntry *entry);
 void caja_entry_set_special_tab_handling(CajaEntry *entry,
                                          gboolean special_tab_handling);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_ENTRY_H */

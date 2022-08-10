@@ -28,11 +28,10 @@
 #define __EEL_EDITABLE_LABEL_H__
 
 #include <gdk/gdk.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif /* __cplusplus */
+G_BEGIN_DECLS
 
 #define EEL_TYPE_EDITABLE_LABEL eel_editable_label_get_type()
 #define EEL_EDITABLE_LABEL(obj) \
@@ -123,8 +122,6 @@ void eel_editable_label_get_layout_offsets(EelEditableLabel *label, gint *x,
 void eel_editable_label_set_font_description(EelEditableLabel *label,
                                              const PangoFontDescription *desc);
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
+G_END_DECLS
 
 #endif /* __EEL_EDITABLE_LABEL_H__ */

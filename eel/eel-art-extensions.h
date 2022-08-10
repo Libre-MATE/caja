@@ -28,9 +28,7 @@
 
 #include <glib.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 typedef struct {
   double x, y;
@@ -87,8 +85,6 @@ void eel_drect_union(EelDRect *dest, const EelDRect *src1,
 /* EelDimensions functions. */
 gboolean eel_dimensions_are_empty(EelDimensions dimensions);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* EEL_ART_EXTENSIONS_H */

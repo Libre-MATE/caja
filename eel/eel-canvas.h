@@ -38,13 +38,12 @@
 #define EEL_CANVAS_H
 
 #include <gdk/gdk.h>
+#include <glib.h>
 #include <gtk/gtk-a11y.h>
 #include <gtk/gtk.h>
 #include <stdarg.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 /* "Small" value used by canvas stuff */
 #define EEL_CANVAS_EPSILON 1e-10
@@ -540,8 +539,6 @@ struct _EelCanvasItemAccessibleClass {
   GtkAccessibleClass parent_class;
 };
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
-#endif
+#endif /* EEL_CANVAS_H */

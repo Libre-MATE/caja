@@ -26,14 +26,13 @@
 #define CAJA_VIEW_FACTORY_H
 
 #include <gio/gio.h>
+#include <glib.h>
 #include <string.h>
 
 #include "caja-view.h"
 #include "caja-window-slot-info.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 typedef struct _CajaViewInfo CajaViewInfo;
 
@@ -63,8 +62,6 @@ gboolean caja_view_factory_view_supports_uri(const char *id, GFile *location,
 GList *caja_view_factory_get_views_for_uri(const char *uri, GFileType file_type,
                                            const char *mime_type);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_VIEW_FACTORY_H */

@@ -26,11 +26,10 @@
 #define CAJA_SIDEBAR_H
 
 #include <glib-object.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define CAJA_TYPE_SIDEBAR (caja_sidebar_get_type())
 #define CAJA_SIDEBAR(obj) \
@@ -76,8 +75,6 @@ char *caja_sidebar_get_tab_tooltip(CajaSidebar *sidebar);
 GdkPixbuf *caja_sidebar_get_tab_icon(CajaSidebar *sidebar);
 void caja_sidebar_is_visible_changed(CajaSidebar *sidebar, gboolean is_visible);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_VIEW_H */

@@ -47,13 +47,12 @@
 #define EEL_LABELED_IMAGE_H
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
 #include "eel-art-extensions.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define EEL_TYPE_LABELED_IMAGE eel_labeled_image_get_type()
 #define EEL_LABELED_IMAGE(obj) \
@@ -158,8 +157,6 @@ EelIRect eel_labeled_image_get_image_bounds(
 EelIRect eel_labeled_image_get_label_bounds(
     const EelLabeledImage *labeled_image);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* EEL_LABELED_IMAGE_H */

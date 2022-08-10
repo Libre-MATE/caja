@@ -25,16 +25,14 @@
 #ifndef CAJA_EXTENSION_PRIVATE_H
 #define CAJA_EXTENSION_PRIVATE_H
 
+#include <glib.h>
+
 #include "caja-file-info.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 extern CajaFileInfo *(*caja_file_info_getter)(GFile *location, gboolean create);
 
-#ifdef __cplusplus
-}
-#endif
+G_BEGIN_DECLS
 
-#endif
+#endif /* CAJA_EXTENSION_PRIVATE_H */

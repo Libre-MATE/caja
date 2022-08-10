@@ -26,10 +26,9 @@
 #define CAJA_MODULE_H
 
 #include <glib-object.h>
+#include <glib.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 void caja_module_setup(void);
 GList *caja_module_get_extensions_for_type(GType type);
@@ -39,8 +38,6 @@ void caja_module_extension_list_free(GList *list);
  * without putting them in separate shared libraries */
 GObject *caja_module_add_type(GType type);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
-#endif
+#endif /* CAJA_MODULE_H */

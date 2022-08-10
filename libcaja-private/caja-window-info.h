@@ -26,13 +26,12 @@
 #define CAJA_WINDOW_INFO_H
 
 #include <glib-object.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
 #include "caja-view.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 typedef enum {
   CAJA_WINDOW_SHOW_HIDDEN_FILES_DEFAULT,
@@ -189,8 +188,6 @@ void caja_window_info_set_initiated_unmount(CajaWindowInfo *window,
                                             gboolean initiated_unmount);
 GtkUIManager *caja_window_info_get_ui_manager(CajaWindowInfo *window);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_WINDOW_INFO_H */

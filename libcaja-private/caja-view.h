@@ -26,14 +26,13 @@
 #define CAJA_VIEW_H
 
 #include <glib-object.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
 /* For CajaZoomLevel */
 #include "caja-icon-info.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define CAJA_TYPE_VIEW (caja_view_get_type())
 #define CAJA_VIEW(obj) \
@@ -173,8 +172,6 @@ void caja_view_drop_proxy_received_netscape_url(CajaView *view,
                                                 GdkDragAction action);
 void caja_view_set_is_active(CajaView *view, gboolean is_active);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_VIEW_H */

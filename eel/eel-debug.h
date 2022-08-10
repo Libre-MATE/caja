@@ -27,9 +27,7 @@
 
 #include <glib.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 typedef void (*EelFunction)(void);
 
@@ -43,8 +41,6 @@ void eel_debug_shut_down(void);
 void eel_debug_call_at_shutdown(EelFunction function);
 void eel_debug_call_at_shutdown_with_data(GFreeFunc function, gpointer data);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* EEL_DEBUG_H */

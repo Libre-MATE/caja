@@ -35,11 +35,10 @@
 #ifndef EEL_CANVAS_RECT_ELLIPSE_H
 #define EEL_CANVAS_RECT_ELLIPSE_H
 
+#include <glib.h>
 #include "eel-canvas.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 /* Base class for rectangle and ellipse item types.  These are defined by their
  *top-left and bottom-right corners.  Rectangles and ellipses share the
@@ -145,8 +144,6 @@ struct _EelCanvasRectClass {
 /* Standard Gtk function */
 GType eel_canvas_rect_get_type(void) G_GNUC_CONST;
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
-#endif
+#endif /* EEL_CANVAS_RECT_ELLIPSE_H */

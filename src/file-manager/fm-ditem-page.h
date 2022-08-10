@@ -29,9 +29,7 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 /* This is a mis-nomer. Launcher editables initially were displayed on separate
  * a property notebook page, which implemented the CajaPropertyPageProvider
@@ -44,8 +42,6 @@ extern "C" {
 GtkWidget *fm_ditem_page_make_box(GtkSizeGroup *label_size_group, GList *files);
 gboolean fm_ditem_page_should_show(GList *files);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
-#endif
+#endif /* FM_DITEM_PAGE_H */

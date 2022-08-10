@@ -33,9 +33,7 @@
 
 #include "caja-window-slot.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 #define CAJA_TYPE_NOTEBOOK (caja_notebook_get_type())
 #define CAJA_NOTEBOOK(o) \
@@ -88,8 +86,6 @@ gboolean caja_notebook_can_reorder_current_child_relative(
 gboolean caja_notebook_can_set_current_page_relative(CajaNotebook *notebook,
                                                      int offset);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_NOTEBOOK_H */

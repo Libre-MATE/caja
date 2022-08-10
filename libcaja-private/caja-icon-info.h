@@ -5,11 +5,10 @@
 #include <gdk/gdk.h>
 #include <gio/gio.h>
 #include <glib-object.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 /* Names for Caja's different zoom levels, from tiniest items to largest items
  */
@@ -100,8 +99,6 @@ guint caja_icon_get_emblem_size_for_icon_size(guint size);
 gboolean caja_icon_theme_can_render(GThemedIcon *icon);
 GIcon *caja_user_special_directory_get_gicon(GUserDirectory directory);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_ICON_INFO_H */

@@ -27,17 +27,14 @@
 #define CAJA_FILE_MANAGEMENT_PROPERTIES_H
 
 #include <glib-object.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+G_BEGIN_DECLS
 
 void caja_file_management_properties_dialog_show(GCallback close_callback,
                                                  GtkWindow *window);
 
-#ifdef __cplusplus
-}
-#endif
+G_END_DECLS
 
 #endif /* CAJA_FILE_MANAGEMENT_PROPERTIES_H */
