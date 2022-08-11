@@ -2287,7 +2287,6 @@ static gboolean update_info_internal(CajaFile *file, GFileInfo *info,
   time_string = g_file_info_get_attribute_string(
       info, G_FILE_ATTRIBUTE_TRASH_DELETION_DATE);
   if (time_string != NULL) {
-#if GLIB_CHECK_VERSION(2, 61, 2)
     GDateTime *dt;
     GTimeZone *tz;
     tz = g_time_zone_new_local();
@@ -2297,11 +2296,6 @@ static gboolean update_info_internal(CajaFile *file, GFileInfo *info,
       g_date_time_unref(dt);
     }
     g_time_zone_unref(tz);
-#else
-    GTimeVal g_trash_time;
-    g_time_val_from_iso8601(time_string, &g_trash_time);
-    trash_time = g_trash_time.tv_sec;
-#endif
   }
   if (file->details->trash_time != trash_time) {
     changed = TRUE;
