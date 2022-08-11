@@ -43,12 +43,13 @@ dbus_freedesktop_built_sources =			\
 	caja-freedesktop-generated.h
 
 $(dbus_freedesktop_built_sources) : Makefile.am $(top_srcdir)/data/freedesktop-dbus-interfaces.xml
-	gdbus-codegen									\
-		--interface-prefix org.freedesktop.					\
+	gdbus-codegen								\
+		--interface-prefix org.freedesktop.				\
 		--c-namespace CajaFreedesktop					\
-		--c-generate-object-manager						\
+		--c-generate-object-manager					\
+		--glib-min-required $(GLIB_REQUIRED)				\
 		--generate-c-code caja-freedesktop-generated			\
-		$(top_srcdir)/data/freedesktop-dbus-interfaces.xml			\
+		$(top_srcdir)/data/freedesktop-dbus-interfaces.xml		\
 		$(NULL)
 
 caja-resources.c: $(srcdir)/../data/caja-resources.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir)/../data --generate-dependencies $(srcdir)/../data/caja-resources.gresource.xml)
