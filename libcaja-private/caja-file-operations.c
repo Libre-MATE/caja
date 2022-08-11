@@ -1112,32 +1112,6 @@ static int run_simple_dialog_va(CommonJob *job, gboolean ignore_close_box,
   return res;
 }
 
-#if 0 /* Not used at the moment */
-static int
-run_simple_dialog (CommonJob *job,
-		   gboolean ignore_close_box,
-		   GtkMessageType message_type,
-		   char *primary_text,
-		   char *secondary_text,
-		   const char *details_text,
-		   ...)
-{
-	va_list varargs;
-	int res;
-
-	va_start (varargs, details_text);
-	res = run_simple_dialog_va (job,
-				    ignore_close_box,
-				    message_type,
-				    primary_text,
-				    secondary_text,
-				    details_text,
-				    varargs);
-	va_end (varargs);
-	return res;
-}
-#endif
-
 static int run_error(CommonJob *job, char *primary_text, char *secondary_text,
                      const char *details_text, gboolean show_all, ...) {
   va_list varargs;

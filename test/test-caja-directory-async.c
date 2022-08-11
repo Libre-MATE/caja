@@ -6,40 +6,11 @@
 
 void *client1, *client2;
 
-#if 0
-static gboolean
-quit_cb (gpointer data)
-{
-	gtk_main_quit ();
-
-	return FALSE;
-}
-#endif
-
 static void files_added(CajaDirectory *directory, GList *added_files) {
-#if 0
-	GList *list;
-
-	for (list = added_files; list != NULL; list = list->next) {
-		CajaFile *file = list->data;
-
-		g_print (" - %s\n", caja_file_get_uri (file));
-	}
-#endif
-
   g_print("files added: %d files\n", g_list_length(added_files));
 }
 
 static void files_changed(CajaDirectory *directory, GList *changed_files) {
-#if 0
-	GList *list;
-
-	for (list = changed_files; list != NULL; list = list->next) {
-		CajaFile *file = list->data;
-
-		g_print (" - %s\n", caja_file_get_uri (file));
-	}
-#endif
   g_print("files changed: %d\n", g_list_length(changed_files));
 }
 

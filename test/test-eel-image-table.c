@@ -45,31 +45,11 @@ static GtkWidget *labeled_image_new(const char *text, const char *icon_name) {
 static void image_table_child_enter_callback(GtkWidget *image_table,
                                              GtkWidget *item,
                                              gpointer callback_data) {
-#if 0
-	char *text;
-
-	g_return_if_fail (EEL_IS_IMAGE_TABLE (image_table));
-	g_return_if_fail (EEL_IS_LABELED_IMAGE (item));
-
-	text = eel_labeled_image_get_text (EEL_LABELED_IMAGE (item));
-
-	g_print ("%s(%s)\n", G_STRFUNC, text);
-#endif
 }
 
 static void image_table_child_leave_callback(GtkWidget *image_table,
                                              GtkWidget *item,
                                              gpointer callback_data) {
-#if 0
-	char *text;
-
-	g_return_if_fail (EEL_IS_IMAGE_TABLE (image_table));
-	g_return_if_fail (EEL_IS_LABELED_IMAGE (item));
-
-	text = eel_labeled_image_get_text (EEL_LABELED_IMAGE (item));
-
-	g_print ("%s(%s)\n", G_STRFUNC, text);
-#endif
 }
 
 static void image_table_child_pressed_callback(GtkWidget *image_table,

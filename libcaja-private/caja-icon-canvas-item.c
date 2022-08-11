@@ -720,27 +720,7 @@ static EelIRect compute_text_rectangle(const CajaIconCanvasItem *item,
       text_rectangle.x0 = text_rectangle.x1 - text_dx - text_width;
     }
 
-    /* VOODOO-TODO */
-#if 0
-        if (for_layout)
-        {
-            /* in this case, we should be more smart and calculate the size according to the maximum
-             * number of lines fitting next to the icon. However, this requires a more complex layout logic.
-             * It would mean that when measuring the label, the icon dimensions must be known already,
-             * and we
-             *   1. start with an unlimited layout
-             *   2. measure how many lines of this layout fit next to the icon
-             *   3. limit the number of lines to the given number of fitting lines
-             */
-            real_text_height = VOODOO();
-        }
-        else
-        {
-#endif
     real_text_height = text_height_for_entire_text;
-#if 0
-        }
-#endif
 
     text_rectangle.y0 =
         (icon_rectangle.y0 + icon_rectangle.y1) / 2 - (int)real_text_height / 2;

@@ -1232,12 +1232,6 @@ static gboolean fm_tree_model_iter_has_child(GtkTreeModel *model,
 
   has_child = node != NULL && (node->directory != NULL || node->parent == NULL);
 
-#if 0
-    g_warning ("Node '%s' %s",
-               node && node->file ? caja_file_get_uri (node->file) : "no name",
-               has_child ? "has child" : "no child");
-#endif
-
   return has_child;
 }
 

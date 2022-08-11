@@ -8035,16 +8035,6 @@ void caja_self_check_file(void) {
   EEL_CHECK_STRING_RESULT(caja_file_get_name(file_1), "home");
   caja_file_unref(file_1);
 
-#if 0
-	/* ALEX: I removed this, because it was breaking distchecks.
-	 * It used to work, but when canonical uris changed from
-	 * foo: to foo:/// it broke. I don't expect it to matter
-	 * in real life */
-	file_1 = caja_file_get_by_uri (":");
-	EEL_CHECK_STRING_RESULT (caja_file_get_name (file_1), ":");
-	caja_file_unref (file_1);
-#endif
-
   file_1 = caja_file_get_by_uri("eazel:");
   EEL_CHECK_STRING_RESULT(caja_file_get_name(file_1), "eazel");
   caja_file_unref(file_1);
