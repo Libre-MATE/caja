@@ -43,7 +43,7 @@ dbus_freedesktop_built_sources =			\
 	caja-freedesktop-generated.h
 
 $(dbus_freedesktop_built_sources) : Makefile.am $(top_srcdir)/data/freedesktop-dbus-interfaces.xml
-	gdbus-codegen								\
+	$(GDBUS_CODEGEN)							\
 		--interface-prefix org.freedesktop.				\
 		--c-namespace CajaFreedesktop					\
 		--c-generate-object-manager					\

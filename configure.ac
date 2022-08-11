@@ -125,6 +125,14 @@ GTK_DOC_CHECK([1.4])
 
 dnl ==========================================================================
 
+AC_ARG_VAR([GDBUS_CODEGEN],[gdbus-codegen bin])
+AC_PATH_PROG([GDBUS_CODEGEN],[gdbus-codegen],[])
+if test -z "$GDBUS_CODEGEN"; then
+  AC_MSG_ERROR([gdbus-codegen not found])
+fi
+
+dnl ==========================================================================
+
 AC_ARG_VAR([GLIB_COMPILE_RESOURCES],[glib-compile-resources bin])
 AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources],[])
 if test -z "$GLIB_COMPILE_RESOURCES"; then
