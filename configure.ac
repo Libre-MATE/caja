@@ -3,8 +3,8 @@ AC_PREREQ(2.60)
 dnl ===========================================================================
 
 m4_define(gdkpixbuf_minver,           2.36.5)
-m4_define(glib_minver,                 2.61.2)
-m4_define(gio_minver,                  2.61.2)
+m4_define(glib_minver,                 2.62.0)
+m4_define(gio_minver,                  2.62.0)
 m4_define(mate_desktop_minver,         1.17.3)
 m4_define(pango_minver,                1.1.2)
 m4_define(gtk_minver,                  3.22.0)
