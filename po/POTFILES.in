@@ -58,7 +58,6 @@ mate-submodules/libegg/eggdesktopfile.c
 mate-submodules/libegg/eggsmclient.c
 src/caja-application.c
 src/caja-autorun-software.c
-src/caja-bookmarks-sidebar.c
 src/caja-bookmarks-window.c
 src/caja-connect-server-dialog.c
 src/caja-connect-server-dialog-main.c
