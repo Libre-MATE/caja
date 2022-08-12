@@ -952,7 +952,7 @@ show_dialog:
   combo_box = gtk_combo_box_new();
   caja_autorun_prepare_combo_box(combo_box, x_content_type, FALSE, TRUE, FALSE,
                                  autorun_combo_changed, data);
-  g_signal_connect(G_OBJECT(combo_box), "key-press-event",
+  g_signal_connect(combo_box, "key-press-event",
                    G_CALLBACK(combo_box_enter_ok), dialog);
 
   gtk_box_pack_start(GTK_BOX(vbox), combo_box, TRUE, TRUE, 0);
@@ -961,7 +961,7 @@ show_dialog:
       gtk_check_button_new_with_mnemonic(_("_Always perform this action"));
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(always_check_button),
                                data->remember);
-  g_signal_connect(G_OBJECT(always_check_button), "toggled",
+  g_signal_connect(always_check_button, "toggled",
                    G_CALLBACK(autorun_always_toggled), data);
   gtk_box_pack_start(GTK_BOX(vbox), always_check_button, TRUE, TRUE, 0);
 
@@ -996,10 +996,10 @@ show_dialog:
   /* show the dialog */
   gtk_widget_show_all(dialog);
 
-  g_signal_connect(G_OBJECT(dialog), "response",
+  g_signal_connect(dialog, "response",
                    G_CALLBACK(autorun_dialog_response), data);
 
-  g_signal_connect(G_OBJECT(data->mount), "unmounted",
+  g_signal_connect(data->mount, "unmounted",
                    G_CALLBACK(autorun_dialog_mount_unmounted), data);
 
 out:

@@ -1574,7 +1574,7 @@ static void help_button_callback(GtkWidget *widget,
         GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
         _("There was an error displaying help: \n%s"), error->message);
 
-    g_signal_connect(G_OBJECT(dialog), "response",
+    g_signal_connect(dialog, "response",
                      G_CALLBACK(gtk_widget_destroy), NULL);
     gtk_window_set_resizable(GTK_WINDOW(dialog), FALSE);
     gtk_widget_show(dialog);

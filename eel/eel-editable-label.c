@@ -549,14 +549,14 @@ static void eel_editable_label_init(EelEditableLabel *label) {
    */
   label->im_context = gtk_im_multicontext_new();
 
-  g_signal_connect(G_OBJECT(label->im_context), "commit",
+  g_signal_connect(label->im_context, "commit",
                    G_CALLBACK(eel_editable_label_commit_cb), label);
-  g_signal_connect(G_OBJECT(label->im_context), "preedit_changed",
+  g_signal_connect(label->im_context, "preedit_changed",
                    G_CALLBACK(eel_editable_label_preedit_changed_cb), label);
-  g_signal_connect(G_OBJECT(label->im_context), "retrieve_surrounding",
+  g_signal_connect(label->im_context, "retrieve_surrounding",
                    G_CALLBACK(eel_editable_label_retrieve_surrounding_cb),
                    label);
-  g_signal_connect(G_OBJECT(label->im_context), "delete_surrounding",
+  g_signal_connect(label->im_context, "delete_surrounding",
                    G_CALLBACK(eel_editable_label_delete_surrounding_cb), label);
 }
 

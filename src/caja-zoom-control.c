@@ -213,7 +213,7 @@ static void caja_zoom_control_init(CajaZoomControl *zoom_control) {
                         GTK_RELIEF_NONE);
   gtk_widget_set_tooltip_text(zoom_control->details->zoom_out,
                               _("Decrease the view size"));
-  g_signal_connect(G_OBJECT(zoom_control->details->zoom_out), "clicked",
+  g_signal_connect(zoom_control->details->zoom_out, "clicked",
                    G_CALLBACK(zoom_out_clicked), zoom_control);
 
   gtk_orientable_set_orientation(GTK_ORIENTABLE(zoom_control),
@@ -238,10 +238,10 @@ static void caja_zoom_control_init(CajaZoomControl *zoom_control) {
       G_OBJECT(zoom_control->details->zoom_button), "button-press-event",
       G_CALLBACK(caja_zoom_control_button_press_event), zoom_control);
 
-  g_signal_connect(G_OBJECT(zoom_control->details->zoom_button), "clicked",
+  g_signal_connect(zoom_control->details->zoom_button, "clicked",
                    G_CALLBACK(zoom_button_clicked), zoom_control);
 
-  g_signal_connect(G_OBJECT(zoom_control->details->zoom_button), "popup-menu",
+  g_signal_connect(zoom_control->details->zoom_button, "popup-menu",
                    G_CALLBACK(zoom_popup_menu), zoom_control);
 
   zoom_control->details->zoom_label = gtk_label_new("100%");
@@ -262,7 +262,7 @@ static void caja_zoom_control_init(CajaZoomControl *zoom_control) {
                         GTK_RELIEF_NONE);
   gtk_widget_set_tooltip_text(zoom_control->details->zoom_in,
                               _("Increase the view size"));
-  g_signal_connect(G_OBJECT(zoom_control->details->zoom_in), "clicked",
+  g_signal_connect(zoom_control->details->zoom_in, "clicked",
                    G_CALLBACK(zoom_in_clicked), zoom_control);
 
   gtk_container_add(GTK_CONTAINER(zoom_control->details->zoom_in), image);

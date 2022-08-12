@@ -147,7 +147,7 @@ static void caja_bookmarks_window_response_callback(GtkDialog *dialog,
           GTK_BUTTONS_OK, _("There was an error displaying help: \n%s"),
           error->message);
 
-      g_signal_connect(G_OBJECT(err_dialog), "response",
+      g_signal_connect(err_dialog, "response",
                        G_CALLBACK(gtk_widget_destroy), NULL);
       gtk_window_set_resizable(GTK_WINDOW(err_dialog), FALSE);
       gtk_widget_show(err_dialog);

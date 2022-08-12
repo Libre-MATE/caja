@@ -8057,13 +8057,13 @@ static void caja_icon_container_accessible_initialize(AtkObject *accessible,
         G_OBJECT(container), "selection_changed",
         G_CALLBACK(caja_icon_container_accessible_selection_changed_cb),
         accessible);
-    g_signal_connect(G_OBJECT(container), "icon_added",
+    g_signal_connect(container, "icon_added",
                      G_CALLBACK(caja_icon_container_accessible_icon_added_cb),
                      accessible);
-    g_signal_connect(G_OBJECT(container), "icon_removed",
+    g_signal_connect(container, "icon_removed",
                      G_CALLBACK(caja_icon_container_accessible_icon_removed_cb),
                      accessible);
-    g_signal_connect(G_OBJECT(container), "cleared",
+    g_signal_connect(container, "cleared",
                      G_CALLBACK(caja_icon_container_accessible_cleared_cb),
                      accessible);
   }

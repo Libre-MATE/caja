@@ -212,7 +212,7 @@ static void present_autorun_for_software_dialog(GMount *mount) {
   data->dialog = dialog;
   data->mount = g_object_ref(mount);
 
-  g_signal_connect(G_OBJECT(mount), "unmounted",
+  g_signal_connect(mount, "unmounted",
                    G_CALLBACK(autorun_software_dialog_mount_unmounted), data);
 
   gtk_dialog_add_button(GTK_DIALOG(dialog), _("_Run"), GTK_RESPONSE_OK);

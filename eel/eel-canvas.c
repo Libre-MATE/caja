@@ -1809,7 +1809,7 @@ static void eel_canvas_init(EelCanvas *canvas) {
   g_object_ref_sink(canvas->root);
 
   canvas->root_destroy_id =
-      g_signal_connect(G_OBJECT(canvas->root), "destroy",
+      g_signal_connect(canvas->root, "destroy",
                        G_CALLBACK(panic_root_destroyed), canvas);
 
   canvas->need_repick = TRUE;

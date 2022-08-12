@@ -338,19 +338,19 @@ static void signal_connect_while_realized(GtkWidget *object, const char *name,
 
   info->object = G_OBJECT(object);
   info->object_destroy_handler =
-      g_signal_connect(G_OBJECT(info->object), "destroy",
+      g_signal_connect(info->object, "destroy",
                        G_CALLBACK(while_realized_disconnecter), info);
 
   info->realized_widget = realized_widget;
   info->realized_widget_destroy_handler =
-      g_signal_connect(G_OBJECT(info->realized_widget), "destroy",
+      g_signal_connect(info->realized_widget, "destroy",
                        G_CALLBACK(while_realized_disconnecter), info);
   info->realized_widget_unrealized_handler =
       g_signal_connect_after(G_OBJECT(info->realized_widget), "unrealize",
                              G_CALLBACK(while_realized_disconnecter), info);
 
   info->signal_handler =
-      g_signal_connect(G_OBJECT(info->object), name, callback, callback_data);
+      g_signal_connect(info->object, name, callback, callback_data);
 }
 
 static int ancestor_enter_notify_event(GtkWidget *widget,

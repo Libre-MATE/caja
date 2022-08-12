@@ -194,7 +194,7 @@ static void add_tree_view(CajaColumnChooser *chooser) {
 
   cell = gtk_cell_renderer_toggle_new();
 
-  g_signal_connect(G_OBJECT(cell), "toggled",
+  g_signal_connect(cell, "toggled",
                    G_CALLBACK(visible_toggled_callback), chooser);
 
   gtk_tree_view_insert_column_with_attributes(

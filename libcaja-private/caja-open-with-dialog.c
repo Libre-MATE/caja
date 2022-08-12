@@ -818,7 +818,7 @@ static void caja_open_with_dialog_init(CajaOpenWithDialog *dialog) {
 
   /* Hook up the entry to the button */
   gtk_widget_set_sensitive(dialog->details->button, FALSE);
-  g_signal_connect(G_OBJECT(dialog->details->entry), "changed",
+  g_signal_connect(dialog->details->entry, "changed",
                    G_CALLBACK(entry_changed_cb), dialog);
 
   hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);

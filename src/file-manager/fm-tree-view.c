@@ -1263,10 +1263,10 @@ static void create_tree(FMTreeView *view) {
       gtk_tree_view_get_selection(GTK_TREE_VIEW(view->details->tree_widget)),
       "changed", G_CALLBACK(selection_changed_callback), view, 0);
 
-  g_signal_connect(G_OBJECT(view->details->tree_widget), "row-activated",
+  g_signal_connect(view->details->tree_widget, "row-activated",
                    G_CALLBACK(row_activated_callback), view);
 
-  g_signal_connect(G_OBJECT(view->details->tree_widget), "button_press_event",
+  g_signal_connect(view->details->tree_widget, "button_press_event",
                    G_CALLBACK(button_pressed_callback), view);
 
   slot = caja_window_info_get_active_slot(view->details->window);
