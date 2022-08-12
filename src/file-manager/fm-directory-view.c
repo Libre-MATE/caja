@@ -903,7 +903,6 @@ static void trash_or_delete_selected_files(FMDirectoryView *view) {
 }
 
 static gboolean real_trash(FMDirectoryView *view) {
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   GtkAction *action;
 
   action = gtk_action_group_get_action(view->details->dir_action_group,
@@ -912,7 +911,6 @@ static gboolean real_trash(FMDirectoryView *view) {
     trash_or_delete_selected_files(view);
     return TRUE;
   }
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   return FALSE;
 }
 
@@ -963,7 +961,6 @@ static void action_restore_from_trash_callback(GtkAction *action,
 }
 
 static gboolean real_delete(FMDirectoryView *view) {
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   GtkAction *action;
 
   action = gtk_action_group_get_action(view->details->dir_action_group,
@@ -972,7 +969,6 @@ static gboolean real_delete(FMDirectoryView *view) {
     delete_selected_files(view);
     return TRUE;
   }
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   return FALSE;
 }
 
@@ -3949,9 +3945,7 @@ static void add_submenu(GtkUIManager *ui_manager, GtkActionGroup *action_group,
     if (add_action) {
       GtkAction *action;
 
-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
       action = gtk_action_new(action_name, escaped_label, NULL, NULL);
-      G_GNUC_END_IGNORE_DEPRECATIONS;
       if (surface != NULL) {
         g_object_set_data_full(G_OBJECT(action), "menu-icon",
                                cairo_surface_reference(surface),
@@ -3960,9 +3954,7 @@ static void add_submenu(GtkUIManager *ui_manager, GtkActionGroup *action_group,
 
       g_object_set(action, "hide-if-empty", FALSE, NULL);
 
-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
       gtk_action_group_add_action(action_group, action);
-      G_GNUC_END_IGNORE_DEPRECATIONS;
       g_object_unref(action);
     }
 
@@ -4009,9 +4001,7 @@ static void add_application_to_open_with_menu(FMDirectoryView *view,
 
   action_name = g_strdup_printf("open_with_%d", index);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_new(action_name, label, tip, NULL);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   app_icon = g_app_info_get_icon(application);
   if (app_icon != NULL) {
@@ -4020,18 +4010,14 @@ static void add_application_to_open_with_menu(FMDirectoryView *view,
     app_icon = g_themed_icon_new("application-x-executable");
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_gicon(action, app_icon);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_unref(app_icon);
 
   g_signal_connect_data(
       action, "activate", G_CALLBACK(open_with_launch_application_callback),
       launch_parameters, (GClosureNotify)application_launch_parameters_free, 0);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_group_add_action(view->details->open_with_action_group, action);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_unref(action);
 
   gtk_ui_manager_add_ui(caja_window_info_get_ui_manager(view->details->window),
@@ -4085,19 +4071,15 @@ static void add_parent_folder_to_open_menu(FMDirectoryView *view, GList *files,
   tip = g_strdup(_("Open parent location for the selected item"));
   action_name = g_strdup("open_location");
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_new(action_name, label, tip, NULL);
 
   gtk_action_set_icon_name(action, "folder");
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   g_signal_connect_data(action, "activate",
                         G_CALLBACK(open_parent_folder_callback), uri,
                         (GClosureNotify)g_free, 0);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_group_add_action(view->details->open_with_action_group, action);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_unref(action);
 
   gtk_ui_manager_add_ui(caja_window_info_get_ui_manager(view->details->window),
@@ -4269,7 +4251,6 @@ static void reset_open_with_menu(FMDirectoryView *view, GList *selection) {
   open_with_chooser_visible =
       other_applications_visible && g_list_length(selection) == 1;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   if (submenu_visible) {
     action = gtk_action_group_get_action(view->details->dir_action_group,
                                          FM_ACTION_OTHER_APPLICATION1);
@@ -4285,7 +4266,6 @@ static void reset_open_with_menu(FMDirectoryView *view, GList *selection) {
                                          FM_ACTION_OTHER_APPLICATION2);
     gtk_action_set_visible(action, open_with_chooser_visible);
   }
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static GList *get_all_extension_menu_items(GtkWidget *window,
@@ -4436,9 +4416,7 @@ static GtkAction *add_extension_action_for_files(FMDirectoryView *view,
                "icon", &icon, "sensitive", &sensitive, "priority", &priority,
                NULL);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_new(name, label, tip, icon);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   if (icon != NULL) {
     cairo_surface_t *surface;
@@ -4451,9 +4429,7 @@ static GtkAction *add_extension_action_for_files(FMDirectoryView *view,
     }
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_sensitive(action, sensitive);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_set(action, "is-important", priority, NULL);
 
   data = g_new0(ExtensionActionCallbackData, 1);
@@ -4466,10 +4442,8 @@ static GtkAction *add_extension_action_for_files(FMDirectoryView *view,
                         G_CALLBACK(extension_action_callback), data,
                         (GClosureNotify)extension_action_callback_data_free, 0);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_group_add_action(view->details->extensions_menu_action_group,
                               GTK_ACTION(action));
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_unref(action);
 
   g_free(name);
@@ -4503,9 +4477,7 @@ static void add_extension_menu_items(FMDirectoryView *view, GList *files,
 
     path = g_build_path("/", FM_DIRECTORY_VIEW_POPUP_PATH_EXTENSION_ACTIONS,
                         subdirectory, NULL);
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     action_name = gtk_action_get_name(action);
-    G_GNUC_END_IGNORE_DEPRECATIONS;
 
     gtk_ui_manager_add_ui(
         ui_manager, view->details->extensions_menu_merge_id, path, action_name,
@@ -4529,10 +4501,8 @@ static void add_extension_menu_items(FMDirectoryView *view, GList *files,
 
       children = caja_menu_get_items(menu);
 
-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
       subdir =
           g_build_path("/", subdirectory, gtk_action_get_name(action), NULL);
-      G_GNUC_END_IGNORE_DEPRECATIONS;
       add_extension_menu_items(view, files, children, subdir);
 
       caja_menu_item_list_free(children);
@@ -4902,9 +4872,7 @@ static void add_script_to_scripts_menus(FMDirectoryView *directory_view,
   action_name = escape_action_name(uri, "script_");
   escaped_label = eel_str_double_underscores(name);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_new(action_name, escaped_label, tip, NULL);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   surface = get_menu_icon_for_file(file, GTK_WIDGET(directory_view));
   if (surface != NULL) {
@@ -4916,10 +4884,8 @@ static void add_script_to_scripts_menus(FMDirectoryView *directory_view,
                         launch_parameters,
                         (GClosureNotify)script_launch_parameters_free, 0);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_group_add_action_with_accel(
       directory_view->details->scripts_action_group, action, NULL);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_unref(action);
 
   ui_manager = caja_window_info_get_ui_manager(directory_view->details->window);
@@ -5093,11 +5059,9 @@ static void update_scripts_menu(FMDirectoryView *view) {
   }
   caja_directory_list_free(sorted_copy);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_SCRIPTS);
   gtk_action_set_visible(action, any_scripts);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void create_template_callback(GtkAction *action,
@@ -5134,9 +5098,7 @@ static void add_template_to_templates_menus(FMDirectoryView *directory_view,
 
   parameters = create_template_parameters_new(file, directory_view);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_new(action_name, escaped_label, tip, NULL);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   surface = get_menu_icon_for_file(file, GTK_WIDGET(directory_view));
   if (surface != NULL) {
@@ -5148,10 +5110,8 @@ static void add_template_to_templates_menus(FMDirectoryView *directory_view,
                         G_CALLBACK(create_template_callback), parameters,
                         (GClosureNotify)create_templates_parameters_free, 0);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_group_add_action(directory_view->details->templates_action_group,
                               action);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_unref(action);
 
   ui_manager = caja_window_info_get_ui_manager(directory_view->details->window);
@@ -5338,11 +5298,9 @@ static void update_templates_menu(FMDirectoryView *view) {
   }
   caja_directory_list_free(sorted_copy);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_NO_TEMPLATES);
   gtk_action_set_visible(action, !any_templates);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   g_free(templates_directory_uri);
 }
@@ -6992,9 +6950,7 @@ static void connect_proxy(FMDirectoryView *view, GtkAction *action,
                           GtkWidget *proxy, GtkActionGroup *action_group) {
   const gchar *action_name;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action_name = gtk_action_get_name(action);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   if (strcmp(action_name, FM_ACTION_NEW_EMPTY_FILE) == 0 &&
       GTK_IS_IMAGE_MENU_ITEM(proxy)) {
@@ -7055,7 +7011,6 @@ static void real_merge_menus(FMDirectoryView *view) {
 
   ui_manager = caja_window_info_get_ui_manager(view->details->window);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action_group = gtk_action_group_new("DirViewActions");
 #ifdef ENABLE_NLS
   gtk_action_group_set_translation_domain(action_group, GETTEXT_PACKAGE);
@@ -7063,12 +7018,10 @@ static void real_merge_menus(FMDirectoryView *view) {
   view->details->dir_action_group = action_group;
   gtk_action_group_add_actions(action_group, directory_view_entries,
                                G_N_ELEMENTS(directory_view_entries), view);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   /* Translators: %s is a directory */
   tooltip = g_strdup_printf(_("Run or manage scripts from %s"),
                             "~/.config/caja/scripts");
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   /* Create a script action here specially because its tooltip is dynamic */
   action = gtk_action_new("Scripts", _("_Scripts"), tooltip, NULL);
   gtk_action_group_add_action(action_group, action);
@@ -7077,7 +7030,6 @@ static void real_merge_menus(FMDirectoryView *view) {
 
   action = gtk_action_group_get_action(action_group, FM_ACTION_NO_TEMPLATES);
   gtk_action_set_sensitive(action, FALSE);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   g_signal_connect_object(action_group, "connect-proxy",
                           G_CALLBACK(connect_proxy), G_OBJECT(view),
@@ -7159,7 +7111,6 @@ static void clipboard_targets_received(GtkClipboard *clipboard,
   selection = fm_directory_view_get_selection(view);
   count = g_list_length(selection);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_PASTE);
   gtk_action_set_sensitive(action,
@@ -7173,16 +7124,13 @@ static void clipboard_targets_received(GtkClipboard *clipboard,
 
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_PASTE_FILES_INTO);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_set_data(G_OBJECT(action), "can-paste-according-to-clipboard",
                     GINT_TO_POINTER(can_paste));
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_sensitive(
       action, GPOINTER_TO_INT(g_object_get_data(
                   G_OBJECT(action), "can-paste-according-to-clipboard")) &&
                   GPOINTER_TO_INT(g_object_get_data(
                       G_OBJECT(action), "can-paste-according-to-destination")));
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   caja_file_list_free(selection);
 
@@ -7433,9 +7381,7 @@ static void update_restore_from_trash_action(GtkAction *action, GList *files,
   if (original_file != NULL || original_dirs != NULL) {
     char *tooltip;
 
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     gtk_action_set_visible(action, TRUE);
-    G_GNUC_END_IGNORE_DEPRECATIONS;
 
     if (original_file != NULL) {
       original_location = caja_file_get_location(original_file);
@@ -7498,9 +7444,7 @@ static void update_restore_from_trash_action(GtkAction *action, GList *files,
       g_object_unref(original_location);
     }
   } else {
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     gtk_action_set_visible(action, FALSE);
-    G_GNUC_END_IGNORE_DEPRECATIONS;
   }
 
   caja_file_unref(original_file);
@@ -7575,7 +7519,6 @@ static void real_update_menus_volumes(FMDirectoryView *view, GList *selection,
     show_poll &= show_poll_one;
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_CONNECT_TO_SERVER_LINK);
   gtk_action_set_visible(action, show_connect);
@@ -7658,7 +7601,6 @@ static void real_update_menus_volumes(FMDirectoryView *view, GList *selection,
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_POLL);
   gtk_action_set_visible(action, show_poll);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   show_self_mount = show_self_unmount = show_self_eject = show_self_format =
       show_self_start = show_self_stop = show_self_poll = FALSE;
@@ -7669,7 +7611,6 @@ static void real_update_menus_volumes(FMDirectoryView *view, GList *selection,
                         &show_self_stop, &show_self_poll,
                         &self_start_stop_type);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_SELF_MOUNT_VOLUME);
   gtk_action_set_visible(action, show_self_mount);
@@ -7760,7 +7701,6 @@ static void real_update_menus_volumes(FMDirectoryView *view, GList *selection,
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_SELF_POLL);
   gtk_action_set_visible(action, show_self_poll);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void real_update_location_menu_volumes(FMDirectoryView *view) {
@@ -7784,7 +7724,6 @@ static void real_update_location_menu_volumes(FMDirectoryView *view) {
                            &show_connect, &show_format, &show_start, &show_stop,
                            &show_poll, &start_stop_type);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_MOUNT_VOLUME);
   gtk_action_set_visible(action, show_mount);
@@ -7863,7 +7802,6 @@ static void real_update_location_menu_volumes(FMDirectoryView *view) {
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_POLL);
   gtk_action_set_visible(action, show_poll);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 /* TODO: we should split out this routine into two functions:
@@ -7887,7 +7825,6 @@ static void real_update_paste_menu(FMDirectoryView *view, GList *selection,
   can_paste_files_into =
       (selection_count == 1 && can_paste_into_file(CAJA_FILE(selection->data)));
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_PASTE);
   gtk_action_set_sensitive(action, !is_read_only);
@@ -7896,7 +7833,6 @@ static void real_update_paste_menu(FMDirectoryView *view, GList *selection,
                                        FM_ACTION_PASTE_FILES_INTO);
   gtk_action_set_visible(action, can_paste_files_into);
   gtk_action_set_sensitive(action, !selection_is_read_only);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   /* Ask the clipboard */
   g_object_ref(view); /* Need to keep the object alive until we get the reply */
@@ -7934,7 +7870,6 @@ static void real_update_location_menu(FMDirectoryView *view) {
   } else {
     label = g_strdup(ngettext("_Browse Folder", "_Browse Folders", 1));
   }
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_OPEN_ALTERNATE);
   g_object_set(action, "label", label, NULL);
@@ -7942,7 +7877,6 @@ static void real_update_location_menu(FMDirectoryView *view) {
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_OPEN_IN_NEW_TAB);
   gtk_action_set_visible(action, show_open_in_new_tab);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   if (show_open_in_new_tab) {
     if (g_settings_get_boolean(caja_preferences,
@@ -7954,11 +7888,9 @@ static void real_update_location_menu(FMDirectoryView *view) {
     g_object_set(action, "label", label, NULL);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_OPEN_FOLDER_WINDOW);
   gtk_action_set_visible(action, show_open_folder_window);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   file = view->details->location_popup_directory_as_file;
   g_assert(CAJA_IS_FILE(file));
@@ -7973,23 +7905,19 @@ static void real_update_location_menu(FMDirectoryView *view) {
   can_delete_file =
       caja_file_can_delete(file) && !is_special_link && !is_desktop_or_home_dir;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_CUT);
   gtk_action_set_sensitive(action, can_delete_file);
 
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_PASTE_FILES_INTO);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_set_data(G_OBJECT(action), "can-paste-according-to-destination",
                     GINT_TO_POINTER(can_paste_into_file(file)));
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_sensitive(
       action, GPOINTER_TO_INT(g_object_get_data(
                   G_OBJECT(action), "can-paste-according-to-clipboard")) &&
                   GPOINTER_TO_INT(g_object_get_data(
                       G_OBJECT(action), "can-paste-according-to-destination")));
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   show_delete = TRUE;
 
@@ -8008,7 +7936,6 @@ static void real_update_location_menu(FMDirectoryView *view) {
         caja_preferences, CAJA_PREFERENCES_ENABLE_DELETE);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_TRASH);
   g_object_set(action, "label", label, "tooltip", tip, "icon-name",
@@ -8030,7 +7957,6 @@ static void real_update_location_menu(FMDirectoryView *view) {
 
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_LOCATION_RESTORE_FROM_TRASH);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   l.prev = NULL;
   l.next = NULL;
   l.data = file;
@@ -8130,7 +8056,6 @@ static void real_update_menus(FMDirectoryView *view) {
 
   vfolder_directory = we_are_in_vfolder_desktop_dir(view);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_RENAME);
   gtk_action_set_sensitive(
@@ -8144,7 +8069,6 @@ static void real_update_menus(FMDirectoryView *view) {
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_OPEN);
   gtk_action_set_sensitive(action, selection_count != 0);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   can_open = show_app = selection_count != 0;
 
@@ -8217,12 +8141,10 @@ static void real_update_menus(FMDirectoryView *view) {
     app_icon = g_themed_icon_new("document-open");
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_gicon(action, app_icon);
   g_object_unref(app_icon);
 
   gtk_action_set_visible(action, can_open);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   g_free(label_with_underscore);
 
@@ -8261,7 +8183,6 @@ static void real_update_menus(FMDirectoryView *view) {
         ngettext("_Browse Folder", "_Browse Folders", selection_count));
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_OPEN_ALTERNATE);
   g_object_set(action, "label", label_with_underscore, NULL);
@@ -8269,7 +8190,6 @@ static void real_update_menus(FMDirectoryView *view) {
 
   gtk_action_set_sensitive(action, selection_count != 0);
   gtk_action_set_visible(action, show_open_alternate);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   /* Open in New Tab action */
   if (caja_window_info_get_window_type(view->details->window) ==
@@ -8294,7 +8214,6 @@ static void real_update_menus(FMDirectoryView *view) {
             selection_count);
       }
     }
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     action = gtk_action_group_get_action(view->details->dir_action_group,
                                          FM_ACTION_OPEN_IN_NEW_TAB);
     gtk_action_set_sensitive(action, selection_count != 0);
@@ -8305,13 +8224,11 @@ static void real_update_menus(FMDirectoryView *view) {
     action = gtk_action_group_get_action(view->details->dir_action_group,
                                          FM_ACTION_OPEN_IN_NEW_TAB);
     gtk_action_set_visible(action, FALSE);
-    G_GNUC_END_IGNORE_DEPRECATIONS;
   }
 
   /* next pane actions, only in navigation mode */
   if (caja_window_info_get_window_type(view->details->window) !=
       CAJA_WINDOW_NAVIGATION) {
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     action = gtk_action_group_get_action(view->details->dir_action_group,
                                          FM_ACTION_COPY_TO_NEXT_PANE);
     gtk_action_set_visible(action, FALSE);
@@ -8323,7 +8240,6 @@ static void real_update_menus(FMDirectoryView *view) {
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_OPEN_FOLDER_WINDOW);
   gtk_action_set_visible(action, show_open_folder_window);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   /* Broken into its own function just for convenience */
   reset_open_with_menu(view, selection);
@@ -8340,7 +8256,6 @@ static void real_update_menus(FMDirectoryView *view) {
         caja_preferences, CAJA_PREFERENCES_ENABLE_DELETE);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_TRASH);
   g_object_set(action, "label", label, "tooltip", tip, "icon-name",
@@ -8370,14 +8285,12 @@ static void real_update_menus(FMDirectoryView *view) {
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_CREATE_LINK);
   gtk_action_set_sensitive(action, can_link_files);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_set(action, "label",
                ngettext("Ma_ke Link", "Ma_ke Links", selection_count), NULL);
 
   show_properties = (!FM_IS_DESKTOP_ICON_VIEW(view) || selection_count > 0) &&
                     fm_directory_view_supports_properties(view);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_PROPERTIES);
 
@@ -8403,7 +8316,6 @@ static void real_update_menus(FMDirectoryView *view) {
   g_object_set(action, "label", _("E_mpty Trash"), NULL);
   gtk_action_set_sensitive(action, !caja_trash_monitor_is_empty());
   gtk_action_set_visible(action, should_show_empty_trash(view));
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   show_save_search = FALSE;
   save_search_sensitive = FALSE;
@@ -8419,7 +8331,6 @@ static void real_update_menus(FMDirectoryView *view) {
       show_save_search_as = TRUE;
     }
   }
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_SAVE_SEARCH);
   gtk_action_set_visible(action, show_save_search);
@@ -8447,18 +8358,15 @@ static void real_update_menus(FMDirectoryView *view) {
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_COPY);
   gtk_action_set_sensitive(action, can_copy_files);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   real_update_paste_menu(view, selection, selection_count);
 
   disable_command_line = g_settings_get_boolean(
       mate_lockdown_preferences, CAJA_PREFERENCES_LOCKDOWN_COMMAND_LINE);
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_NEW_LAUNCHER);
   gtk_action_set_visible(action, vfolder_directory && !disable_command_line);
   gtk_action_set_sensitive(action, can_create_files);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   real_update_menus_volumes(view, selection, selection_count);
 
@@ -8470,11 +8378,9 @@ static void real_update_menus(FMDirectoryView *view) {
     update_scripts_menu(view);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_NEW_DOCUMENTS);
   gtk_action_set_sensitive(action, can_create_files);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   if (can_create_files && view->details->templates_invalid) {
     update_templates_menu(view);
@@ -8482,7 +8388,6 @@ static void real_update_menus(FMDirectoryView *view) {
 
   next_pane_is_writable = has_writable_extra_pane(view);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   /* next pane: works if file is copyable, and next pane is writable */
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_COPY_TO_NEXT_PANE);
@@ -8513,7 +8418,6 @@ static void real_update_menus(FMDirectoryView *view) {
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        "MoveToMenu");
   gtk_action_set_sensitive(action, can_delete_files);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 /**
@@ -10265,11 +10169,9 @@ static void undo_update_menu(FMDirectoryView *view) {
   gchar *label;
   gchar *tooltip;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   /* Update undo entry */
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_UNDO);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   available = view->details->undo_active;
   if (available) {
     label = view->details->undo_action_label;
@@ -10280,13 +10182,11 @@ static void undo_update_menu(FMDirectoryView *view) {
     tooltip = _("Undo the last action");
   }
   g_object_set(action, "label", label, "tooltip", tooltip, NULL);
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_sensitive(action, available);
 
   /* Update redo entry */
   action = gtk_action_group_get_action(view->details->dir_action_group,
                                        FM_ACTION_REDO);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   available = view->details->redo_active;
   if (available) {
     label = view->details->redo_action_label;
@@ -10297,7 +10197,5 @@ static void undo_update_menu(FMDirectoryView *view) {
     tooltip = _("Redo the last undone action");
   }
   g_object_set(action, "label", label, "tooltip", tooltip, NULL);
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_sensitive(action, available);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }

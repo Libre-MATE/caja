@@ -43,10 +43,8 @@ struct _CajaViewAsActionPrivate {
   CajaNavigationWindow *window;
 };
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 G_DEFINE_TYPE_WITH_PRIVATE(CajaViewAsAction, caja_view_as_action,
                            GTK_TYPE_ACTION)
-G_GNUC_END_IGNORE_DEPRECATIONS;
 
 enum { PROP_0, PROP_WINDOW };
 
@@ -179,9 +177,7 @@ static void connect_proxy(GtkAction *action, GtkWidget *proxy) {
                      G_CALLBACK(view_as_changed_callback), view_as_combo_box);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   (*GTK_ACTION_CLASS(parent_class)->connect_proxy)(action, proxy);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void disconnect_proxy(GtkAction *action, GtkWidget *proxy) {
@@ -194,9 +190,7 @@ static void disconnect_proxy(GtkAction *action, GtkWidget *proxy) {
         G_CALLBACK(view_as_changed_callback), NULL);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   (*GTK_ACTION_CLASS(parent_class)->disconnect_proxy)(action, proxy);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void caja_view_as_action_finalize(GObject *object) {
@@ -232,9 +226,7 @@ static void caja_view_as_action_get_property(GObject *object, guint prop_id,
 
 static void caja_view_as_action_class_init(CajaViewAsActionClass *class) {
   GObjectClass *object_class = G_OBJECT_CLASS(class);
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   GtkActionClass *action_class = GTK_ACTION_CLASS(class);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   object_class->finalize = caja_view_as_action_finalize;
   object_class->set_property = caja_view_as_action_set_property;

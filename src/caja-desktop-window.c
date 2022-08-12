@@ -107,11 +107,9 @@ static void caja_desktop_window_init(CajaDesktopWindow *window) {
   gtk_widget_hide(CAJA_WINDOW(window)->details->menubar);
 
   /* Don't allow close action on desktop */
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(
       CAJA_WINDOW(window)->details->main_action_group, CAJA_ACTION_CLOSE);
   gtk_action_set_sensitive(action, FALSE);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   /* Set the accessible name so that it doesn't inherit the cryptic desktop URI.
    */

@@ -509,7 +509,6 @@ static gboolean caja_navigation_window_key_press_event(GtkWidget *widget,
     if (extra_navigation_window_keybindings[i].keyval == event->keyval) {
       GtkAction *action;
 
-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
       action = gtk_action_group_get_action(
           window->details->navigation_action_group,
           extra_navigation_window_keybindings[i].action);
@@ -519,7 +518,6 @@ static gboolean caja_navigation_window_key_press_event(GtkWidget *widget,
         gtk_action_activate(action);
         return TRUE;
       }
-      G_GNUC_END_IGNORE_DEPRECATIONS;
 
       break;
     }
@@ -663,24 +661,20 @@ void caja_navigation_window_allow_back(CajaNavigationWindow *window,
                                        gboolean allow) {
   GtkAction *action;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(window->details->navigation_action_group,
                                        CAJA_ACTION_BACK);
 
   gtk_action_set_sensitive(action, allow);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 void caja_navigation_window_allow_forward(CajaNavigationWindow *window,
                                           gboolean allow) {
   GtkAction *action;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(window->details->navigation_action_group,
                                        CAJA_ACTION_FORWARD);
 
   gtk_action_set_sensitive(action, allow);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void real_sync_title(CajaWindow *window, CajaWindowSlot *slot) {
@@ -783,7 +777,6 @@ void caja_navigation_window_set_search_button(CajaNavigationWindow *window,
                                               gboolean state) {
   GtkAction *action;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(window->details->navigation_action_group,
                                        "Search");
 
@@ -792,7 +785,6 @@ void caja_navigation_window_set_search_button(CajaNavigationWindow *window,
   g_object_set_data(G_OBJECT(action), "blocked", GINT_TO_POINTER(1));
   gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), state);
   g_object_set_data(G_OBJECT(action), "blocked", NULL);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void side_panel_image_changed_callback(CajaSidebar *side_panel,
@@ -1200,7 +1192,6 @@ void caja_navigation_window_split_view_on(CajaNavigationWindow *window) {
   caja_window_slot_go_to(slot, location, FALSE);
   g_object_unref(location);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_group_get_action(
       CAJA_NAVIGATION_WINDOW(CAJA_WINDOW_PANE(pane)->window)
           ->details->navigation_action_group,
@@ -1210,7 +1201,6 @@ void caja_navigation_window_split_view_on(CajaNavigationWindow *window) {
   } else {
     caja_navigation_window_pane_hide_location_bar(pane, TRUE);
   }
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 void caja_navigation_window_split_view_off(CajaNavigationWindow *window) {

@@ -52,12 +52,10 @@ void caja_ui_unmerge_ui(GtkUIManager *ui_manager, guint *merge_id,
 void caja_ui_prepare_merge_ui(GtkUIManager *ui_manager, const char *name,
                               guint *merge_id, GtkActionGroup **action_group) {
   *merge_id = gtk_ui_manager_new_merge_id(ui_manager);
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   *action_group = gtk_action_group_new(name);
 #ifdef ENABLE_NLS
   gtk_action_group_set_translation_domain(*action_group, GETTEXT_PACKAGE);
 #endif /* ENABLE_NLS */
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   gtk_ui_manager_insert_action_group(ui_manager, *action_group, 0);
   g_object_unref(*action_group); /* owned by ui manager */
 }
@@ -112,9 +110,7 @@ static void extension_action_sensitive_callback(CajaMenuItem *item,
 
   g_object_get(G_OBJECT(item), "sensitive", &value, NULL);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_sensitive(GTK_ACTION(user_data), value);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static cairo_surface_t *get_action_icon(const char *icon_name, int size,
@@ -146,9 +142,7 @@ GtkAction *caja_action_from_menu_item(CajaMenuItem *item,
                "icon", &icon_name, "sensitive", &sensitive, "priority",
                &priority, NULL);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_new(name, label, tip, icon_name);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   if (icon_name != NULL) {
     cairo_surface_t *surface;
@@ -162,9 +156,7 @@ GtkAction *caja_action_from_menu_item(CajaMenuItem *item,
     }
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_sensitive(action, sensitive);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_set(action, "is-important", priority, NULL);
 
   g_signal_connect_data(action, "activate",
@@ -189,9 +181,7 @@ GtkAction *caja_toolbar_action_from_menu_item(CajaMenuItem *item,
                "icon", &icon_name, "sensitive", &sensitive, "priority",
                &priority, NULL);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_action_new(name, label, tip, icon_name);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   if (icon_name != NULL) {
     cairo_surface_t *surface;
@@ -206,9 +196,7 @@ GtkAction *caja_toolbar_action_from_menu_item(CajaMenuItem *item,
     }
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_set_sensitive(action, sensitive);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_object_set(action, "is-important", priority, NULL);
 
   g_signal_connect_data(action, "activate",

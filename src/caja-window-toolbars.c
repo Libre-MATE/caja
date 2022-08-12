@@ -156,13 +156,11 @@ void caja_navigation_window_load_extension_toolbar_items(
 
   merge_id = gtk_ui_manager_new_merge_id(ui_manager);
   window->details->extensions_toolbar_merge_id = merge_id;
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action_group = gtk_action_group_new("ExtensionsToolbarGroup");
   window->details->extensions_toolbar_action_group = action_group;
 #ifdef ENABLE_NLS
   gtk_action_group_set_translation_domain(action_group, GETTEXT_PACKAGE);
 #endif /* ENABLE_NLS */
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   gtk_ui_manager_insert_action_group(ui_manager, action_group, -1);
   g_object_unref(action_group); /* owned by ui manager */
 
@@ -173,12 +171,10 @@ void caja_navigation_window_load_extension_toolbar_items(
 
     action = caja_toolbar_action_from_menu_item(item, GTK_WIDGET(window));
 
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     gtk_action_group_add_action(action_group, GTK_ACTION(action));
     g_object_unref(action);
 
     action_name = gtk_action_get_name(action);
-    G_GNUC_END_IGNORE_DEPRECATIONS;
 
     gtk_ui_manager_add_ui(ui_manager, merge_id, TOOLBAR_PATH_EXTENSION_ACTIONS,
                           action_name, action_name, GTK_UI_MANAGER_TOOLITEM,

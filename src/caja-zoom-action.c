@@ -45,9 +45,7 @@ struct _CajaZoomActionPrivate {
 
 enum { PROP_0, PROP_WINDOW };
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 G_DEFINE_TYPE_WITH_PRIVATE(CajaZoomAction, caja_zoom_action, GTK_TYPE_ACTION)
-G_GNUC_END_IGNORE_DEPRECATIONS;
 
 static void zoom_changed_callback(CajaWindow *window, CajaZoomLevel zoom_level,
                                   gboolean supports_zooming, gboolean can_zoom,
@@ -93,9 +91,7 @@ static void connect_proxy(GtkAction *action, GtkWidget *proxy) {
                      zoom_control);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   (*GTK_ACTION_CLASS(parent_class)->connect_proxy)(action, proxy);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void disconnect_proxy(GtkAction *action, GtkWidget *proxy) {
@@ -111,9 +107,7 @@ static void disconnect_proxy(GtkAction *action, GtkWidget *proxy) {
         window, G_CALLBACK(zoom_changed_callback), child);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   (*GTK_ACTION_CLASS(parent_class)->disconnect_proxy)(action, proxy);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void caja_zoom_action_finalize(GObject *object) {
@@ -149,9 +143,7 @@ static void caja_zoom_action_get_property(GObject *object, guint prop_id,
 
 static void caja_zoom_action_class_init(CajaZoomActionClass *class) {
   GObjectClass *object_class = G_OBJECT_CLASS(class);
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   GtkActionClass *action_class = GTK_ACTION_CLASS(class);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   object_class->finalize = caja_zoom_action_finalize;
   object_class->set_property = caja_zoom_action_set_property;

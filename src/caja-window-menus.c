@@ -173,11 +173,9 @@ void caja_menus_append_bookmark_to_menu(
   g_snprintf(action_name, sizeof(action_name), "%s%d", parent_id,
              index_in_parent);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action =
       gtk_action_new(action_name, name,
                      _("Go to the location specified by this bookmark"), NULL);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   g_object_set_data_full(G_OBJECT(action), "menu-icon",
                          cairo_surface_reference(surface),
@@ -187,9 +185,7 @@ void caja_menus_append_bookmark_to_menu(
                         G_CALLBACK(activate_bookmark_in_menu_item),
                         bookmark_holder, bookmark_holder_free_cover, 0);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   gtk_action_group_add_action(action_group, GTK_ACTION(action));
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   g_object_unref(action);
 
@@ -329,13 +325,11 @@ static void action_show_hidden_files_callback(GtkAction *action,
 
   window = CAJA_WINDOW(callback_data);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   if (gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action))) {
     mode = CAJA_WINDOW_SHOW_HIDDEN_FILES_ENABLE;
   } else {
     mode = CAJA_WINDOW_SHOW_HIDDEN_FILES_DISABLE;
   }
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   caja_window_info_set_hidden_files_mode(window, mode);
 }
@@ -347,13 +341,11 @@ static void action_show_backup_files_callback(GtkAction *action,
 
   window = CAJA_WINDOW(callback_data);
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   if (gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action))) {
     mode = CAJA_WINDOW_SHOW_BACKUP_FILES_ENABLE;
   } else {
     mode = CAJA_WINDOW_SHOW_BACKUP_FILES_DISABLE;
   }
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   caja_window_info_set_backup_files_mode(window, mode);
 }
@@ -367,7 +359,6 @@ static void show_hidden_files_preference_callback(gpointer callback_data) {
       CAJA_WINDOW_SHOW_HIDDEN_FILES_DEFAULT) {
     GtkAction *action;
 
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     action = gtk_action_group_get_action(window->details->main_action_group,
                                          CAJA_ACTION_SHOW_HIDDEN_FILES);
     g_assert(GTK_IS_ACTION(action));
@@ -379,7 +370,6 @@ static void show_hidden_files_preference_callback(gpointer callback_data) {
         GTK_TOGGLE_ACTION(action),
         g_settings_get_boolean(caja_preferences,
                                CAJA_PREFERENCES_SHOW_HIDDEN_FILES));
-    G_GNUC_END_IGNORE_DEPRECATIONS;
     g_signal_handlers_unblock_by_func(action, action_show_hidden_files_callback,
                                       window);
 
@@ -398,7 +388,6 @@ static void show_backup_files_preference_callback(gpointer callback_data) {
       CAJA_WINDOW_SHOW_BACKUP_FILES_DEFAULT) {
     GtkAction *action;
 
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     action = gtk_action_group_get_action(window->details->main_action_group,
                                          CAJA_ACTION_SHOW_BACKUP_FILES);
     g_assert(GTK_IS_ACTION(action));
@@ -410,7 +399,6 @@ static void show_backup_files_preference_callback(gpointer callback_data) {
         GTK_TOGGLE_ACTION(action),
         g_settings_get_boolean(caja_preferences,
                                CAJA_PREFERENCES_SHOW_BACKUP_FILES));
-    G_GNUC_END_IGNORE_DEPRECATIONS;
     g_signal_handlers_unblock_by_func(action, action_show_backup_files_callback,
                                       window);
 
@@ -543,9 +531,7 @@ static void menu_item_select_cb(GtkMenuItem *proxy, CajaWindow *window) {
   GtkAction *action;
   char *message;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action = gtk_activatable_get_related_action(GTK_ACTIVATABLE(proxy));
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_return_if_fail(action != NULL);
 
   g_object_get(G_OBJECT(action), "tooltip", &message, NULL);
@@ -668,10 +654,8 @@ static void trash_state_changed_cb(CajaTrashMonitor *monitor, gboolean state,
   GtkAction *action;
   GIcon *gicon;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action_group = window->details->main_action_group;
   action = gtk_action_group_get_action(action_group, "Go to Trash");
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   gicon = caja_trash_monitor_get_icon();
 
@@ -822,7 +806,6 @@ void caja_window_initialize_menus(CajaWindow *window) {
   GtkAction *action;
   const char *ui;
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action_group = gtk_action_group_new("ShellActions");
 #ifdef ENABLE_NLS
   gtk_action_group_set_translation_domain(action_group, GETTEXT_PACKAGE);
@@ -862,7 +845,6 @@ void caja_window_initialize_menus(CajaWindow *window) {
       GTK_TOGGLE_ACTION(action),
       g_settings_get_boolean(caja_preferences,
                              CAJA_PREFERENCES_SHOW_BACKUP_FILES));
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   g_signal_handlers_unblock_by_func(action, action_show_backup_files_callback,
                                     window);
 
@@ -949,11 +931,9 @@ static void add_extension_menu_items(CajaWindow *window, guint merge_id,
 
     g_object_get(item, "menu", &menu, NULL);
 
-    G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
     action = caja_action_from_menu_item(item, GTK_WIDGET(window));
     gtk_action_group_add_action_with_accel(action_group, action, NULL);
     action_name = gtk_action_get_name(action);
-    G_GNUC_END_IGNORE_DEPRECATIONS;
 
     path = g_build_path("/", POPUP_PATH_EXTENSION_ACTIONS, subdirectory, NULL);
     gtk_ui_manager_add_ui(
@@ -974,10 +954,8 @@ static void add_extension_menu_items(CajaWindow *window, guint merge_id,
 
       children = caja_menu_get_items(menu);
 
-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
       subdir = g_build_path("/", subdirectory, "/", gtk_action_get_name(action),
                             NULL);
-      G_GNUC_END_IGNORE_DEPRECATIONS;
       add_extension_menu_items(window, merge_id, action_group, children,
                                subdir);
 
@@ -1007,13 +985,11 @@ void caja_window_load_extension_menus(CajaWindow *window) {
 
   merge_id = gtk_ui_manager_new_merge_id(window->details->ui_manager);
   window->details->extensions_menu_merge_id = merge_id;
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   action_group = gtk_action_group_new("ExtensionsMenuGroup");
   window->details->extensions_menu_action_group = action_group;
 #ifdef ENABLE_NLS
   gtk_action_group_set_translation_domain(action_group, GETTEXT_PACKAGE);
 #endif /* ENABLE_NLS */
-  G_GNUC_END_IGNORE_DEPRECATIONS;
   gtk_ui_manager_insert_action_group(window->details->ui_manager, action_group,
                                      0);
   g_object_unref(action_group); /* owned by ui manager */

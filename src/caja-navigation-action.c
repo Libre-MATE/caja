@@ -48,10 +48,8 @@ struct _CajaNavigationActionPrivate {
 
 enum { PROP_0, PROP_ARROW_TOOLTIP, PROP_DIRECTION, PROP_WINDOW };
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 G_DEFINE_TYPE_WITH_PRIVATE(CajaNavigationAction, caja_navigation_action,
                            GTK_TYPE_ACTION)
-G_GNUC_END_IGNORE_DEPRECATIONS;
 
 static gboolean should_open_in_new_tab(void) {
   /* FIXME this is duplicated */
@@ -224,10 +222,8 @@ static void connect_proxy(GtkAction *action, GtkWidget *proxy) {
                      G_CALLBACK(proxy_button_release_event_cb), NULL);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   (*GTK_ACTION_CLASS(caja_navigation_action_parent_class)->connect_proxy)(
       action, proxy);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void disconnect_proxy(GtkAction *action, GtkWidget *proxy) {
@@ -244,10 +240,8 @@ static void disconnect_proxy(GtkAction *action, GtkWidget *proxy) {
         child, G_CALLBACK(proxy_button_release_event_cb), NULL);
   }
 
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   (*GTK_ACTION_CLASS(caja_navigation_action_parent_class)->disconnect_proxy)(
       action, proxy);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 static void caja_navigation_action_finalize(GObject *object) {
@@ -302,9 +296,7 @@ static void caja_navigation_action_get_property(GObject *object, guint prop_id,
 static void caja_navigation_action_class_init(
     CajaNavigationActionClass *class) {
   GObjectClass *object_class = G_OBJECT_CLASS(class);
-  G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
   GtkActionClass *action_class = GTK_ACTION_CLASS(class);
-  G_GNUC_END_IGNORE_DEPRECATIONS;
 
   object_class->finalize = caja_navigation_action_finalize;
   object_class->set_property = caja_navigation_action_set_property;

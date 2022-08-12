@@ -927,7 +927,6 @@ static void setup_new_spatial_window(CajaWindowSlot *slot, CajaFile *file) {
             CAJA_WINDOW_SHOW_HIDDEN_FILES_DISABLE;
       }
 
-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
       /* Update the UI, since we initialize it to the default */
       action = gtk_action_group_get_action(window->details->main_action_group,
                                            CAJA_ACTION_SHOW_HIDDEN_FILES);
@@ -936,7 +935,6 @@ static void setup_new_spatial_window(CajaWindowSlot *slot, CajaFile *file) {
                                    window->details->show_hidden_files_mode ==
                                        CAJA_WINDOW_SHOW_HIDDEN_FILES_ENABLE);
       gtk_action_unblock_activate(action);
-      G_GNUC_END_IGNORE_DEPRECATIONS;
     } else {
       CAJA_WINDOW(window)->details->show_hidden_files_mode =
           CAJA_WINDOW_SHOW_HIDDEN_FILES_DEFAULT;
