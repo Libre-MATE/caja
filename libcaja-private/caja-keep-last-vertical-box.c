@@ -23,9 +23,11 @@
    Author: John Sullivan <sullivan@eazel.com>,
  */
 
-#include "caja-keep-last-vertical-box.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "caja-keep-last-vertical-box.h"
 
 static void caja_keep_last_vertical_box_size_allocate(
     GtkWidget *widget, GtkAllocation *allocation);

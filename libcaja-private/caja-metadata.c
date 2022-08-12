@@ -20,9 +20,12 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-metadata.h"
 
-#include <config.h>
 #include <glib.h>
 
 static char *used_metadata_names[] = {

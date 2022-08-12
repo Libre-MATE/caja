@@ -22,9 +22,11 @@
    Author: Alexander Larsson <alexl@redhat.com>
 */
 
-#include "caja-window-info.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "caja-window-info.h"
 
 enum {
   LOADING_URI,

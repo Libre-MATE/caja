@@ -22,10 +22,11 @@
  * Author: Cosimo Cecchi <cosimoc@gnome.org>
  */
 
-#include "caja-connect-server-operation.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
+#include "caja-connect-server-operation.h"
 #include "caja-connect-server-dialog.h"
 
 enum { PROP_DIALOG = 1, NUM_PROPERTIES };

@@ -22,11 +22,14 @@
  * Author: David Zeuthen <davidz@redhat.com>
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-autorun.h"
 
 #include <X11/XKBlib.h>
 #include <cairo-gobject.h>
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-stock-dialogs.h>
 #include <gdk/gdkkeysyms.h>

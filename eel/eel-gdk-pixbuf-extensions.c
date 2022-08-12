@@ -23,9 +23,12 @@
             Ramiro Estrugo <ramiro@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-gdk-pixbuf-extensions.h"
 
-#include <config.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdkprivate.h>
 #include <gdk/gdkx.h>

@@ -22,12 +22,15 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-icon-canvas-item.h"
 
 #include <atk/atkcomponent.h>
 #include <atk/atkimage.h>
 #include <atk/atknoopobject.h>
-#include <config.h>
 #include <eel/eel-accessibility.h>
 #include <eel/eel-art-extensions.h>
 #include <eel/eel-gdk-extensions.h>

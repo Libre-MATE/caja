@@ -22,9 +22,12 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-ditem-page.h"
 
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>

@@ -22,9 +22,11 @@
    Author: Alexander Larsson <alexl@redhat.com>
 */
 
-#include "caja-sidebar.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "caja-sidebar.h"
 
 enum {
   TAB_ICON_CHANGED,

@@ -24,9 +24,12 @@
             Alex Graveley <alex@ximian.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-monitor.h"
 
-#include <config.h>
 #include <gio/gio.h>
 
 #include "caja-file-changes-queue.h"

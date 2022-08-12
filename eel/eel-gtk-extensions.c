@@ -26,11 +26,14 @@
             Darin Adler <darin@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-gtk-extensions.h"
 
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
-#include <config.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkprivate.h>
 #include <gdk/gdkx.h>

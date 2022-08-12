@@ -27,7 +27,10 @@
  *          David Emory Watson <dwatson@cs.ucr.edu>
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
 #include <gio/gio.h>

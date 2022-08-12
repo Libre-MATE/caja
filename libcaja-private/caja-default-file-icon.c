@@ -22,9 +22,11 @@
    Author: Darin Adler <darin@bentspoon.com>
 */
 
-#include "caja-default-file-icon.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "caja-default-file-icon.h"
 
 const int caja_default_file_icon_width = 48;
 const int caja_default_file_icon_height = 48;

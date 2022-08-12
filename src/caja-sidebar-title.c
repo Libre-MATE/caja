@@ -24,9 +24,12 @@
 
 /* This is the sidebar title widget, which is the title part of the sidebar. */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-sidebar-title.h"
 
-#include <config.h>
 #include <eel/eel-background.h>
 #include <eel/eel-gdk-extensions.h>
 #include <eel/eel-gdk-pixbuf-extensions.h>

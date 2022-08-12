@@ -29,9 +29,12 @@
  *                                 contain a hierarchy of files
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-tree-view-drag-dest.h"
 
-#include <config.h>
 #include <eel/eel-gtk-macros.h>
 #include <gtk/gtk.h>
 #include <stdio.h>

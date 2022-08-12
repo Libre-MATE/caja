@@ -25,10 +25,13 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-history-sidebar.h"
 
 #include <cairo-gobject.h>
-#include <config.h>
 #include <eel/eel-gtk-extensions.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>

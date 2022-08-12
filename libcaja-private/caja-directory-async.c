@@ -22,7 +22,10 @@
    Author: Darin Adler <darin@bentspoon.com>
 */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <eel/eel-glib-extensions.h>
 #include <gtk/gtk.h>
 #include <libxml/parser.h>

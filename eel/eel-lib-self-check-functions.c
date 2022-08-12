@@ -23,7 +23,9 @@
    Author: Darin Adler <darin@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #if !defined(EEL_OMIT_SELF_CHECK)
 

@@ -25,9 +25,12 @@
 
 /* notes sidebar panel -- allows editing per-directory notes */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-notes-viewer.h"
 
-#include <config.h>
 #include <eel/eel-debug.h>
 #include <eel/eel-gtk-extensions.h>
 #include <glib/gi18n.h>

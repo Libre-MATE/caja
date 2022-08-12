@@ -22,10 +22,13 @@
  * Authors: Darin Adler <darin@bentspoon.com>
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-desktop-window.h"
 
 #include <X11/Xatom.h>
-#include <config.h>
 #include <eel/eel-background.h>
 #include <eel/eel-vfs-extensions.h>
 #include <gdk/gdkx.h>

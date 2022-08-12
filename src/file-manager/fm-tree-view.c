@@ -29,10 +29,13 @@
 /* fm-tree-view.c - tree sidebar panel
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-tree-view.h"
 
 #include <cairo-gobject.h>
-#include <config.h>
 #include <eel/eel-gtk-extensions.h>
 #include <gio/gio.h>
 #include <glib/gi18n.h>

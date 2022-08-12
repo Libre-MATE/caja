@@ -28,7 +28,10 @@
 /* caja-main.c: Implementation of the routines that drive program lifecycle and
  * main window creation/destruction. */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <dlfcn.h>
 #include <locale.h>
 #include <signal.h>

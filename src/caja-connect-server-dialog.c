@@ -22,9 +22,12 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-connect-server-dialog.h"
 
-#include <config.h>
 #include <eel/eel-stock-dialogs.h>
 #include <gio/gio.h>
 #include <glib/gi18n.h>

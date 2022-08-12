@@ -22,9 +22,12 @@
    Author: Alexander Larsson <alexl@redhat.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-desktop-link-monitor.h"
 
-#include <config.h>
 #include <eel/eel-debug.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-macros.h>

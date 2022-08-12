@@ -22,10 +22,11 @@
    Author: Dave Camp <dave@ximian.com>
 */
 
-#include "eel-background-box.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
+#include "eel-background-box.h"
 #include "eel-background.h"
 
 G_DEFINE_TYPE(EelBackgroundBox, eel_background_box, GTK_TYPE_EVENT_BOX)

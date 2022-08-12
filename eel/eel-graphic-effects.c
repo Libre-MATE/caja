@@ -25,9 +25,12 @@
 /* This file contains pixbuf manipulation routines used for graphical effects
    like pre-lighting and selection hilighting */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-graphic-effects.h"
 
-#include <config.h>
 #include <string.h>
 
 #include "eel-glib-extensions.h"

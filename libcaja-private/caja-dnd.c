@@ -26,9 +26,12 @@
 
 /* FIXME: This should really be back in Caja, not here in Eel. */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-dnd.h"
 
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-extensions.h>
 #include <eel/eel-string.h>

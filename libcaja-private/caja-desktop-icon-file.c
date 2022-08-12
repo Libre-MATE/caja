@@ -23,9 +23,12 @@
    Author: Alexander Larsson <alexl@redhat.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-desktop-icon-file.h"
 
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <gio/gio.h>
 #include <glib/gi18n.h>

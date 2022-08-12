@@ -22,9 +22,12 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-module.h"
 
-#include <config.h>
 #include <eel/eel-debug.h>
 #include <eel/eel-gtk-macros.h>
 #include <gmodule.h>

@@ -29,7 +29,10 @@
 
 /* caja-window.c: Implementation of the main window object */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdkx.h>
 #include <glib/gi18n.h>

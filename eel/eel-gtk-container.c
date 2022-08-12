@@ -23,10 +23,11 @@
    Authors: Ramiro Estrugo <ramiro@eazel.com>
 */
 
-#include "eel-gtk-container.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
+#include "eel-gtk-container.h"
 #include "eel-art-extensions.h"
 
 /**

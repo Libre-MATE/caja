@@ -21,9 +21,12 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-search-bar.h"
 
-#include <config.h>
 #include <eel/eel-gtk-macros.h>
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>

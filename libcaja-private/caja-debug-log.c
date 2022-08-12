@@ -21,9 +21,13 @@
 
    Author: Federico Mena-Quintero <federico@novell.com>
 */
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-debug-log.h"
 
-#include <config.h>
 #include <errno.h>
 #include <stdio.h>
 #include <string.h>

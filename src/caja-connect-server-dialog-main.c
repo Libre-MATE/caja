@@ -25,7 +25,10 @@
  *   Cosimo Cecchi <cosimoc@gnome.org>
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <eel/eel-stock-dialogs.h>
 #include <gdk/gdk.h>
 #include <glib/gi18n.h>

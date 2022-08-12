@@ -28,9 +28,12 @@
 
 /* caja-window.c: Implementation of the main window object */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-spatial-window.h"
 
-#include <config.h>
 #include <eel/eel-gtk-extensions.h>
 #include <eel/eel-gtk-macros.h>
 #include <eel/eel-string.h>

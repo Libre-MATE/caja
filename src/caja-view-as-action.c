@@ -23,9 +23,12 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-view-as-action.h"
 
-#include <config.h>
 #include <eel/eel-gtk-extensions.h>
 #include <gtk/gtk.h>
 #include <libcaja-private/caja-view-factory.h>

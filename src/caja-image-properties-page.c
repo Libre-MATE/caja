@@ -23,7 +23,10 @@
  * XMP support by Hubert Figuiere <hfiguiere@novell.com>
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <gio/gio.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>

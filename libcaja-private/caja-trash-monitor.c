@@ -23,9 +23,12 @@
    Author: Pavel Cisler <pavel@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-trash-monitor.h"
 
-#include <config.h>
 #include <eel/eel-debug.h>
 #include <gio/gio.h>
 #include <string.h>

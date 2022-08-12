@@ -25,10 +25,13 @@
    Darin Adler <darin@bentspoon.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-icon-container.h"
 
 #include <atk/atkaction.h>
-#include <config.h>
 #include <eel/eel-accessibility.h>
 #include <eel/eel-art-extensions.h>
 #include <eel/eel-background.h>

@@ -22,9 +22,12 @@
    Author: Alexander Larsson <alexl@redhat.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-emblem-utils.h"
 
-#include <config.h>
 #include <eel/eel-gdk-pixbuf-extensions.h>
 #include <eel/eel-stock-dialogs.h>
 #include <glib.h>

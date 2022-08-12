@@ -20,9 +20,12 @@
    Author: Maciej Stachowiak <mjs@noisehavoc.org>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-file-queue.h"
 
-#include <config.h>
 #include <glib.h>
 
 struct CajaFileQueue {

@@ -23,9 +23,12 @@
             Ramiro Estrugo <ramiro@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-art-extensions.h"
 
-#include <config.h>
 #include <math.h>
 
 #include "eel-lib-self-check-functions.h"

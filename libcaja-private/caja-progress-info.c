@@ -22,9 +22,12 @@
    Author: Alexander Larsson <alexl@redhat.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-progress-info.h"
 
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>

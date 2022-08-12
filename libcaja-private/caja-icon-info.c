@@ -18,9 +18,12 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-icon-info.h"
 
-#include <config.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <string.h>

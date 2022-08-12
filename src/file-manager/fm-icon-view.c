@@ -22,9 +22,12 @@
    Authors: John Sullivan <sullivan@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-icon-view.h"
 
-#include <config.h>
 #include <eel/eel-background.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-extensions.h>

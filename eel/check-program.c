@@ -22,7 +22,10 @@
    Authors: Ramiro Estrugo <ramiro@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <eel/eel-debug.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-lib-self-check-functions.h>

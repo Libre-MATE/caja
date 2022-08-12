@@ -23,7 +23,9 @@
    Author: Darin Adler <darin@bentspoon.com>
 */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #if !defined(CAJA_OMIT_SELF_CHECK)
 

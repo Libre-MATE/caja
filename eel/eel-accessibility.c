@@ -22,10 +22,14 @@
         Anders Carlsson <andersca@gnu.org>
         Michael Meeks   <michael@ximian.com>
 */
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-accessibility.h"
 
 #include <atk/atkrelationset.h>
-#include <config.h>
 #include <gtk/gtk.h>
 
 void eel_accessibility_set_up_label_widget_relation(GtkWidget *label,

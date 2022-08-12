@@ -22,9 +22,11 @@
    Authors: Ramiro Estrugo <ramiro@eazel.com>
 */
 
-#include "eel-art-gtk-extensions.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "eel-art-gtk-extensions.h"
 
 /**
  * eel_gtk_widget_get_bounds:

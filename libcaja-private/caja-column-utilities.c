@@ -22,9 +22,12 @@
    Authors: Dave Camp <dave@ximian.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-column-utilities.h"
 
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <glib/gi18n.h>
 #include <libcaja-extension/caja-column-provider.h>

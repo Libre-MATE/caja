@@ -25,10 +25,13 @@
             Jasmine Hassan <jasmine.aura@gmail.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-background.h"
 
 #include <cairo-xlib.h>
-#include <config.h>
 #include <gdk/gdkx.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>

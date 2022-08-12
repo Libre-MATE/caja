@@ -22,10 +22,13 @@
    Authors: Darin Adler <darin@bentspoon.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-properties-window.h"
 
 #include <cairo.h>
-#include <config.h>
 #include <eel/eel-accessibility.h>
 #include <eel/eel-gdk-pixbuf-extensions.h>
 #include <eel/eel-glib-extensions.h>

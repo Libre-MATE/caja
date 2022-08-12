@@ -23,9 +23,12 @@
    Author: John Sullivan <sullivan@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-program-choosing.h"
 
-#include <config.h>
 #include <eel/eel-mate-extensions.h>
 #include <eel/eel-stock-dialogs.h>
 #include <gdk/gdk.h>

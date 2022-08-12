@@ -23,9 +23,12 @@
    Author: Darin Adler <darin@bentspoon.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-vfs-file.h"
 
-#include <config.h>
 #include <eel/eel-gtk-macros.h>
 #include <glib/gi18n.h>
 

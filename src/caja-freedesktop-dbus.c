@@ -22,9 +22,12 @@
  *          Stefano Karapetsas <stefano@karapetsas.com>
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-freedesktop-dbus.h"
 
-#include <config.h>
 #include <gio/gio.h>
 #include <libcaja-private/caja-debug-log.h>
 

@@ -21,9 +21,13 @@
 
    Author: Michael Meeks <michael@ximian.com>
 */
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-icon-container.h"
 
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <gio/gio.h>
 #include <glib/gi18n.h>

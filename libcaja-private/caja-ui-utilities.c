@@ -22,9 +22,12 @@
    Authors: Alexander Larsson <alexl@redhat.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-ui-utilities.h"
 
-#include <config.h>
 #include <eel/eel-debug.h>
 #include <eel/eel-graphic-effects.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>

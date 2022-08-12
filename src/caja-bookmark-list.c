@@ -25,9 +25,12 @@
 /* caja-bookmark-list.c - implementation of centralized list of bookmarks.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-bookmark-list.h"
 
-#include <config.h>
 #include <gio/gio.h>
 #include <libcaja-private/caja-file-utilities.h>
 #include <libcaja-private/caja-file.h>

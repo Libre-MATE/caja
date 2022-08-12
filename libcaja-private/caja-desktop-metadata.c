@@ -25,9 +25,12 @@
  *          Stefano Karapetsas <stefano@karapetsas.com>
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-desktop-metadata.h"
 
-#include <config.h>
 #include <fcntl.h>
 #include <glib/gstdio.h>
 #include <sys/stat.h>

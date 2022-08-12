@@ -26,7 +26,9 @@
  * in Caja proper.
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #if !defined(CAJA_OMIT_SELF_CHECK)
 

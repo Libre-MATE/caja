@@ -25,7 +25,11 @@
 /* caja-window-menus.h - implementation of caja window menu operations,
  *                           split into separate file just for convenience.
  */
+
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <eel/eel-gtk-extensions.h>
 #include <gio/gio.h>
 #include <glib/gi18n.h>

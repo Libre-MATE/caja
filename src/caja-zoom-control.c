@@ -27,10 +27,13 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-zoom-control.h"
 
 #include <atk/atkaction.h>
-#include <config.h>
 #include <eel/eel-accessibility.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-graphic-effects.h>

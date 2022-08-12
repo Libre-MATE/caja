@@ -22,9 +22,12 @@
    Author: Darin Adler <darin@bentspoon.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-file.h"
 
-#include <config.h>
 #include <ctype.h>
 #include <eel/eel-debug.h>
 #include <eel/eel-glib-extensions.h>

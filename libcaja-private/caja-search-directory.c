@@ -20,9 +20,12 @@
    Author: Anders Carlsson <andersca@imendio.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-search-directory.h"
 
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>

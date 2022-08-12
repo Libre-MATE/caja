@@ -20,10 +20,11 @@
  *
  */
 
-#include "caja-file-info.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
+#include "caja-file-info.h"
 #include "caja-extension-private.h"
 
 CajaFileInfo *(*caja_file_info_getter)(GFile *location, gboolean create);

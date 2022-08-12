@@ -22,9 +22,12 @@
    Authors: Dave Camp <dave@ximian.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-column-chooser.h"
 
-#include <config.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <string.h>

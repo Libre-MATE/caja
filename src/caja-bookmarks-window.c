@@ -25,10 +25,13 @@
 /* caja-bookmarks-window.c - implementation of bookmark-editing window.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-bookmarks-window.h"
 
 #include <cairo-gobject.h>
-#include <config.h>
 #include <eel/eel-gtk-extensions.h>
 #include <eel/eel-mate-extensions.h>
 #include <gdk/gdkkeysyms.h>

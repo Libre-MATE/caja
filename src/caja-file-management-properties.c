@@ -23,10 +23,13 @@
    Authors: Jan Arne Petersen <jpetersen@uni-bonn.de>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-file-management-properties.h"
 
 #include <cairo-gobject.h>
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-extensions.h>
 #include <gio/gio.h>

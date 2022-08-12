@@ -25,10 +25,13 @@
             Alexander Larsson <alexl@redhat.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-open-with-dialog.h"
 
 #include <cairo-gobject.h>
-#include <config.h>
 #include <eel/eel-stock-dialogs.h>
 #include <gio/gio.h>
 #include <glib/gi18n-lib.h>

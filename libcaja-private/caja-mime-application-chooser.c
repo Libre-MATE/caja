@@ -25,9 +25,12 @@
             Alexander Larsson <alexl@redhat.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-mime-application-chooser.h"
 
-#include <config.h>
 #include <eel/eel-stock-dialogs.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gio/gio.h>

@@ -26,9 +26,12 @@
  * correspond to any particular object.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-signaller.h"
 
-#include <config.h>
 #include <eel/eel-debug.h>
 
 typedef GObject CajaSignaller;

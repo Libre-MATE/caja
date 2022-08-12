@@ -25,10 +25,13 @@
    (sandmann@daimi.au.dk), Dave Camp <dave@ximian.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-list-model.h"
 
 #include <cairo-gobject.h>
-#include <config.h>
 #include <eel/eel-graphic-effects.h>
 #include <glib.h>
 #include <glib/gi18n.h>

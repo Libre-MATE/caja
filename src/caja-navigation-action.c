@@ -27,9 +27,12 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-navigation-action.h"
 
-#include <config.h>
 #include <eel/eel-gtk-extensions.h>
 #include <gtk/gtk.h>
 

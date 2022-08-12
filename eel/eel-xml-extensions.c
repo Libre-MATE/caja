@@ -22,9 +22,12 @@
    Authors: Darin Adler <darin@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-xml-extensions.h"
 
-#include <config.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
 #include <libxml/parser.h>

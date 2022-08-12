@@ -25,9 +25,12 @@
             David Emory Watson <dwatson@cs.ucr.edu>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-list-view.h"
 
-#include <config.h>
 #include <eel/eel-gdk-extensions.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-macros.h>

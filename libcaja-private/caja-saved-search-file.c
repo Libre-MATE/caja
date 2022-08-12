@@ -22,10 +22,12 @@
 
    Author: Alexander Larsson
 */
-#include "caja-saved-search-file.h"
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
+#include "caja-saved-search-file.h"
 #include "caja-file-private.h"
 
 G_DEFINE_TYPE(CajaSavedSearchFile, caja_saved_search_file, CAJA_TYPE_VFS_FILE)

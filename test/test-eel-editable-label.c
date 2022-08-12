@@ -1,6 +1,9 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <eel/eel-editable-label.h>
 #include <gtk/gtk.h>
 

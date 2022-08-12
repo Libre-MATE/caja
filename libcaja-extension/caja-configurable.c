@@ -23,9 +23,12 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-configurable.h"
 
-#include <config.h>
 #include <glib-object.h>
 
 /**

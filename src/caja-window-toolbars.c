@@ -26,7 +26,10 @@
  * split into separate file just for convenience.
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <eel/eel-gtk-extensions.h>
 #include <eel/eel-mate-extensions.h>
 #include <eel/eel-string.h>

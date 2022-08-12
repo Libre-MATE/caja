@@ -28,10 +28,13 @@
  * customize them
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-property-browser.h"
 
 #include <atk/atkrelationset.h>
-#include <config.h>
 #include <eel/eel-gdk-extensions.h>
 #include <eel/eel-gdk-pixbuf-extensions.h>
 #include <eel/eel-glib-extensions.h>

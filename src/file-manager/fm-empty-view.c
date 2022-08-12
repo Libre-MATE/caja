@@ -22,9 +22,12 @@
    Authors: Christian Neumair <chris@mate-de.org>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-empty-view.h"
 
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-macros.h>
 #include <eel/eel-vfs-extensions.h>

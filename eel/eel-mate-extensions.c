@@ -24,7 +24,9 @@
    Authors: Darin Adler <darin@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
 #define MATE_DESKTOP_USE_UNSTABLE_API
 

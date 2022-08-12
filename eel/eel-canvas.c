@@ -64,10 +64,13 @@
  *   - How to fetch the outline width and know whether it is in pixels or units?
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-canvas.h"
 
 #include <cairo/cairo-gobject.h>
-#include <config.h>
 #include <gdk/gdkprivate.h>
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk-a11y.h>

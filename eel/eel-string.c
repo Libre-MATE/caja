@@ -22,9 +22,12 @@
    Authors: Darin Adler <darin@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-string.h"
 
-#include <config.h>
 #include <errno.h>
 #include <locale.h>
 #include <stdlib.h>

@@ -30,9 +30,12 @@
 
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-icon-dnd.h"
 
-#include <config.h>
 #include <eel/eel-background.h>
 #include <eel/eel-canvas-rect-ellipse.h>
 #include <eel/eel-gdk-pixbuf-extensions.h>

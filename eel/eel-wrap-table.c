@@ -22,9 +22,12 @@
    Authors: Ramiro Estrugo <ramiro@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-wrap-table.h"
 
-#include <config.h>
 #include <gtk/gtk.h>
 
 #include "eel-art-extensions.h"

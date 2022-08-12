@@ -20,10 +20,11 @@
    Author: Pavel Cisler <pavel@eazel.com>
 */
 
-#include "caja-file-changes-queue.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
 
+#include "caja-file-changes-queue.h"
 #include "caja-directory-notify.h"
 
 typedef enum {

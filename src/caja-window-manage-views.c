@@ -26,9 +26,12 @@
  *           Darin Adler <darin@bentspoon.com>
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-window-manage-views.h"
 
-#include <config.h>
 #include <eel/eel-accessibility.h>
 #include <eel/eel-debug.h>
 #include <eel/eel-gdk-extensions.h>

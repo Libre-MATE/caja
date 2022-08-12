@@ -26,7 +26,10 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <fcntl.h>
 #include <gdk/gdkx.h>
 #include <gio/gio.h>

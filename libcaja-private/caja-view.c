@@ -22,9 +22,11 @@
    Author: Alexander Larsson <alexl@redhat.com>
 */
 
-#include "caja-view.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "caja-view.h"
 
 enum { TITLE_CHANGED, ZOOM_LEVEL_CHANGED, LAST_SIGNAL };
 

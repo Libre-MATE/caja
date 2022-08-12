@@ -25,9 +25,12 @@
 /* caja-customization-data.c - functions to collect and load customization
    names and images */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-customization-data.h"
 
-#include <config.h>
 #include <eel/eel-gdk-extensions.h>
 #include <eel/eel-gdk-pixbuf-extensions.h>
 #include <eel/eel-gtk-extensions.h>

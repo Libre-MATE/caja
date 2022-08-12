@@ -22,10 +22,13 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-places-sidebar.h"
 
 #include <cairo-gobject.h>
-#include <config.h>
 #include <eel/eel-debug.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-graphic-effects.h>

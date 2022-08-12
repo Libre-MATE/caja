@@ -22,9 +22,12 @@
    Author: Darin Adler <darin@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-debug.h"
 
-#include <config.h>
 #include <glib.h>
 #include <signal.h>
 #include <stdio.h>

@@ -23,9 +23,12 @@
    Authors: Cosimo Cecchi <cosimoc@gnome.org>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-file-conflict-dialog.h"
 
-#include <config.h>
 #include <eel/eel-stock-dialogs.h>
 #include <eel/eel-vfs-extensions.h>
 #include <gio/gio.h>

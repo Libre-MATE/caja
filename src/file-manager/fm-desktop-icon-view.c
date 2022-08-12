@@ -25,10 +25,13 @@
             Miguel de Icaza <miguel@ximian.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-desktop-icon-view.h"
 
 #include <X11/Xatom.h>
-#include <config.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-extensions.h>
 #include <eel/eel-vfs-extensions.h>

@@ -22,9 +22,12 @@
    Authors: John Sullivan <sullivan@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-file-utilities.h"
 
-#include <config.h>
 #include <eel/eel-debug.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-stock-dialogs.h>

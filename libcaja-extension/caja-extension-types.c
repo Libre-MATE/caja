@@ -22,9 +22,11 @@
  *
  */
 
-#include "caja-extension-types.h"
-
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
+#include "caja-extension-types.h"
 
 GType caja_operation_result_get_type(void) {
   static GType type = 0;

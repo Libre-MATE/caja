@@ -22,10 +22,13 @@
    Authors: Ramiro Estrugo <ramiro@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-labeled-image.h"
 
 #include <atk/atkimage.h>
-#include <config.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk-a11y.h>
 #include <gtk/gtk.h>

@@ -23,9 +23,12 @@
    Authors: John Sullivan <sullivan@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "fm-error-reporting.h"
 
-#include <config.h>
 #include <eel/eel-stock-dialogs.h>
 #include <eel/eel-string.h>
 #include <glib/gi18n.h>

@@ -30,9 +30,12 @@
 /* caja-location-bar.c - Location bar for Caja
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-location-bar.h"
 
-#include <config.h>
 #include <eel/eel-accessibility.h>
 #include <eel/eel-glib-extensions.h>
 #include <eel/eel-gtk-macros.h>

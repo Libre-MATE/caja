@@ -22,9 +22,12 @@
    Authors: Darin Adler <darin@eazel.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eel-stock-dialogs.h"
 
-#include <config.h>
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 

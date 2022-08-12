@@ -27,9 +27,12 @@
             Jasmine Hassan <jasmine.aura@gmail.com>
 */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "caja-directory-background.h"
 
-#include <config.h>
 #include <eel/eel-background.h>
 #include <eel/eel-gdk-extensions.h>
 #include <eel/eel-gtk-extensions.h>
