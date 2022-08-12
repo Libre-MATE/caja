@@ -23,9 +23,9 @@ m4_define(caja_extension_revision, 0)
 
 AC_INIT([caja],
         [1.26.0],
-        [https://github.com/mate-desktop/caja/issues],
+        [https://github.com/Libre-MATE/caja/issues],
         [caja],
-        [https://mate-desktop.org])
+        [https://github.com/Libre-MATE/caja/])
 
 dnl ---------------------------------------------------------------------------
 

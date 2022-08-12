@@ -484,7 +484,8 @@ static void action_about_caja_callback(GtkAction *action, gpointer user_data) {
         "your computer and online."),
       "copyright",
       _("Copyright \xC2\xA9 1999-2009 The Nautilus authors\n"
-        "Copyright \xC2\xA9 2011-2021 The Caja authors"),
+        "Copyright \xC2\xA9 2011-2021 The Caja authors\n"
+        "Copyright \xc2\xa9 2022 Libre MATE"),
       "license", license_trans, "wrap-license", TRUE, "authors", authors,
       "documenters", documenters, "translator-credits", _("translator-credits"),
       "logo-icon-name", "system-file-manager", "website", PACKAGE_URL,
