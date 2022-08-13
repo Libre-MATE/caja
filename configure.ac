@@ -1,7 +1,3 @@
-AC_PREREQ(2.60)
-
-dnl ===========================================================================
-
 m4_define(gdkpixbuf_minver,           2.36.5)
 m4_define(glib_minver,                 2.62.0)
 m4_define(gio_minver,                  2.62.0)
@@ -26,6 +22,7 @@ AC_INIT([caja],
         [https://github.com/Libre-MATE/caja/issues],
         [caja],
         [https://github.com/Libre-MATE/caja/])
+AC_PREREQ(2.60)
 
 dnl ---------------------------------------------------------------------------
 
