@@ -23,6 +23,7 @@ AC_INIT([caja],
         [caja],
         [https://github.com/Libre-MATE/caja/])
 AC_PREREQ(2.60)
+AC_COPYRIGHT([Copyright (C) 2022 Libre MATE])
 
 dnl ---------------------------------------------------------------------------
 
