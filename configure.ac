@@ -41,20 +41,15 @@ AC_INIT([caja],
         [https://github.com/Libre-MATE/caja/])
 AC_PREREQ(2.60)
 AC_COPYRIGHT([Copyright (C) 2022 Libre MATE])
-
-dnl ---------------------------------------------------------------------------
-
 AC_CONFIG_SRCDIR(src)
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_MACRO_DIR([m4])
+AM_INIT_AUTOMAKE([1.11 tar-ustar dist-xz no-dist-gzip silent-rules check-news])
+AM_MAINTAINER_MODE
 
 MATE_COMPILE_WARNINGS
 
-AM_INIT_AUTOMAKE([1.9 tar-ustar dist-xz no-dist-gzip check-news])
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
-AM_MAINTAINER_MODE
 AC_SUBST([ACLOCAL_AMFLAGS], ["\${ACLOCAL_FLAGS}"])
-
 AC_SUBST(GDKPIXBUF_REQUIRED, [gdkpixbuf_minver])
 AC_SUBST(GLIB_REQUIRED, [glib_minver])
 AC_SUBST(GIO_REQUIRED, [gio_minver])
