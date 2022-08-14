@@ -21,7 +21,6 @@ EXTRA_DIST = \
 	its \
 	autogen.sh \
 	COPYING.LIB \
-	COPYING.EXTENSIONS \
 	HACKING \
 	Makefile.shared \
 	$(NULL)
