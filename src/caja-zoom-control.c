@@ -664,13 +664,10 @@ static CajaZoomLevel nearest_preferred(CajaZoomControl *zoom_control,
   for (l = zoom_control->details->preferred_zoom_levels; l != NULL;
        l = l->next) {
     current_value = GPOINTER_TO_INT(l->data);
-
     if (current_value > value) {
-      float center = (last_value + current_value) / 2;
-
-      return (value < center) ? last_value : current_value;
+      float center = ((float)(last_value + current_value)) / 2.0f;
+      return (((float)value) < center) ? last_value : current_value;
     }
-
     last_value = current_value;
   }
 
