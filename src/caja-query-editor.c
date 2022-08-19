@@ -522,7 +522,7 @@ static void type_combo_changed(GtkComboBox *combo_box,
 
     store = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
     for (l = mime_infos; l != NULL; l = l->next) {
-      GtkTreeIter iter;
+      GtkTreeIter it;
       char *mime_type = l->data;
       char *description;
 
@@ -531,8 +531,8 @@ static void type_combo_changed(GtkComboBox *combo_box,
         description = g_strdup(mime_type);
       }
 
-      gtk_list_store_append(store, &iter);
-      gtk_list_store_set(store, &iter, 0, description, 1, mime_type, -1);
+      gtk_list_store_append(store, &it);
+      gtk_list_store_set(store, &it, 0, description, 1, mime_type, -1);
 
       g_free(mime_type);
       g_free(description);
