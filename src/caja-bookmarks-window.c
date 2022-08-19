@@ -845,11 +845,9 @@ static void repopulate(void) {
 
     if (bookmark == selected) {
       /* save old selection */
-      GtkTreePath *path;
-
-      path = gtk_tree_model_get_path(GTK_TREE_MODEL(store), &iter);
-      reference = gtk_tree_row_reference_new(GTK_TREE_MODEL(store), path);
-      gtk_tree_path_free(path);
+      GtkTreePath *path_selection = gtk_tree_model_get_path(GTK_TREE_MODEL(store), &iter);
+      reference = gtk_tree_row_reference_new(GTK_TREE_MODEL(store), path_selection);
+      gtk_tree_path_free(path_selection);
     }
 
     g_free(bookmark_name);
