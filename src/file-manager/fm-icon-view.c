@@ -289,12 +289,12 @@ static gboolean get_stored_icon_position_callback(CajaIconContainer *container,
 }
 
 static void real_set_sort_criterion(FMIconView *icon_view,
-                                    const SortCriterion *sort, gboolean clear) {
+                                    const SortCriterion *sort) {
   CajaFile *file;
 
   file = fm_directory_view_get_directory_as_file(FM_DIRECTORY_VIEW(icon_view));
 
-  if (clear) {
+  if (!sort) { /* clear */
     caja_file_set_metadata(file, CAJA_METADATA_KEY_ICON_VIEW_SORT_BY, NULL,
                            NULL);
     caja_file_set_metadata(file, CAJA_METADATA_KEY_ICON_VIEW_SORT_REVERSED,
@@ -318,11 +318,11 @@ static void set_sort_criterion(FMIconView *icon_view,
 
   icon_view->details->sort = sort;
 
-  real_set_sort_criterion(icon_view, sort, FALSE);
+  real_set_sort_criterion(icon_view, sort);
 }
 
 static void clear_sort_criterion(FMIconView *icon_view) {
-  real_set_sort_criterion(icon_view, NULL, TRUE);
+  real_set_sort_criterion(icon_view, NULL);
 }
 
 static void action_stretch_callback(GtkAction *action, gpointer callback_data) {
