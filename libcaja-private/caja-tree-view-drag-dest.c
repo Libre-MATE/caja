@@ -558,7 +558,7 @@ static void receive_uris(CajaTreeViewDragDest *dest, GdkDragContext *context,
 
   /* We only want to copy external uris */
   if (dest->details->drag_type == CAJA_ICON_DND_URI_LIST) {
-    action = GDK_ACTION_COPY;
+    real_action = GDK_ACTION_COPY;
   }
 
   if (real_action > 0) {
