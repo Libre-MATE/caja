@@ -35,8 +35,8 @@
 #include <libxml/parser.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[]) {
 #if !defined(EEL_OMIT_SELF_CHECK)
+int main(int argc, char *argv[]) {
 
   eel_make_warnings_and_criticals_stop_in_debugger();
 
@@ -52,7 +52,8 @@ int main(int argc, char *argv[]) {
   eel_exit_if_self_checks_failed();
 
   eel_debug_shut_down();
-
+#else
+int main(void) {
 #endif /* !EEL_OMIT_SELF_CHECK */
 
   return EXIT_SUCCESS;
