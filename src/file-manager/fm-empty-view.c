@@ -307,12 +307,5 @@ static CajaViewInfo fm_empty_view = {
     .supports_uri = fm_empty_view_supports_uri};
 
 void fm_empty_view_register(void) {
-  fm_empty_view.id = fm_empty_view.id;
-  fm_empty_view.view_combo_label = fm_empty_view.view_combo_label;
-  fm_empty_view.view_menu_label_with_mnemonic =
-      fm_empty_view.view_menu_label_with_mnemonic;
-  fm_empty_view.error_label = fm_empty_view.error_label;
-  fm_empty_view.display_location_label = fm_empty_view.display_location_label;
-
   caja_view_factory_register(&fm_empty_view);
 }
