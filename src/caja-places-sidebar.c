@@ -2384,7 +2384,6 @@ static gboolean bookmarks_button_release_event_cb(GtkWidget *widget,
                                                   GdkEventButton *event,
                                                   CajaPlacesSidebar *sidebar) {
   GtkTreePath *path;
-  GtkTreeModel *model;
   GtkTreeView *tree_view;
 
   path = NULL;
@@ -2402,6 +2401,8 @@ static gboolean bookmarks_button_release_event_cb(GtkWidget *widget,
   tree_view = GTK_TREE_VIEW(widget);
 
   if (event->button == 1) {
+    GtkTreeModel *model;
+
     if (event->window != gtk_tree_view_get_bin_window(tree_view)) {
       return FALSE;
     }

@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
   CajaCustomizationData *customization_data;
   GtkWidget *window;
   GtkWidget *emblems_table, *button, *scroller;
-  char *emblem_name, *stripped_name;
+  char *emblem_name;
   GdkPixbuf *pixbuf;
   char *label;
 
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
   while (caja_customization_data_get_next_element_for_display(
       customization_data, &emblem_name, &pixbuf, &label)) {
-    stripped_name = eel_filename_strip_extension(emblem_name);
+    char *stripped_name = eel_filename_strip_extension(emblem_name);
     g_free(emblem_name);
 
     if (strcmp(stripped_name, "erase") == 0) {

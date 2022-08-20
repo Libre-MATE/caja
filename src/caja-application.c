@@ -1599,11 +1599,10 @@ static void caja_application_select(CajaApplication *self, GFile **files,
       g_application_get_dbus_connection(G_APPLICATION(self));
   GVariantBuilder builder;
   gint idx;
-  gchar *uri;
 
   g_variant_builder_init(&builder, G_VARIANT_TYPE("as"));
   for (idx = 0; idx < len; idx++) {
-    uri = g_file_get_uri(files[idx]);
+    gchar *uri = g_file_get_uri(files[idx]);
     g_variant_builder_add(&builder, "s", uri);
     g_free(uri);
   }

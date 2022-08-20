@@ -25,7 +25,6 @@ int main(int argc, char *argv[]) {
   GtkWidget *window;
   GList *sources;
   GFile *dest;
-  GFile *source;
   int i;
   GList *infos;
   CajaProgressInfo *progress_info;
@@ -39,7 +38,7 @@ int main(int argc, char *argv[]) {
 
   sources = NULL;
   for (i = 1; i < argc - 1; i++) {
-    source = g_file_new_for_commandline_arg(argv[i]);
+    GFile *source = g_file_new_for_commandline_arg(argv[i]);
     sources = g_list_prepend(sources, source);
   }
   sources = g_list_reverse(sources);
