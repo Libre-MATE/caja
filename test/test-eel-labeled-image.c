@@ -60,7 +60,6 @@ static GtkWidget *labeled_image_button_window_new(const char *title,
 }
 
 int main(int argc, char *argv[]) {
-  GtkWidget *labeled_image_window = NULL;
   GtkWidget *labeled_image_button_window = NULL;
   GdkPixbuf *pixbuf = NULL;
   GtkIconTheme *icon_theme = NULL;
@@ -78,7 +77,6 @@ int main(int argc, char *argv[]) {
 
   eel_gdk_pixbuf_unref_if_not_null(pixbuf);
 
-  if (labeled_image_window) gtk_widget_show(labeled_image_window);
   if (labeled_image_button_window) gtk_widget_show(labeled_image_button_window);
 
   gtk_main();
