@@ -446,15 +446,15 @@ static void file_read_callback(GObject *object, GAsyncResult *res,
   count_read = g_input_stream_read_finish(stream, res, &error);
 
   if (count_read > 0) {
+#ifdef HAVE_EXIF
     int exif_still_loading;
+#endif /*HAVE_EXIF*/
 
     g_assert(((size_t)count_read) <= sizeof(page->details->buffer));
 
 #ifdef HAVE_EXIF
     exif_still_loading = exif_loader_write(page->details->exifldr,
                                            page->details->buffer, count_read);
-#else
-    exif_still_loading = 0;
 #endif /*HAVE_EXIF*/
 
     if (page->details->pixbuf_still_loading) {
@@ -464,7 +464,11 @@ static void file_read_callback(GObject *object, GAsyncResult *res,
       }
     }
 
+#ifdef HAVE_EXIF
     if (page->details->pixbuf_still_loading || (exif_still_loading == 1)) {
+#else
+    if (page->details->pixbuf_still_loading) {
+#endif /*HAVE_EXIF*/
       g_input_stream_read_async(G_INPUT_STREAM(stream), page->details->buffer,
                                 sizeof(page->details->buffer), 0,
                                 page->details->cancellable, file_read_callback,
