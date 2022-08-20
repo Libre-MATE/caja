@@ -444,7 +444,7 @@ static void update_places(CajaPlacesSidebar *sidebar) {
   volume_monitor = sidebar->volume_monitor;
 
   /* COMPUTER */
-  last_iter = add_heading(sidebar, SECTION_COMPUTER, _("Computer"));
+  add_heading(sidebar, SECTION_COMPUTER, _("Computer"));
 
   /* add built in bookmarks */
 
@@ -734,7 +734,7 @@ static void update_places(CajaPlacesSidebar *sidebar) {
   }
 
   /* network */
-  last_iter = add_heading(sidebar, SECTION_NETWORK, _("Network"));
+  add_heading(sidebar, SECTION_NETWORK, _("Network"));
 
   network_mounts = g_list_reverse(network_mounts);
   for (l = network_mounts; l != NULL; l = l->next) {

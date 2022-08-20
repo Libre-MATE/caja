@@ -532,7 +532,6 @@ static gboolean caja_navigation_window_button_press_event(
   CajaNavigationWindow *window;
   gboolean handled;
 
-  handled = FALSE;
   window = CAJA_NAVIGATION_WINDOW(widget);
 
   if (mouse_extra_buttons && (((int)event->button) == mouse_back_button)) {
